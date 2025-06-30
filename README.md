@@ -16,7 +16,6 @@ Nhóm chỉ làm các chức năng ở mức tối thiểu của một hệ th�
 - Admin (Người quản trị hệ thống)
 - Tài khoản
 - Giảng viên
-- Nhân viên (nếu có)
 
 TÍNH NĂNG CỦA ỨNG DỤNG
 
