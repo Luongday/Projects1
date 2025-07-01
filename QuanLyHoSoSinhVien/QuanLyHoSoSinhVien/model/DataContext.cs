@@ -9,12 +9,19 @@ namespace QuanLyHoSoSinhVien.model
 {
     internal class DataContext : DbContext
     {
+        public DbSet<User> Users { get; set; }
+        public DbSet<SinhVien> SinhViens { get; set; }
+        public DbSet<HoSo>  HoSos{ get; set; }
+        public DbSet<Lop> Lops { get; set; }
+        public DbSet<Khoa> Khoas { get; set; }
+        public DbSet<Nganh> Nganhs { get; set; }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlServer("Data Source=LAP-TOP-VIP-PRO;Initial Catalog=QuanLyHoSoSinhVien;Integrated Security=True;Trust Server Certificate=True;Encrypt=True");
         }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,7 +41,7 @@ namespace QuanLyHoSoSinhVien.model
             );
 
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Nghanh>().HasData(
+            modelBuilder.Entity<Nganh>().HasData(
 
             );
 

@@ -24,15 +24,16 @@ namespace QuanLyHoSoSinhVien.model
         [Required]
         public bool gt { get; set; }
 
-        [Required]
-        [MaxLength(50)]
-        public string? lop { get; set; }
+        //[Required]
+        //[MaxLength(50)]
+        //public string? lop { get; set; }
 
         [Required]
         [MaxLength(50)]
         public string? dc { get; set; }
 
         [Required]
+        [Phone]
         [MaxLength(10)]
         public string? sdt { get; set; }
 

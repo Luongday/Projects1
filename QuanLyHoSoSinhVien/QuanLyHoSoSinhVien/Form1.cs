@@ -6,5 +6,7 @@ namespace QuanLyHoSoSinhVien
         {
             InitializeComponent();
         }
+
+
     }
 }

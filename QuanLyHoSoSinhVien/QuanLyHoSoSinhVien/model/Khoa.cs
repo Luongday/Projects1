@@ -17,7 +17,7 @@ namespace QuanLyHoSoSinhVien.model
 
         [ForeignKey("Nghanh")]
         public string manghanh { get; set; }
-        public ICollection<Nghanh>? Nghanh { get; set; }
+        public ICollection<Nganh>? Nghanh { get; set; }
     }
 }
 

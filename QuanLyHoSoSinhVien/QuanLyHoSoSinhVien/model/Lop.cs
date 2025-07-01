@@ -24,6 +24,6 @@ namespace QuanLyHoSoSinhVien.model
         public int siso { get; set;}
 
         public ICollection<SinhVien>? sinhViens { get; set;}
-        public Nghanh? nghanh { get; set; }
+        public Nganh? nghanh { get; set; }
     }
 }

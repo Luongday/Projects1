@@ -1,22 +1,46 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\DoAn1-BTL\\QuanLyHoSoSinhVien\\",
+  "WorkspaceRootPath": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{34B1B0E1-8E88-4CD4-8BC0-13E267A8253E}|QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien.csproj|d:\\doan1-btl\\quanlyhososinhvien\\quanlyhososinhvien\\model\\sinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{34B1B0E1-8E88-4CD4-8BC0-13E267A8253E}|QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien.csproj|solutionrelative:quanlyhososinhvien\\model\\sinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\Lop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:QuanLyHoSoSinhVien\\model\\Lop.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{34B1B0E1-8E88-4CD4-8BC0-13E267A8253E}|QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien.csproj|d:\\doan1-btl\\quanlyhososinhvien\\quanlyhososinhvien\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{34B1B0E1-8E88-4CD4-8BC0-13E267A8253E}|QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien.csproj|solutionrelative:quanlyhososinhvien\\model\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\Khoa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:QuanLyHoSoSinhVien\\model\\Khoa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{34B1B0E1-8E88-4CD4-8BC0-13E267A8253E}|QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien.csproj|d:\\doan1-btl\\quanlyhososinhvien\\quanlyhososinhvien\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{34B1B0E1-8E88-4CD4-8BC0-13E267A8253E}|QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien.csproj|solutionrelative:quanlyhososinhvien\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\Form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:QuanLyHoSoSinhVien\\Form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{34B1B0E1-8E88-4CD4-8BC0-13E267A8253E}|QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien.csproj|d:\\doan1-btl\\quanlyhososinhvien\\quanlyhososinhvien\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{34B1B0E1-8E88-4CD4-8BC0-13E267A8253E}|QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien.csproj|solutionrelative:quanlyhososinhvien\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\DataContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:QuanLyHoSoSinhVien\\model\\DataContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\SinhVien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:QuanLyHoSoSinhVien\\model\\SinhVien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\Nghanh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:QuanLyHoSoSinhVien\\model\\Nghanh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\HoSo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:QuanLyHoSoSinhVien\\model\\HoSo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:QuanLyHoSoSinhVien\\model\\User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:QuanLyHoSoSinhVien\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\quanlyhososinhvien\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:quanlyhososinhvien\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,58 +50,129 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SinhVien.cs",
-              "DocumentMoniker": "D:\\DoAn1-BTL\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\SinhVien.cs",
-              "RelativeDocumentMoniker": "QuanLyHoSoSinhVien\\model\\SinhVien.cs",
-              "ToolTip": "D:\\DoAn1-BTL\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\SinhVien.cs",
-              "RelativeToolTip": "QuanLyHoSoSinhVien\\model\\SinhVien.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-30T03:37:03.31Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "user.cs",
-              "DocumentMoniker": "D:\\DoAn1-BTL\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\user.cs",
-              "RelativeDocumentMoniker": "QuanLyHoSoSinhVien\\model\\user.cs",
-              "ToolTip": "D:\\DoAn1-BTL\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\user.cs",
-              "RelativeToolTip": "QuanLyHoSoSinhVien\\model\\user.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-30T03:26:36.94Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\DoAn1-BTL\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\Program.cs",
-              "RelativeDocumentMoniker": "QuanLyHoSoSinhVien\\Program.cs",
-              "ToolTip": "D:\\DoAn1-BTL\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\Program.cs",
-              "RelativeToolTip": "QuanLyHoSoSinhVien\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAVAAAAAAAAAA==",
+              "Title": "Form1.cs",
+              "DocumentMoniker": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\Form1.cs",
+              "RelativeDocumentMoniker": "QuanLyHoSoSinhVien\\Form1.cs",
+              "ToolTip": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\Form1.cs",
+              "RelativeToolTip": "QuanLyHoSoSinhVien\\Form1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-30T03:24:50.499Z",
+              "WhenOpened": "2025-07-01T02:38:28.712Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "DataContext.cs",
+              "DocumentMoniker": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\DataContext.cs",
+              "RelativeDocumentMoniker": "QuanLyHoSoSinhVien\\model\\DataContext.cs",
+              "ToolTip": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\DataContext.cs",
+              "RelativeToolTip": "QuanLyHoSoSinhVien\\model\\DataContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T14:27:52.677Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Lop.cs",
+              "DocumentMoniker": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\Lop.cs",
+              "RelativeDocumentMoniker": "QuanLyHoSoSinhVien\\model\\Lop.cs",
+              "ToolTip": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\Lop.cs",
+              "RelativeToolTip": "QuanLyHoSoSinhVien\\model\\Lop.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T14:04:20.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SinhVien.cs",
+              "DocumentMoniker": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\SinhVien.cs",
+              "RelativeDocumentMoniker": "QuanLyHoSoSinhVien\\model\\SinhVien.cs",
+              "ToolTip": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\SinhVien.cs",
+              "RelativeToolTip": "QuanLyHoSoSinhVien\\model\\SinhVien.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T14:01:25.175Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Nghanh.cs",
+              "DocumentMoniker": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\Nghanh.cs",
+              "RelativeDocumentMoniker": "QuanLyHoSoSinhVien\\model\\Nghanh.cs",
+              "ToolTip": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\Nghanh.cs",
+              "RelativeToolTip": "QuanLyHoSoSinhVien\\model\\Nghanh.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAuwBwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T13:50:30.88Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Khoa.cs",
+              "DocumentMoniker": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\Khoa.cs",
+              "RelativeDocumentMoniker": "QuanLyHoSoSinhVien\\model\\Khoa.cs",
+              "ToolTip": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\Khoa.cs",
+              "RelativeToolTip": "QuanLyHoSoSinhVien\\model\\Khoa.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T13:50:17.704Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "HoSo.cs",
+              "DocumentMoniker": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\HoSo.cs",
+              "RelativeDocumentMoniker": "QuanLyHoSoSinhVien\\model\\HoSo.cs",
+              "ToolTip": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\HoSo.cs",
+              "RelativeToolTip": "QuanLyHoSoSinhVien\\model\\HoSo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T13:42:37.156Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\User.cs",
+              "RelativeDocumentMoniker": "QuanLyHoSoSinhVien\\model\\User.cs",
+              "ToolTip": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\model\\User.cs",
+              "RelativeToolTip": "QuanLyHoSoSinhVien\\model\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T03:26:36.94Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\Program.cs",
+              "RelativeDocumentMoniker": "QuanLyHoSoSinhVien\\Program.cs",
+              "ToolTip": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\Program.cs",
+              "RelativeToolTip": "QuanLyHoSoSinhVien\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-30T03:24:50.499Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "D:\\DoAn1-BTL\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\Form1.cs",
+              "DocumentMoniker": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\Form1.cs",
               "RelativeDocumentMoniker": "QuanLyHoSoSinhVien\\Form1.cs",
-              "ToolTip": "D:\\DoAn1-BTL\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\Form1.cs [Design]",
+              "ToolTip": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\Form1.cs [Design]",
               "RelativeToolTip": "QuanLyHoSoSinhVien\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-30T03:23:10.48Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-06-30T03:23:10.48Z"
             }
           ]
         }

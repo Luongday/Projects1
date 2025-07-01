@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace QuanLyHoSoSinhVien.model
 {
-    public class Nghanh
+    public class Nganh
     {
         [Key]
         public string? manghanh {  get; set; }

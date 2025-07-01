@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,7 +32,23 @@ namespace QuanLyHoSoSinhVien.model
         public string? tenkhoa { get; set; }
 
         public string? tennghanh { get; set; }
+        [MaxLength(50)]
+        [EmailAddress]
+        public string? email { get; set; }
 
+        [MaxLength(20)]
+        public string? cccd { get; set; }
+
+        [MaxLength(100)]
+        public string? noisinh { get; set; }
+
+        [MaxLength(50)]
+        public string? tongiao { get; set; }
+
+        [MaxLength(50)]
+        public string? dantoc { get; set; }
+        [MaxLength(20)]
+        public string? trangthai { get; set; }
         public SinhVien? SinhVien { get; set; }
     }
 }

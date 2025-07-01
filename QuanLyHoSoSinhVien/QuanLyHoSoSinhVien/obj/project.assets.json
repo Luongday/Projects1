@@ -4013,11 +4013,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DoAn1-BTL\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien.csproj",
+      "projectUniqueName": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien.csproj",
       "projectName": "QuanLyHoSoSinhVien",
-      "projectPath": "D:\\DoAn1-BTL\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien.csproj",
+      "projectPath": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\DoAn1-BTL\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\obj\\",
+      "outputPath": "D:\\DoAn1-BTL\\Projects1\\QuanLyHoSoSinhVien\\QuanLyHoSoSinhVien\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
