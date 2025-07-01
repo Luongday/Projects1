@@ -20,9 +20,6 @@ namespace QuanLyHoSoSinhVien.model
 
         public Khoa? Khoa { get; set; }
 
-        [ForeignKey("Lop")]
-        public string? malop {  get; set; }
-
         public ICollection<Lop>? Lop { get; set; }
     }
 }

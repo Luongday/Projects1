@@ -20,40 +20,35 @@ namespace QuanLyHoSoSinhVien.model
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Data Source=LAP-TOP-VIP-PRO;Initial Catalog=QuanLyHoSoSinhVien;Integrated Security=True;Trust Server Certificate=True;Encrypt=True");
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-ED6SANE\\SQLEXPRESS;Initial Catalog=QlHSSV;Integrated Security=True;Trust Server Certificate=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
              base.OnModelCreating(modelBuilder);
-             modelBuilder.Entity<SinhVien>().HasData(
+            modelBuilder.Entity<SinhVien>()
+            .HasOne(sv => sv.HoSo)
+            .WithOne(hs => hs.SinhVien)
+            .HasForeignKey<HoSo>(hs => hs.msv)
+            .OnDelete(DeleteBehavior.Cascade);
 
-             );
+            // USER
+            modelBuilder.Entity<User>().HasData(FakeDataService.GenerateUsers(100));
 
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Lop>().HasData(
+            // KHOA
+            modelBuilder.Entity<Khoa>().HasData(FakeDataService.GenerateKhoas());
 
-            );
+            // NGANH
+            modelBuilder.Entity<Nganh>().HasData(FakeDataService.GenerateNganhs());
 
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Khoa>().HasData(
+            // LOP
+            modelBuilder.Entity<Lop>().HasData(FakeDataService.GenerateLops());
 
-            );
+            // SINH VIEN
+            modelBuilder.Entity<SinhVien>().HasData(FakeDataService.GenerateSinhViens());
 
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Nganh>().HasData(
-
-            );
-
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<HoSo>().HasData(
-
-            );
-
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<User>().HasData(
-
-            );
+            // HOSO 
+            modelBuilder.Entity<HoSo>().HasData(FakeDataService.GenerateHoSos());
         }
     }
 }
