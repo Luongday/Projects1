@@ -20,7 +20,7 @@ namespace QuanLyHoSoSinhVien.model
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-ED6SANE\\SQLEXPRESS;Initial Catalog=QlHSSV;Integrated Security=True;Trust Server Certificate=True");
+            optionsBuilder.UseSqlServer("Data Source=LAP-TOP-VIP-PRO;Initial Catalog=abc;Integrated Security=True;Trust Server Certificate=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
