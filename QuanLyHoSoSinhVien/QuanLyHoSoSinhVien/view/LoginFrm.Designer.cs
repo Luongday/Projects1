@@ -120,6 +120,7 @@
             btnExit.Size = new Size(123, 50);
             btnExit.TabIndex = 8;
             btnExit.Text = "Exit";
+            btnExit.Click += btnExit_Click;
             // 
             // guna2HtmlLabel1
             // 

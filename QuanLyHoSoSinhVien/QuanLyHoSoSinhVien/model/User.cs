@@ -19,5 +19,7 @@ namespace QuanLyHoSoSinhVien.model
         [Required]
         [MaxLength(20)]
         public string? password { get; set; }
+        [Required]
+        public bool isAdmin { get; set; }
     }
 }

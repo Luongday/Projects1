@@ -101,7 +101,8 @@ namespace QuanLyHoSoSinhVien.model
             {
                 userId = i,
                 userName = $"user{i:D3}",
-                password = $"pass{i:D3}"
+                password = $"pass{i:D3}",
+                isAdmin = false
             }).ToArray();
         }
 
