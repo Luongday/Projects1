@@ -4,4 +4,4 @@ obj/
 .vs/
 
 Migrations/
-model/DataContext.cs
+model\DataContext.cs
