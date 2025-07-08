@@ -165,7 +165,7 @@ namespace QuanLyHoSoSinhVien.model
                 return new HoSo
                 {
                     mahoso = $"HS{i:D3}",
-                    msv = $"SV{i:D3}",
+                    masv = $"SV{i:D3}",
                     tensv = sinhVien,
                     Ngaysinh = ngaySinh,
                     gt = i % 2 == 0,

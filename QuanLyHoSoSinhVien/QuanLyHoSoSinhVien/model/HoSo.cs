@@ -15,7 +15,7 @@ namespace QuanLyHoSoSinhVien.model
         public string? mahoso {  get; set; }
 
         [ForeignKey("SinhVien")]
-        public string? msv { get; set; }
+        public string? masv { get; set; }
 
         public string? tensv { get; set; }
 

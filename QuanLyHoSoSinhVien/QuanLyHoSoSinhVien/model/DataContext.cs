@@ -29,7 +29,7 @@ namespace QuanLyHoSoSinhVien.model
             modelBuilder.Entity<SinhVien>()
             .HasOne(sv => sv.HoSo)
             .WithOne(hs => hs.SinhVien)
-            .HasForeignKey<HoSo>(hs => hs.msv)
+            .HasForeignKey<HoSo>(hs => hs.masv)
             .OnDelete(DeleteBehavior.Cascade);
 
             // USER
