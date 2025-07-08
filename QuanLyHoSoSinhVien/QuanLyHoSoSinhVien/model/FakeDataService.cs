@@ -120,7 +120,7 @@ namespace QuanLyHoSoSinhVien.model
         {
             return Enumerable.Range(1, DanhSachNganh.Length).Select(i => new Nganh
             {
-                manghanh = $"NG{i:D3}",
+                manganh = $"NG{i:D3}",
                 tennganh = DanhSachNganh[i - 1].Ten,
                 makhoa = DanhSachNganh[i - 1].MaKhoa,
                 //malop = $"L{i:D3}"
@@ -132,7 +132,7 @@ namespace QuanLyHoSoSinhVien.model
             return Enumerable.Range(1, count).Select(i => new Lop
             {
                 malop = $"L{i:D3}",
-                manghanh = $"NG{((i - 1) % DanhSachNganh.Length + 1):D3}",
+                manganh = $"NG{((i - 1) % DanhSachNganh.Length + 1):D3}",
                 tenlop = $"{DanhSachNganh[((i - 1) % DanhSachNganh.Length)].Ten.Split(' ').Last()}{21 + (i - 1) / 50}-{((i - 1) % 5 + 1):D2}",
                 siso = 25 + (i % 10)
             }).ToArray();
@@ -173,7 +173,7 @@ namespace QuanLyHoSoSinhVien.model
                     sdt = $"0{random.Next(3, 10)}{random.Next(10000000, 99999999)}",
                     tenlop = $"{DanhSachNganh[nganhIndex].Ten.Split(' ').Last()}{21 + lopIndex / 50}-{(lopIndex % 5 + 1):D2}",
                     tenkhoa = DanhSachKhoa[khoaIndex].Ten,
-                    tennghanh = DanhSachNganh[nganhIndex].Ten,
+                    tennganh = DanhSachNganh[nganhIndex].Ten,
                     email = $"{RemoveDiacritics(sinhVien.ToLower().Replace(" ", ""))}{i}@student.edu.vn",
                     cccd = $"{random.Next(100000000, 999999999)}{random.Next(0, 10)}",
                     noisinh = DanhSachTinh[random.Next(DanhSachTinh.Length)],

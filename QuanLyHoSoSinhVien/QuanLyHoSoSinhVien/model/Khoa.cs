@@ -15,7 +15,7 @@ namespace QuanLyHoSoSinhVien.model
 
         public string? tenkhoa { get; set; }
 
-        public ICollection<Nganh>? Nghanh { get; set; }
+        public ICollection<Nganh>? Nganh { get; set; }
     }
 }
 

@@ -13,8 +13,8 @@ namespace QuanLyHoSoSinhVien.model
         [Key]
         public string? malop { get; set; }
 
-        [ForeignKey("Nghanh")]
-        public string? manghanh { get; set; }
+        [ForeignKey("Nganh")]
+        public string? manganh { get; set; }
 
         [Required]
         [MaxLength(20)]
@@ -24,6 +24,6 @@ namespace QuanLyHoSoSinhVien.model
         public int siso { get; set;}
 
         public ICollection<SinhVien>? sinhViens { get; set;}
-        public Nganh? nghanh { get; set; }
+        public Nganh? nganh { get; set; }
     }
 }

@@ -31,7 +31,7 @@ namespace QuanLyHoSoSinhVien.model
 
         public string? tenkhoa { get; set; }
 
-        public string? tennghanh { get; set; }
+        public string? tennganh { get; set; }
         [MaxLength(50)]
         [EmailAddress]
         public string? email { get; set; }

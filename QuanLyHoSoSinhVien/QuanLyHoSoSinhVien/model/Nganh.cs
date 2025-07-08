@@ -11,7 +11,7 @@ namespace QuanLyHoSoSinhVien.model
     public class Nganh
     {
         [Key]
-        public string? manghanh {  get; set; }
+        public string? manganh {  get; set; }
 
         public string? tennganh { get; set; }
 
