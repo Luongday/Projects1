@@ -220,6 +220,7 @@
             txtUserName.ShadowDecoration.CustomizableEdges = customizableEdges14;
             txtUserName.Size = new Size(286, 45);
             txtUserName.TabIndex = 2;
+            txtUserName.TextChanged += txtUserName_TextChanged;
             // 
             // label2
             // 

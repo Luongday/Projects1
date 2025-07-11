@@ -30,10 +30,10 @@ namespace QuanLyHoSoSinhVien.view
         {
             String userName = txtUserName.Text;
             String password = txtPassword.Text;
-            if (userController.hasUser(userName,password))
+            if (userController.hasUser(userName, password))
             {
                 this.Hide();
-                new view.MenuManagement().Show(); 
+                new view.MenuManagement().Show();
             }
             else
             {
@@ -57,10 +57,19 @@ namespace QuanLyHoSoSinhVien.view
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            var confirm = MessageBox.Show("Bạn có chắc muốn thoát không?","Xác nhận",MessageBoxButtons.YesNo);
-            if (confirm == DialogResult.Yes) {
+            var confirm = MessageBox.Show("Bạn có chắc muốn thoát không?", "Xác nhận", MessageBoxButtons.YesNo);
+            if (confirm == DialogResult.Yes)
+            {
+
                 Application.Exit();
             }
+
+        }
+
+        private void txtUserName_TextChanged(object sender, EventArgs e)
+        {
+
+
 
         }
     }
