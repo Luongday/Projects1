@@ -34,36 +34,30 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            dataGridView1 = new DataGridView();
-            dataGridView2 = new DataGridView();
-            dataGridView4 = new DataGridView();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(components);
             guna2HtmlToolTip1 = new Guna.UI2.WinForms.Guna2HtmlToolTip();
             guna2NotificationPaint1 = new Guna.UI2.WinForms.Guna2NotificationPaint(components);
             guna2ShapesTool1 = new Guna.UI2.WinForms.Guna2ShapesTool(components);
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
-            iconToolStripButton1 = new FontAwesome.Sharp.IconToolStripButton();
             guna2TabControl1 = new Guna.UI2.WinForms.Guna2TabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
             guna2TabControl2 = new Guna.UI2.WinForms.Guna2TabControl();
             tabPage3 = new TabPage();
-            tabPage4 = new TabPage();
             guna2CustomGradientPanel2 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            iconToolStripButton2 = new FontAwesome.Sharp.IconToolStripButton();
             toolStrip1 = new ToolStrip();
             iconToolStripButton3 = new FontAwesome.Sharp.IconToolStripButton();
-            iconToolStripButton4 = new FontAwesome.Sharp.IconToolStripButton();
             iconDropDownButton1 = new FontAwesome.Sharp.IconDropDownButton();
             toolStripMenuItem1 = new ToolStripMenuItem();
             toolStripMenuItem2 = new ToolStripMenuItem();
             toolStripComboBox1 = new ToolStripComboBox();
             toolStripMenuItem3 = new ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView4).BeginInit();
+            tabPage4 = new TabPage();
+            iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
+            iconToolStripButton1 = new FontAwesome.Sharp.IconToolStripButton();
+            iconToolStripButton2 = new FontAwesome.Sharp.IconToolStripButton();
+            iconToolStripButton4 = new FontAwesome.Sharp.IconToolStripButton();
             guna2CustomGradientPanel1.SuspendLayout();
             guna2TabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -72,37 +66,6 @@
             guna2CustomGradientPanel2.SuspendLayout();
             toolStrip1.SuspendLayout();
             SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(1, 2);
-            dataGridView1.Margin = new Padding(4);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(719, 479);
-            dataGridView1.TabIndex = 0;
-            // 
-            // dataGridView2
-            // 
-            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(728, 2);
-            dataGridView2.Margin = new Padding(4);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.Size = new Size(1490, 479);
-            dataGridView2.TabIndex = 1;
-            // 
-            // dataGridView4
-            // 
-            dataGridView4.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView4.Location = new Point(1514, 539);
-            dataGridView4.Margin = new Padding(4);
-            dataGridView4.Name = "dataGridView4";
-            dataGridView4.RowHeadersWidth = 51;
-            dataGridView4.Size = new Size(704, 472);
-            dataGridView4.TabIndex = 3;
             // 
             // guna2BorderlessForm1
             // 
@@ -133,39 +96,23 @@
             // 
             guna2CustomGradientPanel1.Controls.Add(guna2TabControl1);
             guna2CustomGradientPanel1.CustomizableEdges = customizableEdges3;
-            guna2CustomGradientPanel1.Location = new Point(12, 488);
+            guna2CustomGradientPanel1.Location = new Point(10, 390);
+            guna2CustomGradientPanel1.Margin = new Padding(2, 2, 2, 2);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
             guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            guna2CustomGradientPanel1.Size = new Size(1381, 489);
+            guna2CustomGradientPanel1.Size = new Size(1105, 391);
             guna2CustomGradientPanel1.TabIndex = 5;
-            // 
-            // iconMenuItem1
-            // 
-            iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.None;
-            iconMenuItem1.IconColor = Color.Black;
-            iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconMenuItem1.Name = "iconMenuItem1";
-            iconMenuItem1.Size = new Size(32, 19);
-            iconMenuItem1.Text = "iconMenuItem1";
-            // 
-            // iconToolStripButton1
-            // 
-            iconToolStripButton1.IconChar = FontAwesome.Sharp.IconChar.None;
-            iconToolStripButton1.IconColor = Color.Black;
-            iconToolStripButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconToolStripButton1.Name = "iconToolStripButton1";
-            iconToolStripButton1.Size = new Size(23, 23);
-            iconToolStripButton1.Text = "iconToolStripButton1";
             // 
             // guna2TabControl1
             // 
             guna2TabControl1.Controls.Add(tabPage1);
             guna2TabControl1.Controls.Add(tabPage2);
             guna2TabControl1.ItemSize = new Size(180, 40);
-            guna2TabControl1.Location = new Point(43, 21);
+            guna2TabControl1.Location = new Point(34, 17);
+            guna2TabControl1.Margin = new Padding(2, 2, 2, 2);
             guna2TabControl1.Name = "guna2TabControl1";
             guna2TabControl1.SelectedIndex = 0;
-            guna2TabControl1.Size = new Size(1302, 451);
+            guna2TabControl1.Size = new Size(1042, 361);
             guna2TabControl1.TabButtonHoverState.BorderColor = Color.Empty;
             guna2TabControl1.TabButtonHoverState.FillColor = Color.FromArgb(40, 52, 70);
             guna2TabControl1.TabButtonHoverState.Font = new Font("Segoe UI Semibold", 10F);
@@ -188,10 +135,11 @@
             // 
             // tabPage1
             // 
-            tabPage1.Location = new Point(4, 184);
+            tabPage1.Location = new Point(4, 44);
+            tabPage1.Margin = new Padding(2, 2, 2, 2);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(742, 262);
+            tabPage1.Padding = new Padding(2, 2, 2, 2);
+            tabPage1.Size = new Size(1034, 313);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
@@ -200,9 +148,10 @@
             // 
             tabPage2.Controls.Add(guna2TabControl2);
             tabPage2.Location = new Point(4, 44);
+            tabPage2.Margin = new Padding(2, 2, 2, 2);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1294, 403);
+            tabPage2.Padding = new Padding(2, 2, 2, 2);
+            tabPage2.Size = new Size(1034, 313);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
@@ -213,10 +162,11 @@
             guna2TabControl2.Controls.Add(tabPage3);
             guna2TabControl2.Controls.Add(tabPage4);
             guna2TabControl2.ItemSize = new Size(180, 40);
-            guna2TabControl2.Location = new Point(6, 46);
+            guna2TabControl2.Location = new Point(5, 37);
+            guna2TabControl2.Margin = new Padding(2, 2, 2, 2);
             guna2TabControl2.Name = "guna2TabControl2";
             guna2TabControl2.SelectedIndex = 0;
-            guna2TabControl2.Size = new Size(1282, 354);
+            guna2TabControl2.Size = new Size(1026, 283);
             guna2TabControl2.TabButtonHoverState.BorderColor = Color.Empty;
             guna2TabControl2.TabButtonHoverState.FillColor = Color.FromArgb(40, 52, 70);
             guna2TabControl2.TabButtonHoverState.Font = new Font("Segoe UI Semibold", 10F);
@@ -240,41 +190,24 @@
             // 
             tabPage3.Controls.Add(guna2CustomGradientPanel2);
             tabPage3.Location = new Point(184, 4);
+            tabPage3.Margin = new Padding(2, 2, 2, 2);
             tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(1094, 346);
+            tabPage3.Padding = new Padding(2, 2, 2, 2);
+            tabPage3.Size = new Size(838, 275);
             tabPage3.TabIndex = 0;
             tabPage3.Text = "tabPage3";
             tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            tabPage4.Location = new Point(184, 4);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(1094, 346);
-            tabPage4.TabIndex = 1;
-            tabPage4.Text = "tabPage4";
-            tabPage4.UseVisualStyleBackColor = true;
             // 
             // guna2CustomGradientPanel2
             // 
             guna2CustomGradientPanel2.Controls.Add(toolStrip1);
             guna2CustomGradientPanel2.CustomizableEdges = customizableEdges1;
-            guna2CustomGradientPanel2.Location = new Point(6, 6);
+            guna2CustomGradientPanel2.Location = new Point(5, 5);
+            guna2CustomGradientPanel2.Margin = new Padding(2, 2, 2, 2);
             guna2CustomGradientPanel2.Name = "guna2CustomGradientPanel2";
             guna2CustomGradientPanel2.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            guna2CustomGradientPanel2.Size = new Size(655, 222);
+            guna2CustomGradientPanel2.Size = new Size(524, 178);
             guna2CustomGradientPanel2.TabIndex = 0;
-            // 
-            // iconToolStripButton2
-            // 
-            iconToolStripButton2.IconChar = FontAwesome.Sharp.IconChar.None;
-            iconToolStripButton2.IconColor = Color.Black;
-            iconToolStripButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconToolStripButton2.Name = "iconToolStripButton2";
-            iconToolStripButton2.Size = new Size(23, 23);
-            iconToolStripButton2.Text = "iconToolStripButton2";
             // 
             // toolStrip1
             // 
@@ -282,7 +215,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { iconToolStripButton3, iconDropDownButton1 });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(655, 33);
+            toolStrip1.Size = new Size(524, 31);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -294,17 +227,8 @@
             iconToolStripButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconToolStripButton3.ImageTransparentColor = Color.Magenta;
             iconToolStripButton3.Name = "iconToolStripButton3";
-            iconToolStripButton3.Size = new Size(34, 28);
+            iconToolStripButton3.Size = new Size(29, 28);
             iconToolStripButton3.Text = "iconToolStripButton3";
-            // 
-            // iconToolStripButton4
-            // 
-            iconToolStripButton4.IconChar = FontAwesome.Sharp.IconChar.None;
-            iconToolStripButton4.IconColor = Color.Black;
-            iconToolStripButton4.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconToolStripButton4.Name = "iconToolStripButton4";
-            iconToolStripButton4.Size = new Size(23, 23);
-            iconToolStripButton4.Text = "iconToolStripButton4";
             // 
             // iconDropDownButton1
             // 
@@ -315,53 +239,93 @@
             iconDropDownButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconDropDownButton1.ImageTransparentColor = Color.Magenta;
             iconDropDownButton1.Name = "iconDropDownButton1";
-            iconDropDownButton1.Size = new Size(42, 28);
+            iconDropDownButton1.Size = new Size(38, 28);
             iconDropDownButton1.Text = "iconDropDownButton1";
             // 
             // toolStripMenuItem1
             // 
             toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(273, 34);
+            toolStripMenuItem1.Size = new Size(225, 26);
             toolStripMenuItem1.Text = "toolStripMenuItem1";
             // 
             // toolStripMenuItem2
             // 
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(273, 34);
+            toolStripMenuItem2.Size = new Size(225, 26);
             toolStripMenuItem2.Text = "toolStripMenuItem2";
             // 
             // toolStripComboBox1
             // 
             toolStripComboBox1.Items.AddRange(new object[] { "it1", "it2", "it3" });
             toolStripComboBox1.Name = "toolStripComboBox1";
-            toolStripComboBox1.Size = new Size(121, 33);
+            toolStripComboBox1.Size = new Size(121, 28);
             toolStripComboBox1.Text = "Lớp";
             toolStripComboBox1.Click += toolStripComboBox1_Click;
             // 
             // toolStripMenuItem3
             // 
             toolStripMenuItem3.Name = "toolStripMenuItem3";
-            toolStripMenuItem3.Size = new Size(273, 34);
+            toolStripMenuItem3.Size = new Size(225, 26);
             toolStripMenuItem3.Text = "toolStripMenuItem3";
+            // 
+            // tabPage4
+            // 
+            tabPage4.Location = new Point(184, 4);
+            tabPage4.Margin = new Padding(2, 2, 2, 2);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Padding = new Padding(2, 2, 2, 2);
+            tabPage4.Size = new Size(838, 275);
+            tabPage4.TabIndex = 1;
+            tabPage4.Text = "tabPage4";
+            tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // iconMenuItem1
+            // 
+            iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.None;
+            iconMenuItem1.IconColor = Color.Black;
+            iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconMenuItem1.Name = "iconMenuItem1";
+            iconMenuItem1.Size = new Size(32, 19);
+            iconMenuItem1.Text = "iconMenuItem1";
+            // 
+            // iconToolStripButton1
+            // 
+            iconToolStripButton1.IconChar = FontAwesome.Sharp.IconChar.None;
+            iconToolStripButton1.IconColor = Color.Black;
+            iconToolStripButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconToolStripButton1.Name = "iconToolStripButton1";
+            iconToolStripButton1.Size = new Size(23, 23);
+            iconToolStripButton1.Text = "iconToolStripButton1";
+            // 
+            // iconToolStripButton2
+            // 
+            iconToolStripButton2.IconChar = FontAwesome.Sharp.IconChar.None;
+            iconToolStripButton2.IconColor = Color.Black;
+            iconToolStripButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconToolStripButton2.Name = "iconToolStripButton2";
+            iconToolStripButton2.Size = new Size(23, 23);
+            iconToolStripButton2.Text = "iconToolStripButton2";
+            // 
+            // iconToolStripButton4
+            // 
+            iconToolStripButton4.IconChar = FontAwesome.Sharp.IconChar.None;
+            iconToolStripButton4.IconColor = Color.Black;
+            iconToolStripButton4.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconToolStripButton4.Name = "iconToolStripButton4";
+            iconToolStripButton4.Size = new Size(23, 23);
+            iconToolStripButton4.Text = "iconToolStripButton4";
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Center;
-            ClientSize = new Size(1538, 989);
+            ClientSize = new Size(1247, 791);
             Controls.Add(guna2CustomGradientPanel1);
-            Controls.Add(dataGridView4);
-            Controls.Add(dataGridView2);
-            Controls.Add(dataGridView1);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(4);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView4).EndInit();
             guna2CustomGradientPanel1.ResumeLayout(false);
             guna2TabControl1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
@@ -375,10 +339,6 @@
         }
 
         #endregion
-
-        private DataGridView dataGridView1;
-        private DataGridView dataGridView2;
-        private DataGridView dataGridView4;
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
         private Guna.UI2.WinForms.Guna2HtmlToolTip guna2HtmlToolTip1;

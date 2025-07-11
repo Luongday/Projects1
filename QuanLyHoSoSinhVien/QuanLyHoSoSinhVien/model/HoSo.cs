@@ -13,42 +13,14 @@ namespace QuanLyHoSoSinhVien.model
     {
         [Key]
         public string? mahoso {  get; set; }
-
         [ForeignKey("SinhVien")]
         public string? masv { get; set; }
-
-        public string? tensv { get; set; }
-
-        public DateTime Ngaysinh { get; set; }
-
-        public bool gt {  get; set; }
-
-        public string? dc { get; set; }
-
-        public string? sdt { get; set; }
-        
-        public string? tenlop { get; set; }
-
-        public string? tenkhoa { get; set; }
-
-        public string? tennganh { get; set; }
-        [MaxLength(50)]
-        [EmailAddress]
-        public string? email { get; set; }
-
+        [DataType(DataType.Date)]
+        public DateTime NgayTao { get; set; } = DateTime.Now;
+        [DataType(DataType.Date)]
+        public DateTime NgayCapNhat { get; set; }
         [MaxLength(20)]
-        public string? cccd { get; set; }
-
-        [MaxLength(100)]
-        public string? noisinh { get; set; }
-
-        [MaxLength(50)]
-        public string? tongiao { get; set; }
-
-        [MaxLength(50)]
-        public string? dantoc { get; set; }
-        [MaxLength(20)]
-        public string? trangthai { get; set; }
+        public string? trangthaihoso { get; set; }
         public SinhVien? SinhVien { get; set; }
     }
 }

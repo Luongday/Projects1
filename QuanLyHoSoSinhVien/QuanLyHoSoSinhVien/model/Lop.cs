@@ -13,7 +13,7 @@ namespace QuanLyHoSoSinhVien.model
         [Key]
         public string? malop { get; set; }
 
-        [ForeignKey("Nganh")]
+        [ForeignKey("nganh")]
         public string? manganh { get; set; }
 
         [Required]

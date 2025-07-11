@@ -140,41 +140,21 @@ namespace QuanLyHoSoSinhVien.model
 
         public static SinhVien[] GenerateSinhViens(int count = 100)
         {
-            return Enumerable.Range(1, count).Select(i => new SinhVien
-            {
-                masv = $"SV{i:D3}",
-                tensv = TenSinhVien[i - 1],
-                NgaySinh = new DateTime(1998 + (i % 6), random.Next(1, 13), random.Next(1, 29)),
-                gt = i % 2 == 0,
-                dc = $"{random.Next(1, 100)} Đường {random.Next(1, 50)}, {DanhSachTinh[random.Next(DanhSachTinh.Length)]}",
-                sdt = $"0{random.Next(3, 10)}{random.Next(10000000, 99999999)}",
-                malop = $"L{((i - 1) % 100 + 1):D3}"
-            }).ToArray();
-        }
-
-        public static HoSo[] GenerateHoSos(int count = 100)
-        {
             return Enumerable.Range(1, count).Select(i =>
             {
-                var sinhVien = TenSinhVien[i - 1];
-                var ngaySinh = new DateTime(1998 + (i % 6), random.Next(1, 13), random.Next(1, 29));
-                var lopIndex = (i - 1) % 100;
-                var nganhIndex = (lopIndex % DanhSachNganh.Length);
-                var khoaIndex = Array.FindIndex(DanhSachKhoa, k => k.Ma == DanhSachNganh[nganhIndex].MaKhoa);
+                var hoTen = TenSinhVien[i - 1];
+                var emailBase = RemoveDiacritics(hoTen.ToLower().Replace(" ", ""));
 
-                return new HoSo
+                return new SinhVien
                 {
-                    mahoso = $"HS{i:D3}",
                     masv = $"SV{i:D3}",
-                    tensv = sinhVien,
-                    Ngaysinh = ngaySinh,
+                    tensv = hoTen,
+                    NgaySinh = new DateTime(1998 + (i % 6), random.Next(1, 13), random.Next(1, 29)),
                     gt = i % 2 == 0,
                     dc = $"{random.Next(1, 100)} Đường {random.Next(1, 50)}, {DanhSachTinh[random.Next(DanhSachTinh.Length)]}",
                     sdt = $"0{random.Next(3, 10)}{random.Next(10000000, 99999999)}",
-                    tenlop = $"{DanhSachNganh[nganhIndex].Ten.Split(' ').Last()}{21 + lopIndex / 50}-{(lopIndex % 5 + 1):D2}",
-                    tenkhoa = DanhSachKhoa[khoaIndex].Ten,
-                    tennganh = DanhSachNganh[nganhIndex].Ten,
-                    email = $"{RemoveDiacritics(sinhVien.ToLower().Replace(" ", ""))}{i}@student.edu.vn",
+                    malop = $"L{((i - 1) % 100 + 1):D3}",
+                    email = $"{emailBase}{i}@student.edu.vn",
                     cccd = $"{random.Next(100000000, 999999999)}{random.Next(0, 10)}",
                     noisinh = DanhSachTinh[random.Next(DanhSachTinh.Length)],
                     tongiao = "Không",
@@ -183,6 +163,25 @@ namespace QuanLyHoSoSinhVien.model
                 };
             }).ToArray();
         }
+
+
+        public static HoSo[] GenerateHoSos(int count = 100)
+        {
+            var ngayTao = DateTime.Now.AddDays(-random.Next(30, 300));
+            var ngayCapNhat = ngayTao.AddDays(random.Next(0, 60));
+            return Enumerable.Range(1, count).Select(i =>
+            {
+                return new HoSo
+                {
+                    mahoso = $"HS{i:D3}",
+                    masv = $"SV{i:D3}",
+                    NgayTao = ngayTao, // tạo ngẫu nhiên trong vòng 1 năm trước
+                    NgayCapNhat = ngayCapNhat,
+                    trangthaihoso = i % 10 == 0 ? "Đã duyệt" : "Chờ duyệt"
+                };
+            }).ToArray();
+        }
+
 
         private static string RemoveDiacritics(string text)
         {

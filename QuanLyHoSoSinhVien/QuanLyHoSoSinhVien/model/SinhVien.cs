@@ -24,10 +24,6 @@ namespace QuanLyHoSoSinhVien.model
         [Required]
         public bool gt { get; set; }
 
-        //[Required]
-        //[MaxLength(50)]
-        //public string? lop { get; set; }
-
         [Required]
         [MaxLength(50)]
         public string? dc { get; set; }
@@ -37,10 +33,34 @@ namespace QuanLyHoSoSinhVien.model
         [MaxLength(10)]
         public string? sdt { get; set; }
 
+        [Required]
+        [MaxLength(50)]
+        public string? dantoc { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string? tongiao { get; set; }
+
+        [Required]
+        [EmailAddress]
+        public string? email { get; set; }
+
+        [Required]
+        [MaxLength(15)]
+        public string? cccd { get; set; }
+
+        [Required] 
+        [MaxLength(30)]
+        public string? noisinh { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string? trangthai { get; set; }
+
         [ForeignKey("Lop")]
         public string? malop { get; set; }
 
-        public Lop? Lop {  get; set; }
+        public Lop? Lop { get; set; }
 
         public HoSo? HoSo { get; set; }
     }

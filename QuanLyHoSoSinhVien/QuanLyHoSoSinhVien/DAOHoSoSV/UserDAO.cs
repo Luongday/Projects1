@@ -28,5 +28,14 @@ namespace QuanLyHoSoSinhVien.DAOHoSoSV
             return user;
             //return 
         }
+
+        public List<model.SinhVien> get10()
+        {
+            List<model.SinhVien> list = new List<SinhVien>();
+            list = _context.SinhViens.OrderBy(sv => sv.masv).Take(10).ToList();
+
+            return list;
+
+        } 
     }
 }
