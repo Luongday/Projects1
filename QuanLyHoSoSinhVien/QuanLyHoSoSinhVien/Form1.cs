@@ -1,4 +1,4 @@
-using QuanLyHoSoSinhVien.model;
+using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
 
 namespace QuanLyHoSoSinhVien
 {

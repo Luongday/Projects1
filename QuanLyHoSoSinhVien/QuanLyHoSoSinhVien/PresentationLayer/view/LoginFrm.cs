@@ -1,4 +1,6 @@
-﻿using QuanLyHoSoSinhVien.controller;
+﻿using QuanLyHoSoSinhVien.BusinessLayer.Services.UserServices;
+using QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl;
+using QuanLyHoSoSinhVien.PresentationLayer.Controller.UserControl;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,12 +15,16 @@ namespace QuanLyHoSoSinhVien.view
 {
     public partial class LoginFrm : Form
     {
-        UserControllers userController = new UserControllers();
-        public LoginFrm()
+        IUserController userController;
+        IStudentController studentController;
+        public LoginFrm(IUserController userControllers, IStudentController studentController)
         {
             InitializeComponent();
+            this.userController = userControllers;
             txtPassword.UseSystemPasswordChar = true;
             tgShowHidePass.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
+            this.studentController = studentController;
+            this.studentController = studentController;
         }
 
         private void guna2CustomGradientPanel2_Paint(object sender, PaintEventArgs e)
@@ -30,10 +36,10 @@ namespace QuanLyHoSoSinhVien.view
         {
             String userName = txtUserName.Text;
             String password = txtPassword.Text;
-            if (userController.hasUser(userName, password))
+            if (userController.UserInfor(userName, password)!=null)
             {
                 this.Hide();
-                new view.MenuManagement().Show();
+                new view.MenuManagement(studentController).Show();
             }
             else
             {

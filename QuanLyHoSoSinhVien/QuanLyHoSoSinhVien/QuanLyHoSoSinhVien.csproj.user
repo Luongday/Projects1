@@ -4,16 +4,16 @@
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="view\LoginFrm.cs">
+    <Compile Update="PresentationLayer\view\LoginFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="view\MenuManagement.cs">
+    <Compile Update="PresentationLayer\view\MenuManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="view\MenuStudent.cs">
+    <Compile Update="PresentationLayer\view\MenuStudent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="view\ThemSV.cs">
+    <Compile Update="PresentationLayer\view\ThemSV.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

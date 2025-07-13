@@ -1,23 +1,23 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
-using QuanLyHoSoSinhVien.model;
+using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuanLyHoSoSinhVien.DAOHoSoSV
+namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.UserRepository
 {
-    public class UserDAO
+    public class UserDAO : IUserDAO
     {
         DataContext _context = new DataContext();
-        public List<model.User> getAllUser() { 
-            List<model.User> list = new List<model.User>();
+        public List<Entity.User> getAllUser() { 
+            List<Entity.User> list = new List<Entity.User>();
             list = _context.Users.ToList();
             return list;
         }
 
-        public model.User getById(String userName, String passWord)
+        public Entity.User getById(string userName, string passWord)
         {
             using var db = new DataContext();
             var user =db.Users.Where(x => x.userName.Equals(userName)&&x.password.Equals(passWord)).FirstOrDefault();
@@ -29,9 +29,9 @@ namespace QuanLyHoSoSinhVien.DAOHoSoSV
             //return 
         }
 
-        public List<model.SinhVien> get10()
+        public List<SinhVien> get10()
         {
-            List<model.SinhVien> list = new List<SinhVien>();
+            List<SinhVien> list = new List<SinhVien>();
             list = _context.SinhViens.OrderBy(sv => sv.masv).Take(10).ToList();
 
             return list;

@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace QuanLyHoSoSinhVien.model
+namespace QuanLyHoSoSinhVien.DataAccessLayer.Entity
 {
     public static class FakeDataService
     {
@@ -132,9 +132,9 @@ namespace QuanLyHoSoSinhVien.model
             return Enumerable.Range(1, count).Select(i => new Lop
             {
                 malop = $"L{i:D3}",
-                manganh = $"NG{((i - 1) % DanhSachNganh.Length + 1):D3}",
-                tenlop = $"{DanhSachNganh[((i - 1) % DanhSachNganh.Length)].Ten.Split(' ').Last()}{21 + (i - 1) / 50}-{((i - 1) % 5 + 1):D2}",
-                siso = 25 + (i % 10)
+                manganh = $"NG{(i - 1) % DanhSachNganh.Length + 1:D3}",
+                tenlop = $"{DanhSachNganh[(i - 1) % DanhSachNganh.Length].Ten.Split(' ').Last()}{21 + (i - 1) / 50}-{(i - 1) % 5 + 1:D2}",
+                siso = 25 + i % 10
             }).ToArray();
         }
 
@@ -149,17 +149,17 @@ namespace QuanLyHoSoSinhVien.model
                 {
                     masv = $"SV{i:D3}",
                     tensv = hoTen,
-                    NgaySinh = new DateTime(1998 + (i % 6), random.Next(1, 13), random.Next(1, 29)),
+                    NgaySinh = new DateTime(1998 + i % 6, random.Next(1, 13), random.Next(1, 29)),
                     gt = i % 2 == 0,
                     dc = $"{random.Next(1, 100)} Đường {random.Next(1, 50)}, {DanhSachTinh[random.Next(DanhSachTinh.Length)]}",
                     sdt = $"0{random.Next(3, 10)}{random.Next(10000000, 99999999)}",
-                    malop = $"L{((i - 1) % 100 + 1):D3}",
+                    malop = $"L{(i - 1) % 100 + 1:D3}",
                     email = $"{emailBase}{i}@student.edu.vn",
                     cccd = $"{random.Next(100000000, 999999999)}{random.Next(0, 10)}",
                     noisinh = DanhSachTinh[random.Next(DanhSachTinh.Length)],
                     tongiao = "Không",
                     dantoc = DanhSachDanToc[random.Next(DanhSachDanToc.Length)],
-                    trangthai = i % 20 == 0 ? "Tạm dừng" : (i % 30 == 0 ? "Tốt nghiệp" : "Đang học")
+                    trangthai = i % 20 == 0 ? "Tạm dừng" : i % 30 == 0 ? "Tốt nghiệp" : "Đang học"
                 };
             }).ToArray();
         }

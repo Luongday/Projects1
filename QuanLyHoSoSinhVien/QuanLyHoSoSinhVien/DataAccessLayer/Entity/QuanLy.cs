@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuanLyHoSoSinhVien.model
+namespace QuanLyHoSoSinhVien.DataAccessLayer.Entity
 {
     internal class QuanLy
     {
