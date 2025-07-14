@@ -1,4 +1,5 @@
-﻿using QuanLyHoSoSinhVien.BusinessLayer.Services.UserServices;
+﻿using Microsoft.Extensions.DependencyInjection;
+using QuanLyHoSoSinhVien.BusinessLayer.Services.UserServices;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.UserControl;
 using System;
@@ -15,16 +16,15 @@ namespace QuanLyHoSoSinhVien.view
 {
     public partial class LoginFrm : Form
     {
+        private IServiceProvider serviceProvider;
         IUserController userController;
-        IStudentController studentController;
-        public LoginFrm(IUserController userControllers, IStudentController studentController)
+        public LoginFrm(IUserController userControllers, IServiceProvider serviceProvider)
         {
             InitializeComponent();
             this.userController = userControllers;
             txtPassword.UseSystemPasswordChar = true;
             tgShowHidePass.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
-            this.studentController = studentController;
-            this.studentController = studentController;
+            this.serviceProvider = serviceProvider;
         }
 
         private void guna2CustomGradientPanel2_Paint(object sender, PaintEventArgs e)
@@ -39,7 +39,9 @@ namespace QuanLyHoSoSinhVien.view
             if (userController.UserInfor(userName, password)!=null)
             {
                 this.Hide();
-                new view.MenuManagement(studentController).Show();
+                // new view.MenuManagement(studentController).Show();
+                var managerForm = serviceProvider.GetRequiredService<MenuManagement>();
+                managerForm.Show();
             }
             else
             {

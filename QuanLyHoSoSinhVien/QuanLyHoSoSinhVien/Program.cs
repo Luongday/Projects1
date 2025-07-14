@@ -6,6 +6,7 @@ using QuanLyHoSoSinhVien.PresentationLayer.Controller.UserControl;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl;
 using QuanLyHoSoSinhVien.DataAccessLayer.Repository.StudentRepository;
 using QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices;
+using QuanLyHoSoSinhVien.PresentationLayer;
 
 namespace QuanLyHoSoSinhVien
 {
@@ -20,19 +21,23 @@ namespace QuanLyHoSoSinhVien
             ApplicationConfiguration.Initialize();
             var services = new ServiceCollection();
             services.AddSingleton<UserDAO>();
+            services.AddSingleton<ManagerServicesFacade>();
+            services.AddTransient<ManagerServicesFacade>();
             services.AddTransient<IUserController, UserControllerImpl>();
             services.AddTransient<IUserDAO,UserDAO>();
             services.AddTransient<IUserService,UserServicesImpl>();
             services.AddTransient<IStudentController, StudentControllerImpl>();
-            services.AddTransient<IStudentRepository, GetAllStudent>();
+            services.AddTransient<IStudentRepository, StudentRepositoryImpl>();
             services.AddTransient<IGetAllStudent,GetAllStudentImpl>();
             services.AddTransient<LoginFrm>();
+            services.AddTransient<MenuManagement>();
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             var serviceProvider = services.BuildServiceProvider();
 
             // Lấy LoginFrm từ container (có inject UserControllers)
             var loginForm = serviceProvider.GetRequiredService<LoginFrm>();
+            
             Application.Run(loginForm);
             
             //Application.Run(new view.LoginFrm());

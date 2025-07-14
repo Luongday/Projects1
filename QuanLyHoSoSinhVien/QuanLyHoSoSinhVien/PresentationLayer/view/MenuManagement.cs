@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
+using QuanLyHoSoSinhVien.PresentationLayer;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl;
 
 namespace QuanLyHoSoSinhVien.view
@@ -17,11 +18,16 @@ namespace QuanLyHoSoSinhVien.view
     public partial class MenuManagement : Form
     {
         IStudentController studentController;
-        public MenuManagement(IStudentController studentController)
+        ManagerServicesFacade managerServicesFacade;
+
+        public MenuManagement(ManagerServicesFacade managerServicesFacade)
         {
             InitializeComponent();
-            this.studentController = studentController;
+            this.managerServicesFacade = managerServicesFacade;
+            studentController = managerServicesFacade.studentController;
+            TongSoSV.Text = studentController.totalStudent().ToString();
         }
+         
         private void Load_SinhVien()
         {
             dgvSinhVien.Rows.Clear();

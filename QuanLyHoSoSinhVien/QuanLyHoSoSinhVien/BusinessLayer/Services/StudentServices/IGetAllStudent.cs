@@ -10,5 +10,6 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices
     public interface IGetAllStudent
     {
         public List<SinhVien> getAll();
+        public SinhVien getByID(String id);
     }
 }

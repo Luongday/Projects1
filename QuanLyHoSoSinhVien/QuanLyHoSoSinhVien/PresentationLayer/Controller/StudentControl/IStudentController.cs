@@ -10,5 +10,6 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl
     public interface IStudentController
     {
         public List<StudentDto> getAllStudentWithFullInfor();
+        public int totalStudent();
     }
 }

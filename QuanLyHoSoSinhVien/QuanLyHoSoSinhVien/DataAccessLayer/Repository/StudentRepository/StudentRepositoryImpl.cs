@@ -8,7 +8,7 @@ using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
 
 namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.StudentRepository
 {
-    public class GetAllStudent : IStudentRepository
+    public class StudentRepositoryImpl : IStudentRepository
     {
         DataContext _context = new DataContext();
         public List<SinhVien> GetAllStudents()
@@ -17,6 +17,12 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.StudentRepository
                 .ThenInclude(lop=>lop.nganh)
                 .ThenInclude(nganh=>nganh.Khoa).ToList();
             return danhSach;
+        }
+
+        public SinhVien GetStudentId(string id)
+        {
+            var sinhvien = _context.SinhViens.Where(sv => sv.masv == id).FirstOrDefault();
+            return sinhvien;
         }
     }
 }
