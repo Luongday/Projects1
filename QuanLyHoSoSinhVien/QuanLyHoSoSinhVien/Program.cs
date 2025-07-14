@@ -7,6 +7,15 @@ using QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl;
 using QuanLyHoSoSinhVien.DataAccessLayer.Repository.StudentRepository;
 using QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices;
 using QuanLyHoSoSinhVien.PresentationLayer;
+using QuanLyHoSoSinhVien.BusinessLayer.Services.NganhServices;
+using QuanLyHoSoSinhVien.DataAccessLayer.Repository.NganhRepository;
+using QuanLyHoSoSinhVien.PresentationLayer.Controller.NganhControl;
+using QuanLyHoSoSinhVien.DataAccessLayer.Repository.LopRepository;
+using QuanLyHoSoSinhVien.BusinessLayer.Services.LopServices;
+using QuanLyHoSoSinhVien.PresentationLayer.Controller.LopControl;
+using QuanLyHoSoSinhVien.DataAccessLayer.Repository.KhoaRepository;
+using QuanLyHoSoSinhVien.BusinessLayer.Services.KhoaServices;
+using QuanLyHoSoSinhVien.PresentationLayer.Controller.KhoaControl;
 
 namespace QuanLyHoSoSinhVien
 {
@@ -29,6 +38,15 @@ namespace QuanLyHoSoSinhVien
             services.AddTransient<IStudentController, StudentControllerImpl>();
             services.AddTransient<IStudentRepository, StudentRepositoryImpl>();
             services.AddTransient<IGetAllStudent,GetAllStudentImpl>();
+            services.AddTransient<INganhRepository, NganhRepositoryImpl>();
+            services.AddTransient<IGetAllNganh,GetAllNganh>();
+            services.AddTransient<INganhControllers, NganhControllerImpl>();
+            services.AddTransient<ILopRepository, LopRepositoryImpl>();
+            services.AddTransient<IGetAllLop, GetAllLop>();
+            services.AddTransient<ILopController, LopControllerImpl>();
+            services.AddTransient<IKhoaRepository, KhoaRepositoryImpl>();
+            services.AddTransient<IGetAllKhoa, GetAllKhoa>();
+            services.AddTransient<IKhoaController,KhoaControllerImpl>();
             services.AddTransient<LoginFrm>();
             services.AddTransient<MenuManagement>();
             // To customize application configuration such as set high DPI settings or default font,
@@ -36,7 +54,7 @@ namespace QuanLyHoSoSinhVien
             var serviceProvider = services.BuildServiceProvider();
 
             // Lấy LoginFrm từ container (có inject UserControllers)
-            var loginForm = serviceProvider.GetRequiredService<LoginFrm>();
+            var loginForm = serviceProvider.GetRequiredService<MenuManagement>();
             
             Application.Run(loginForm);
             

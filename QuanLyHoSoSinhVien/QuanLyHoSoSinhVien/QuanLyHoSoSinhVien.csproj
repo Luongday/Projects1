@@ -39,9 +39,4 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DataAccessLayer\Repository\LopRepository\" />
-    <Folder Include="DataAccessLayer\Repository\NganhRepository\" />
-  </ItemGroup>
-
 </Project>

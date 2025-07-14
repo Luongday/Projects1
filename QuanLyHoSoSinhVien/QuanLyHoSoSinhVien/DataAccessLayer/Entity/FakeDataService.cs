@@ -129,12 +129,17 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Entity
 
         public static Lop[] GenerateLops(int count = 100)
         {
-            return Enumerable.Range(1, count).Select(i => new Lop
+            return Enumerable.Range(1, count).Select(i =>
             {
-                malop = $"L{i:D3}",
-                manganh = $"NG{(i - 1) % DanhSachNganh.Length + 1:D3}",
-                tenlop = $"{DanhSachNganh[(i - 1) % DanhSachNganh.Length].Ten.Split(' ').Last()}{21 + (i - 1) / 50}-{(i - 1) % 5 + 1:D2}",
-                siso = 25 + i % 10
+                var nganh = DanhSachNganh[(i - 1) % DanhSachNganh.Length];
+                var vietTat = string.Concat(nganh.Ten.Split(' ').Select(t => t[0])).ToUpper();
+
+                return new Lop
+                {
+                    malop = $"L{i:D3}",
+                    manganh = $"NG{(i - 1) % DanhSachNganh.Length + 1:D3}",
+                    tenlop = $"{vietTat}{21 + (i - 1) / 50}-{(i - 1) % 5 + 1:D2}",
+                };
             }).ToArray();
         }
 
@@ -175,9 +180,9 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Entity
                 {
                     mahoso = $"HS{i:D3}",
                     masv = $"SV{i:D3}",
-                    NgayTao = ngayTao, // tạo ngẫu nhiên trong vòng 1 năm trước
+                    NgayTao = ngayTao,
                     NgayCapNhat = ngayCapNhat,
-                    trangthaihoso = i % 10 == 0 ? "Đã duyệt" : "Chờ duyệt"
+                    trangthaihoso = true 
                 };
             }).ToArray();
         }

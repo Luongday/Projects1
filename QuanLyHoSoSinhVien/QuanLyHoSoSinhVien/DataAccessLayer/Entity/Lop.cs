@@ -20,9 +20,6 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Entity
         [MaxLength(20)]
         public string? tenlop  { get; set;}
 
-        [Required]
-        public int siso { get; set;}
-
         public ICollection<SinhVien>? sinhViens { get; set;}
         public Nganh? nganh { get; set; }
     }
