@@ -253,6 +253,7 @@
             Controls.Add(guna2CustomGradientPanel1);
             Name = "LoginFrm";
             Text = "LoginFrm";
+            Load += LoginFrm_Load;
             guna2CustomGradientPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).EndInit();
             guna2CustomGradientPanel2.ResumeLayout(false);

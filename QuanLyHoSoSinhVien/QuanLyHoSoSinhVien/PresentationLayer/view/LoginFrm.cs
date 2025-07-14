@@ -36,7 +36,7 @@ namespace QuanLyHoSoSinhVien.view
         {
             String userName = txtUserName.Text;
             String password = txtPassword.Text;
-            if (userController.UserInfor(userName, password)!=null)
+            if (userController.UserInfor(userName, password) != null)
             {
                 this.Hide();
                 new view.MenuManagement(studentController).Show();
@@ -76,6 +76,11 @@ namespace QuanLyHoSoSinhVien.view
         {
 
 
+
+        }
+
+        private void LoginFrm_Load(object sender, EventArgs e)
+        {
 
         }
     }

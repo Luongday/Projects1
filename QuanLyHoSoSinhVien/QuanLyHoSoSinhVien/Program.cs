@@ -34,8 +34,8 @@ namespace QuanLyHoSoSinhVien
             // Lấy LoginFrm từ container (có inject UserControllers)
             var loginForm = serviceProvider.GetRequiredService<LoginFrm>();
             Application.Run(loginForm);
-            
-            //Application.Run(new view.LoginFrm());
+
+           
         }
     }
 }

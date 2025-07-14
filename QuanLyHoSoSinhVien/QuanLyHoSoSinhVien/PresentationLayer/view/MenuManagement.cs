@@ -84,5 +84,11 @@ namespace QuanLyHoSoSinhVien.view
         {
 
         }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Application.Run(new view.ChiTietHoSo());
+        }
     }
 }

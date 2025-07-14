@@ -32,9 +32,10 @@
             // 
             // MenuStudent
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(796, 553);
+            ClientSize = new Size(987, 579);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "MenuStudent";
             Text = "MenuStudent";
             ResumeLayout(false);
