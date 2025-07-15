@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using QuanLyHoSoSinhVien.PresentationLayer.Controller.HoSoController;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.KhoaControl;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.LopControl;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.NganhControl;
@@ -18,15 +19,17 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
         public ILopController lopController { get; }
         public IKhoaController KhoaController { get; }
         public IAddKhoaController addKhoaController { get; }
+        public IHoSoController hoSoController { get; }
         public ManagerServicesFacade(IStudentController studentController, INganhControllers nganhControllers, 
                                      ILopController lopController,IKhoaController khoaController,
-                                     IAddKhoaController addKhoaController)
+                                     IAddKhoaController addKhoaController, IHoSoController hoSoController)
         {
             this.studentController = studentController;
             this.nganhControllers = nganhControllers;
             this.lopController = lopController;
             this.KhoaController = khoaController;
             this.addKhoaController = addKhoaController;
+            this.hoSoController = hoSoController;
         }
     }
 }

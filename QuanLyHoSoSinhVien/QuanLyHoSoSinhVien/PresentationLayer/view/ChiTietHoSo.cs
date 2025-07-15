@@ -43,7 +43,6 @@ namespace QuanLyHoSoSinhVien.view
             lblClass.Text = dp.tenLop;
             lblNganh.Text = dp.tenNganh;
             lblKhoa.Text = dp.tenKhoa;
-
         }
 
        

@@ -17,6 +17,9 @@ using QuanLyHoSoSinhVien.DataAccessLayer.Repository.KhoaRepository;
 using QuanLyHoSoSinhVien.BusinessLayer.Services.KhoaServices;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.KhoaControl;
 using QuanLyHoSoSinhVien.PresentationLayer.view;
+using QuanLyHoSoSinhVien.DataAccessLayer.Repository.HoSoRepository;
+using QuanLyHoSoSinhVien.BusinessLayer.Services.ProfileServices;
+using QuanLyHoSoSinhVien.PresentationLayer.Controller.HoSoController;
 
 namespace QuanLyHoSoSinhVien
 {
@@ -50,6 +53,9 @@ namespace QuanLyHoSoSinhVien
             services.AddTransient<IAddNewKhoaService,KhoaComandServicesImpl>();
             services.AddTransient<IGetKhoaForId, KhoaQueryServicesImpl>();
             services.AddTransient<IAddKhoaController, KhoaComandImpl>();
+            services.AddTransient<IHoSoRepository, HoSoRepositoryImpl>();
+            services.AddTransient<IGetAllHoSoServices, HoSoQueryImpl>();
+            services.AddTransient<IHoSoController, HoSoControllerImpl>();
             services.AddTransient<LoginFrm>();
             services.AddTransient<MenuManagement>();
             services.AddTransient<ThemKhoa>();
@@ -58,7 +64,7 @@ namespace QuanLyHoSoSinhVien
             var serviceProvider = services.BuildServiceProvider();
 
             // Lấy LoginFrm từ container (có inject UserControllers)
-            var loginForm = serviceProvider.GetRequiredService<ThemKhoa>();
+            var loginForm = serviceProvider.GetRequiredService<MenuManagement>();
             
             Application.Run(loginForm);
 
