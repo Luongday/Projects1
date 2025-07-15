@@ -11,6 +11,6 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.UserControl
 {
     public interface IUserController
     {
-        public UserDto UserInfor (string userName, string passWord);
+        public UserDto UserInfor(string userName, string passWord);
     }
 }

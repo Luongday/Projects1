@@ -39,5 +39,12 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl
                 tenKhoa = sv.Lop?.nganh?.Khoa?.tenkhoa ?? ""
             }).ToList();
         }
+
+        public int totalStudent()
+        {
+            int countStudent = 0;
+            countStudent = getAllStudent.getAll().Count();
+            return countStudent;
+        }
     }
 }

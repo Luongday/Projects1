@@ -20,7 +20,7 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Entity
         [DataType(DataType.Date)]
         public DateTime NgayCapNhat { get; set; }
         [MaxLength(20)]
-        public string? trangthaihoso { get; set; }
+        public bool? trangthaihoso { get; set; }
         public SinhVien? SinhVien { get; set; }
     }
 }

@@ -12,6 +12,6 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.StudentRepository
     {
         public List<SinhVien> GetAllStudents();
 
-        
+        public SinhVien GetStudentId(string id);
     }
 }

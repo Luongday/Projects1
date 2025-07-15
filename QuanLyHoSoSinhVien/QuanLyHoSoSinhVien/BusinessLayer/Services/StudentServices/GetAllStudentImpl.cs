@@ -22,5 +22,10 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices
         {
             return studentRepo.GetAllStudents();
         }
+
+        public SinhVien getByID(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
