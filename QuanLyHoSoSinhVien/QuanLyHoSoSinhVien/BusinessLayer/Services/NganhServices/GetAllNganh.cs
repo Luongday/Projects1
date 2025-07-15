@@ -8,7 +8,7 @@ using QuanLyHoSoSinhVien.DataAccessLayer.Repository.NganhRepository;
 
 namespace QuanLyHoSoSinhVien.BusinessLayer.Services.NganhServices
 {
-    public class GetAllNganh : IGetAllNganh
+    public class GetAllNganh : NganhQueryImpl
     {
         DataContext _context = new DataContext();
         INganhRepository _nganhRepository;

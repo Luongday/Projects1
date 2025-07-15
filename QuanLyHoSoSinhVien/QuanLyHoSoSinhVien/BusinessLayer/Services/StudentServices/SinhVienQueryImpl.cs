@@ -9,11 +9,11 @@ using QuanLyHoSoSinhVien.DataAccessLayer.Repository.StudentRepository;
 
 namespace QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices
 {
-    public class GetAllStudentImpl : IGetAllStudent
+    public class SinhVienQueryImpl : IGetAllStudent
     {
         IStudentRepository studentRepo;
 
-        public GetAllStudentImpl(IStudentRepository studentRepo)
+        public SinhVienQueryImpl(IStudentRepository studentRepo)
         {
             this.studentRepo = studentRepo;
         }

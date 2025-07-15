@@ -10,9 +10,9 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.NganhControl
 {
     public class NganhControllerImpl : INganhControllers
     {
-        IGetAllNganh _getAllNganh;
+        NganhQueryImpl _getAllNganh;
 
-        public NganhControllerImpl(IGetAllNganh getAllNganh)
+        public NganhControllerImpl(NganhQueryImpl getAllNganh)
         {
             _getAllNganh = getAllNganh;
         }

@@ -12,11 +12,22 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.KhoaRepository
     {
         DataContext _context = new DataContext();
 
+        public void AddNew(Khoa k)
+        {
+            _context.Add(k);
+            _context.SaveChanges(); 
+        }
+
         public List<Khoa> getAll()
         {
             return _context.Khoas.Include(khoa=>khoa.Nganh)
                 .ThenInclude(Nganh=>Nganh.Lop)
                 .ToList();
+        }
+
+        public Khoa GetByMa(string id)
+        {
+            return _context.Khoas.Find(id);
         }
     }
 }
