@@ -8,11 +8,11 @@ using QuanLyHoSoSinhVien.DataAccessLayer.Repository.LopRepository;
 
 namespace QuanLyHoSoSinhVien.BusinessLayer.Services.LopServices
 {
-    public class GetAllLop : IGetAllLop
+    public class LopQueryImpl : IGetAllLop
     {
         ILopRepository lopRepository;
 
-        public GetAllLop(ILopRepository lopRepository)
+        public LopQueryImpl(ILopRepository lopRepository)
         {
             this.lopRepository = lopRepository;
         }

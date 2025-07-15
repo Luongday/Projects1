@@ -17,12 +17,16 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
         public INganhControllers nganhControllers { get; }
         public ILopController lopController { get; }
         public IKhoaController KhoaController { get; }
-        public ManagerServicesFacade(IStudentController studentController, INganhControllers nganhControllers, ILopController lopController,IKhoaController khoaController)
+        public IAddKhoaController addKhoaController { get; }
+        public ManagerServicesFacade(IStudentController studentController, INganhControllers nganhControllers, 
+                                     ILopController lopController,IKhoaController khoaController,
+                                     IAddKhoaController addKhoaController)
         {
             this.studentController = studentController;
             this.nganhControllers = nganhControllers;
             this.lopController = lopController;
             this.KhoaController = khoaController;
+            this.addKhoaController = addKhoaController;
         }
     }
 }
