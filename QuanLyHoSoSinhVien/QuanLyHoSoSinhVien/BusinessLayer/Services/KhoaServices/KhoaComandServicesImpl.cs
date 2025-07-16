@@ -9,7 +9,7 @@ using QuanLyHoSoSinhVien.PresentationLayer.DTO.KhoaDTO;
 
 namespace QuanLyHoSoSinhVien.BusinessLayer.Services.KhoaServices
 {
-    public class KhoaComandServicesImpl : IAddNewKhoaService
+    public class KhoaComandServicesImpl : IAddNewKhoaService,IDeleteKhoaService,IEditKhoaService
     {
         IKhoaRepository khoaRepository;
 
@@ -28,6 +28,37 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.KhoaServices
                     tenkhoa = khoa.tenKhoa
                 };
                 khoaRepository.AddNew(entity);
+                return true;
+            }
+            return false;
+        }
+
+        public bool deleteKhoaById(string id)
+        {
+            Khoa khoaRemove = khoaRepository.GetByMa(id);
+            if (khoaRemove != null)
+            {
+                khoaRepository.delete(khoaRemove);
+                return true;
+            }
+            return false;
+        }
+
+        public bool editKhoa(KhoaDto newKhoa)
+        {
+            var k = new Khoa
+            {
+                makhoa = newKhoa?.maKhoa,
+                tenkhoa = newKhoa?.tenKhoa
+            };
+            var khoa = khoaRepository.GetByMa(k.makhoa??"");
+            if (khoa == null)
+            {
+                return false;
+            }
+            if (k != null)
+            {
+                khoaRepository.edit(k);
                 return true;
             }
             return false;

@@ -12,5 +12,8 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.KhoaRepository
         public List<Khoa> getAll();
         public void AddNew(Khoa khoa);
         public Khoa GetByMa(String id);
+
+        public void delete(Khoa k);
+        public void edit(Khoa k);
     }
 }

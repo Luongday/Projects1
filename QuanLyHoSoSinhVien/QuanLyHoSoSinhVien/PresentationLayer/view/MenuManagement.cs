@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Extensions.DependencyInjection;
 using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
 using QuanLyHoSoSinhVien.PresentationLayer;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.HoSoController;
@@ -16,19 +17,23 @@ using QuanLyHoSoSinhVien.PresentationLayer.Controller.KhoaControl;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.LopControl;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.NganhControl;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl;
+using QuanLyHoSoSinhVien.PresentationLayer.view;
 
 namespace QuanLyHoSoSinhVien.view
 {
     public partial class MenuManagement : Form
     {
+        private IServiceProvider serviceProvider;
         IStudentController studentController;
         INganhControllers nganhControllers;
         ILopController lopController;
         IKhoaController khoaController;
         IHoSoController hoSoController;
+        IDeleteKhoaController deleteKhoaController;
+        IEditKhoaController editKhoaController;
         ManagerServicesFacade managerServicesFacade;
 
-        public MenuManagement(ManagerServicesFacade managerServicesFacade)
+        public MenuManagement(ManagerServicesFacade managerServicesFacade, IServiceProvider serviceProvider)
         {
             InitializeComponent();
             this.managerServicesFacade = managerServicesFacade;
@@ -37,6 +42,9 @@ namespace QuanLyHoSoSinhVien.view
             lopController = managerServicesFacade.lopController;
             khoaController = managerServicesFacade.KhoaController;
             this.hoSoController = managerServicesFacade.hoSoController;
+            this.deleteKhoaController = managerServicesFacade.deleteKhoaController;
+            this.editKhoaController = managerServicesFacade.editKhoaController;
+            this.serviceProvider = serviceProvider;
             TongSoSV.Text = studentController.totalStudent().ToString();
         }
 
@@ -70,7 +78,7 @@ namespace QuanLyHoSoSinhVien.view
         }
         private void LoadNganhDataToGrid()
         {
-            var dsNganh = nganhControllers.getAllNganhWithFullInfor(); // gọi controller
+            var dsNganh = nganhControllers.getAllNganhWithFullInfor(); 
             foreach (var nganh in dsNganh)
             {
                 dgvNganh.Rows.Add(
@@ -98,6 +106,7 @@ namespace QuanLyHoSoSinhVien.view
         private void LoadDataKhoaToGrid()
         {
             var dsKhoa = khoaController.getAllKhoaWithFullInfor();
+            dgvKhoa.Rows.Clear();
             foreach (var khoa in dsKhoa)
             {
                 dgvKhoa.Rows.Add(
@@ -107,6 +116,7 @@ namespace QuanLyHoSoSinhVien.view
                     khoa.soLop
                 );
             }
+            dgvKhoa.Refresh();
         }
 
         private void LoadHoSo()
@@ -189,9 +199,99 @@ namespace QuanLyHoSoSinhVien.view
 
         private void tcMenuManager_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(tcMenuManager.SelectedTab == tpQuanLiHoSo)
+            if (tcMenuManager.SelectedTab == tpQuanLiHoSo)
             {
                 LoadHoSo();
+            }
+        }
+
+        private void dgvKhoa_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow current = dgvKhoa.CurrentRow;
+            if (current != null)
+            {
+                txtMaKhoa.Text = current.Cells["MaKhoaCol"].Value?.ToString();
+                txtTenKhoa.Text = current.Cells["TenKhoaCol"].Value?.ToString();
+            }
+        }
+
+        private void btnXoaKhoa_Click(object sender, EventArgs e)
+        {
+            if (txtMaKhoa.Text == null || txtMaKhoa.Text == "")
+            {
+                MessageBox.Show("Bạn cần nhập thông tin mã khoa muốn xóa!");
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("Bạn muốn xóa Khoa này?", "Thông báo", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    if (deleteKhoaController.DeleteById(txtMaKhoa.Text))
+                    {
+                        MessageBox.Show("Xóa thành công");
+                        LoadDataKhoaToGrid();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không có khoa này");
+                    }
+
+                }
+            }
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            txtMaKhoa.Text = "";
+            txtTenKhoa.Text = "";
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var ThemKhoaFrm = serviceProvider.GetRequiredService<ThemKhoa>();
+            ThemKhoaFrm.Show();
+        }
+        private void RefreshData()
+        {
+            try
+            {
+                LoadDataKhoaToGrid();
+
+                // Clear form sau khi update thành công
+                txtMaKhoa.Clear();
+                txtTenKhoa.Clear();
+
+                // Focus vào control đầu tiên
+                txtMaKhoa.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Có lỗi khi tải dữ liệu: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(txtMaKhoa.Text) || string.IsNullOrEmpty(txtTenKhoa.Text))
+            {
+                MessageBox.Show("Bạn cần nhập đủ thông tin");
+            }
+            else
+            {
+                    DialogResult result =  MessageBox.Show("Bạn muốn sửa thông tin?", "thông báo", MessageBoxButtons.OKCancel);
+                    if(result == DialogResult.OK)
+                    {
+                        if (editKhoaController.editKhoa(txtMaKhoa.Text,txtTenKhoa.Text))
+                        {
+                            MessageBox.Show("Sửa thành công.");
+                            RefreshData();
+                        LoadDataKhoaToGrid();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Sửa không thành công!!!");
+                        }
+                    }   
             }
         }
     }

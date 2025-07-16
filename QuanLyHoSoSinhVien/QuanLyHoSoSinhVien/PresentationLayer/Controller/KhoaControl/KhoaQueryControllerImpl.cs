@@ -34,13 +34,17 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.KhoaControl
         public KhoaDto getByMa(string id)
         {
             Khoa k = getbyID.GetById(id);
-            KhoaDto khoa = new KhoaDto { 
+            if (k != null)
+            {
+                KhoaDto khoa = new KhoaDto { 
                 maKhoa = id,
                 tenKhoa = k.tenkhoa,
                 soNganh = k.Nganh?.Count ?? 0,
                 soLop = k.Nganh?.SelectMany(n => n.Lop)?.Count() ?? 0
-            };
-            return khoa;
+                };
+                return khoa;
+            }
+            return null;
         }
 
         public int totalKhoa()

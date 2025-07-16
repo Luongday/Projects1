@@ -56,6 +56,10 @@ namespace QuanLyHoSoSinhVien
             services.AddTransient<IHoSoRepository, HoSoRepositoryImpl>();
             services.AddTransient<IGetAllHoSoServices, HoSoQueryImpl>();
             services.AddTransient<IHoSoController, HoSoControllerImpl>();
+            services.AddTransient<IDeleteKhoaService, KhoaComandServicesImpl>();
+            services.AddTransient<IDeleteKhoaController, KhoaComandImpl>();
+            services.AddTransient<IEditKhoaService, KhoaComandServicesImpl>();
+            services.AddTransient<IEditKhoaController, KhoaComandImpl>();
             services.AddTransient<LoginFrm>();
             services.AddTransient<MenuManagement>();
             services.AddTransient<ThemKhoa>();
