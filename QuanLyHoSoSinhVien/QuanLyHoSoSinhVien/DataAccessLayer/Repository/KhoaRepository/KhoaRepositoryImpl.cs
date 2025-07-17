@@ -10,7 +10,12 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.KhoaRepository
 {
     public class KhoaRepositoryImpl : IKhoaRepository
     {
-        DataContext _context = new DataContext();
+        DataContext _context;
+
+        public KhoaRepositoryImpl(DataContext context)
+        {
+            _context = context;
+        }
 
         public void AddNew(Khoa k)
         {

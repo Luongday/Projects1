@@ -8,11 +8,11 @@ using QuanLyHoSoSinhVien.PresentationLayer.DTO.NganhDTO;
 
 namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.NganhControl
 {
-    public class NganhControllerImpl : INganhControllers
+    public class NganhQueryControllerImpl : INganhControllers
     {
-        NganhQueryImpl _getAllNganh;
+        IGetAllNganhService _getAllNganh;
 
-        public NganhControllerImpl(NganhQueryImpl getAllNganh)
+        public NganhQueryControllerImpl(IGetAllNganhService getAllNganh)
         {
             _getAllNganh = getAllNganh;
         }

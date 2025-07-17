@@ -20,6 +20,7 @@ using QuanLyHoSoSinhVien.PresentationLayer.view;
 using QuanLyHoSoSinhVien.DataAccessLayer.Repository.HoSoRepository;
 using QuanLyHoSoSinhVien.BusinessLayer.Services.ProfileServices;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.HoSoController;
+using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
 
 namespace QuanLyHoSoSinhVien
 {
@@ -33,33 +34,48 @@ namespace QuanLyHoSoSinhVien
         {
             ApplicationConfiguration.Initialize();
             var services = new ServiceCollection();
-            services.AddSingleton<UserDAO>();
+           // services.AddSingleton<UserDAO>();
             services.AddSingleton<ManagerServicesFacade>();
+            services.AddSingleton<DataContext>();
+            //user DI
             services.AddTransient<IUserController, UserControllerImpl>();
-            services.AddTransient<IUserDAO,UserDAO>();
+            //services.AddTransient<IUserDAO,UserDAO>();
             services.AddTransient<IUserService,UserServicesImpl>();
+            //student DI
             services.AddTransient<IStudentController, StudentControllerImpl>();
             services.AddTransient<IStudentRepository, StudentRepositoryImpl>();
             services.AddTransient<IGetAllStudent,SinhVienQueryImpl>();
+            //nganh DI
             services.AddTransient<INganhRepository, NganhRepositoryImpl>();
-            services.AddTransient<NganhQueryImpl,GetAllNganh>();
-            services.AddTransient<INganhControllers, NganhControllerImpl>();
+            services.AddTransient<IGetAllNganhService,NganhQueryServiceImpl>();
+            services.AddTransient<INganhControllers, NganhQueryControllerImpl>();
+            services.AddTransient<IAddNganhService, NganhCommandServiceImpl>();
+            services.AddTransient<IAddNganhController, NganhComandControllerImpl>();
+            services.AddTransient<IDeleteNganhService, NganhCommandServiceImpl>();
+            services.AddTransient<IDeleteNganhController,NganhComandControllerImpl>();
+            services.AddTransient<IEditNganhService, NganhCommandServiceImpl>();   
+            services.AddTransient<IEditNganhController, NganhComandControllerImpl>();   
+            //lop DI
             services.AddTransient<ILopRepository, LopRepositoryImpl>();
             services.AddTransient<IGetAllLop, LopQueryImpl>();
             services.AddTransient<ILopController, LopControllerImpl>();
+            //khoa DI
             services.AddTransient<IKhoaRepository, KhoaRepositoryImpl>();
             services.AddTransient<IGetAllKhoa, KhoaQueryServicesImpl>();
             services.AddTransient<IKhoaController,KhoaQueryControllerImpl>();
             services.AddTransient<IAddNewKhoaService,KhoaComandServicesImpl>();
             services.AddTransient<IGetKhoaForId, KhoaQueryServicesImpl>();
             services.AddTransient<IAddKhoaController, KhoaComandImpl>();
-            services.AddTransient<IHoSoRepository, HoSoRepositoryImpl>();
-            services.AddTransient<IGetAllHoSoServices, HoSoQueryImpl>();
-            services.AddTransient<IHoSoController, HoSoControllerImpl>();
             services.AddTransient<IDeleteKhoaService, KhoaComandServicesImpl>();
             services.AddTransient<IDeleteKhoaController, KhoaComandImpl>();
             services.AddTransient<IEditKhoaService, KhoaComandServicesImpl>();
             services.AddTransient<IEditKhoaController, KhoaComandImpl>();
+            //HoSo DI
+            services.AddTransient<IHoSoRepository, HoSoRepositoryImpl>();
+            services.AddTransient<IGetAllHoSoServices, HoSoQueryImpl>();
+            services.AddTransient<IHoSoController, HoSoControllerImpl>();
+            
+            services.AddTransient<ThemNganhFrm>();
             services.AddTransient<LoginFrm>();
             services.AddTransient<MenuManagement>();
             services.AddTransient<ThemKhoa>();

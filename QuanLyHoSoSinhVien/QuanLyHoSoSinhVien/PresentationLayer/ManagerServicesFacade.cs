@@ -22,10 +22,15 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
         public IDeleteKhoaController deleteKhoaController { get; }
         public IHoSoController hoSoController { get; }
         public IEditKhoaController editKhoaController { get; }
+        public IAddNganhController addNganhController { get; }
+        public IDeleteNganhController deleteNganhController { get; }
+        public IEditNganhController editnganhController { get; }
         public ManagerServicesFacade(IStudentController studentController, INganhControllers nganhControllers, 
                                      ILopController lopController,IKhoaController khoaController,
                                      IAddKhoaController addKhoaController, IHoSoController hoSoController,
-                                     IDeleteKhoaController deleteKhoaController, IEditKhoaController editKhoaController)
+                                     IDeleteKhoaController deleteKhoaController, IEditKhoaController editKhoaController,
+                                     IAddNganhController addNganhController, IDeleteNganhController deleteNganhController,
+                                     IEditNganhController editNganhController)
                                      
         {
             this.studentController = studentController;
@@ -36,6 +41,9 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
             this.hoSoController = hoSoController;
             this.deleteKhoaController = deleteKhoaController;
             this.editKhoaController = editKhoaController;
+            this.addNganhController = addNganhController;
+            this.deleteNganhController = deleteNganhController;
+            this.editnganhController = editNganhController;
         }
     }
 }

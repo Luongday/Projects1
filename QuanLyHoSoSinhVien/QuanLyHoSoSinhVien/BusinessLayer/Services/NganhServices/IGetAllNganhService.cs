@@ -7,7 +7,7 @@ using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
 
 namespace QuanLyHoSoSinhVien.BusinessLayer.Services.NganhServices
 {
-    public interface NganhQueryImpl
+    public interface IGetAllNganhService
     {
         public List<Nganh> getAll();
     }

@@ -19,6 +19,9 @@
     <Compile Update="PresentationLayer\view\ThemKhoa.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="PresentationLayer\view\ThemNganhFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="PresentationLayer\view\ThemSV.cs">
       <SubType>Form</SubType>
     </Compile>

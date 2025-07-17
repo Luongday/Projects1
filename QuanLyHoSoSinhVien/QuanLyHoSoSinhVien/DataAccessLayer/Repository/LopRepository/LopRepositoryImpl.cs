@@ -10,7 +10,13 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.LopRepository
 {
     public class LopRepositoryImpl : ILopRepository
     {
-        DataContext _dataContext = new DataContext();
+        DataContext _dataContext;
+
+        public LopRepositoryImpl(DataContext dataContext)
+        {
+            _dataContext = dataContext;
+        }
+
         public List<Lop> getAll()
         {
             return _dataContext.Lops.Include(lop=>lop.nganh)

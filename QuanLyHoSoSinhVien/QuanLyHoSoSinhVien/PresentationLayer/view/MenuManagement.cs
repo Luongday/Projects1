@@ -17,6 +17,7 @@ using QuanLyHoSoSinhVien.PresentationLayer.Controller.KhoaControl;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.LopControl;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.NganhControl;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl;
+using QuanLyHoSoSinhVien.PresentationLayer.DTO.KhoaDTO;
 using QuanLyHoSoSinhVien.PresentationLayer.view;
 
 namespace QuanLyHoSoSinhVien.view
@@ -26,6 +27,7 @@ namespace QuanLyHoSoSinhVien.view
         private IServiceProvider serviceProvider;
         IStudentController studentController;
         INganhControllers nganhControllers;
+        IDeleteNganhController deleteNganhController;
         ILopController lopController;
         IKhoaController khoaController;
         IHoSoController hoSoController;
@@ -39,6 +41,7 @@ namespace QuanLyHoSoSinhVien.view
             this.managerServicesFacade = managerServicesFacade;
             studentController = managerServicesFacade.studentController;
             nganhControllers = managerServicesFacade.nganhControllers;
+            deleteNganhController = managerServicesFacade.deleteNganhController;
             lopController = managerServicesFacade.lopController;
             khoaController = managerServicesFacade.KhoaController;
             this.hoSoController = managerServicesFacade.hoSoController;
@@ -78,7 +81,8 @@ namespace QuanLyHoSoSinhVien.view
         }
         private void LoadNganhDataToGrid()
         {
-            var dsNganh = nganhControllers.getAllNganhWithFullInfor(); 
+            dgvNganh.Rows.Clear();
+            var dsNganh = nganhControllers.getAllNganhWithFullInfor();
             foreach (var nganh in dsNganh)
             {
                 dgvNganh.Rows.Add(
@@ -133,7 +137,24 @@ namespace QuanLyHoSoSinhVien.view
                 );
             }
         }
+        public void AddKhoaToComboBoxKhoaInTabPageNganh()
+        {
+            try
+            {
+                List<KhoaDto> khoaDto = khoaController.getAllKhoaWithFullInfor() ?? new List<KhoaDto>();
+                List<String> items = new List<string>();
+                foreach (KhoaDto k in khoaDto)
+                {
+                    items.Add(k.tenKhoa);
+                }
+                cbxDsKhoa.DataSource = items;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("khoaController is null");
+            }
 
+        }
         private void MenuManagement_Load(object sender, EventArgs e)
         {
             Load_SinhVien();
@@ -149,6 +170,7 @@ namespace QuanLyHoSoSinhVien.view
             if (tcQuanLiNganhKhoaLop.SelectedTab == tpNganh)
             {
                 LoadNganhDataToGrid();
+                AddKhoaToComboBoxKhoaInTabPageNganh();
             }
             if (tcQuanLiNganhKhoaLop.SelectedTab == tpLop)
             {
@@ -272,27 +294,69 @@ namespace QuanLyHoSoSinhVien.view
         }
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(txtMaKhoa.Text) || string.IsNullOrEmpty(txtTenKhoa.Text))
+            if (string.IsNullOrEmpty(txtMaKhoa.Text) || string.IsNullOrEmpty(txtTenKhoa.Text))
             {
                 MessageBox.Show("Bạn cần nhập đủ thông tin");
             }
             else
             {
-                    DialogResult result =  MessageBox.Show("Bạn muốn sửa thông tin?", "thông báo", MessageBoxButtons.OKCancel);
-                    if(result == DialogResult.OK)
+                DialogResult result = MessageBox.Show("Bạn muốn sửa thông tin?", "thông báo", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK)
+                {
+                    if (editKhoaController.editKhoa(txtMaKhoa.Text, txtTenKhoa.Text))
                     {
-                        if (editKhoaController.editKhoa(txtMaKhoa.Text,txtTenKhoa.Text))
-                        {
-                            MessageBox.Show("Sửa thành công.");
-                            RefreshData();
+                        MessageBox.Show("Sửa thành công.");
+                        RefreshData();
                         LoadDataKhoaToGrid();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Sửa không thành công!!!");
-                        }
-                    }   
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sửa không thành công!!!");
+                    }
+                }
             }
+        }
+
+        private void dgvNganh_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow current = dgvNganh.CurrentRow;
+            if (current != null)
+            {
+                txtMaNganh.Text = current.Cells["maNganhCol"].Value?.ToString();
+                txtTenNganh.Text = current.Cells["tenNganhCol"].Value?.ToString();
+                cbxDsKhoa.Text = current.Cells["khoaCol"].Value?.ToString();
+            }
+        }
+
+        private void btnXoaNganh_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtMaNganh.Text))
+            {
+                MessageBox.Show("Bạn cần nhập mã ngành muốn xóa!");
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("Bạn muốn xóa Ngành này?", "Thông báo", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    if (deleteNganhController.deleteNganhWithId(txtMaNganh.Text))
+                    {
+                        MessageBox.Show("Xóa thành công");
+                        LoadNganhDataToGrid();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không có ngành này");
+                    }
+                }
+            }
+        }
+
+        private void btnThemNganh_Click(object sender, EventArgs e)
+        {
+            var ThemNganhFrm = serviceProvider.GetRequiredService<ThemNganhFrm>();
+            ThemNganhFrm.Show();
+            this.Hide();
         }
     }
 }
