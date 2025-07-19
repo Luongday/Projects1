@@ -25,6 +25,7 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.UserControl
             {
                 User user =  _userService.getUser(userName, passWord);
                 UserDto userInfor = new UserDto();
+                userInfor.userId = user.userId??"";
                 userInfor.userName = userName;
                 userInfor.passWord = passWord;
                 userInfor.isAdmin = user.isAdmin;

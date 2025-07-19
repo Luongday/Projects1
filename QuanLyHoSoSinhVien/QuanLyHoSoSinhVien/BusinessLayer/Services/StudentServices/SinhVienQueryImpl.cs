@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
 using QuanLyHoSoSinhVien.DataAccessLayer.Repository.StudentRepository;
+using QuanLyHoSoSinhVien.PresentationLayer.DTO.StudentDTO;
 
 namespace QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices
 {
-    public class SinhVienQueryImpl : IGetAllStudent
+    public class SinhVienQueryImpl : IGetAllStudent,IGetAStudentWithMa
     {
         IStudentRepository studentRepo;
 
@@ -23,9 +24,13 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices
             return studentRepo.GetAllStudents();
         }
 
-        public SinhVien getByID(string id)
+        public SinhVien getAStudentForMa(string maSV)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(maSV))
+            {
+                new StudentDto { };
+            }
+            return studentRepo.GetStudentId(maSV);
         }
     }
 }

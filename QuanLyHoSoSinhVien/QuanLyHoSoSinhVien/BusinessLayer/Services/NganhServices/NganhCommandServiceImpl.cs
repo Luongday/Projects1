@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
+using QuanLyHoSoSinhVien.DataAccessLayer.Repository.KhoaRepository;
 using QuanLyHoSoSinhVien.DataAccessLayer.Repository.NganhRepository;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.NganhDTO;
 
@@ -12,10 +13,12 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.NganhServices
     public class NganhCommandServiceImpl : IAddNganhService,IDeleteNganhService,IEditNganhService
     {
         INganhRepository nganhRepository;
+        IKhoaRepository khoaRepository;
 
-        public NganhCommandServiceImpl(INganhRepository nganhRepository)
+        public NganhCommandServiceImpl(INganhRepository nganhRepository,IKhoaRepository khoaRepository)
         {
             this.nganhRepository = nganhRepository;
+            this.khoaRepository = khoaRepository;
         }
 
         public bool addNewNganh(AddNganhDto nganh)
@@ -25,10 +28,13 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.NganhServices
             {
                 return false; // Nganh already exists
             }
+            var khoa = khoaRepository.getAll().Where(k => k.tenkhoa == nganh.tenKhoa).FirstOrDefault().makhoa;
             nganhRepository.addNganh(new DataAccessLayer.Entity.Nganh
+            
             {
                 manganh = nganh.maNganh??"",
                 tennganh = nganh.tenNganh??"",
+                makhoa = khoa ?? "" 
             });
             return true;
         }

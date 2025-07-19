@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using QuanLyHoSoSinhVien.BusinessLayer.Services.UserServices;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.UserControl;
+using QuanLyHoSoSinhVien.PresentationLayer.DTO.UserDTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,12 +39,33 @@ namespace QuanLyHoSoSinhVien.view
         {
             String userName = txtUserName.Text;
             String password = txtPassword.Text;
-            if (userController.UserInfor(userName, password) != null)
+            if (!string.IsNullOrEmpty(userName)&&!string.IsNullOrEmpty(password)&&userController.UserInfor(userName, password) != null)
             {
-                this.Hide();
-                // new view.MenuManagement(studentController).Show();
-                var managerForm = serviceProvider.GetRequiredService<MenuManagement>();
-                managerForm.Show();
+                var user = userController.UserInfor(userName, password);
+                if (user!=null)
+                {
+                    var userDto = serviceProvider.GetRequiredService<UserDto>();
+                    userDto.userId = user.userId; 
+                    userDto.isAdmin = user.isAdmin;
+                }
+                if (user.isAdmin)
+                {
+                    // MessageBox.Show("Dang nhap thanh cong voi quyen quan ly");
+                    // this.Hide();
+                    // new view.ManagerManagement(userController).Show();
+                    var managerFrm = serviceProvider.GetRequiredService<MenuManagement>();
+                    managerFrm.Show();
+                }
+                else
+                {
+                    // MessageBox.Show("Dang nhap thanh cong voi quyen nguoi dung");
+                    // this.Hide();
+                    // new view.StudentManagement(userController).Show();
+                    var studentFrm = serviceProvider.GetRequiredService<MenuStudent>();
+                    studentFrm.Show();
+                    this.Hide();
+                }
+               
             }
             else
             {

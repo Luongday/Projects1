@@ -32,12 +32,19 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
 
         public IEditProfileController editProfileController { get; }
 
+        public IAddLopController addLopController { get; }
+        public IGetAStudentController getAStudent { get; }
+        public IDeleteLopController deleteLopController { get; }
+        public IEditLopController editLopController { get; }
         public ManagerServicesFacade(IStudentController studentController, INganhControllers nganhControllers, 
                                      ILopController lopController,IKhoaController khoaController,
                                      IAddKhoaController addKhoaController, IProfileController hoSoController,
                                      IDeleteKhoaController deleteKhoaController, IEditKhoaController editKhoaController,
                                      IAddNganhController addNganhController, IDeleteNganhController deleteNganhController,
-                                     IEditNganhController editNganhController, IDetailsProfileController detailsProfileController, IDeleteProfileController deleteProfileController, IEditProfileController editProfileController)
+                                     IEditNganhController editNganhController, IDetailsProfileController detailsProfileController,
+                                     IDeleteProfileController deleteProfileController, IEditProfileController editProfileController,
+                                      IAddLopController addLopController, IGetAStudentController getAStudent,
+                                      IDeleteLopController deleteLopController , IEditLopController editLopController)
                                      
         {
             this.studentController = studentController;
@@ -51,9 +58,13 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
             this.addNganhController = addNganhController;
             this.deleteNganhController = deleteNganhController;
             this.editnganhController = editNganhController;
+            this.addLopController = addLopController;
             this.detailsProfileController = detailsProfileController;
             this.editProfileController = editProfileController;
             this.deleteProfileController = deleteProfileController;
+            this.getAStudent = getAStudent;
+            this.deleteLopController = deleteLopController;
+            this.editLopController = editLopController;
         }
     }
 }

@@ -24,6 +24,7 @@ using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
 using QuanLyHoSoSinhVien.DataAccessLayer.Repository.DetailsProfileRepository;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.DetailsProfileController;
 using QuanLyHoSoSinhVien.BusinessLayer.Services.DetailsProefileServices;
+using QuanLyHoSoSinhVien.PresentationLayer.DTO.UserDTO;
 
 namespace QuanLyHoSoSinhVien
 {
@@ -38,16 +39,19 @@ namespace QuanLyHoSoSinhVien
             ApplicationConfiguration.Initialize();
             var services = new ServiceCollection();
            // services.AddSingleton<UserDAO>();
-            services.AddSingleton<ManagerServicesFacade>();
+            services.AddTransient<ManagerServicesFacade>();
             services.AddSingleton<DataContext>();
             //user DI
             services.AddTransient<IUserController, UserControllerImpl>();
             services.AddTransient<IUserDAO,UserDAO>();
             services.AddTransient<IUserService,UserServicesImpl>();
+            services.AddSingleton<UserDto>();
             //student DI
             services.AddTransient<IStudentController, StudentControllerImpl>();
             services.AddTransient<IStudentRepository, StudentRepositoryImpl>();
             services.AddTransient<IGetAllStudent,SinhVienQueryImpl>();
+            services.AddTransient<IGetAStudentWithMa, SinhVienQueryImpl>();
+            services.AddTransient<IGetAStudentController, StudentControllerImpl>();
             //nganh DI
             services.AddTransient<INganhRepository, NganhRepositoryImpl>();
             services.AddTransient<IGetAllNganhService,NganhQueryServiceImpl>();
@@ -60,8 +64,14 @@ namespace QuanLyHoSoSinhVien
             services.AddTransient<IEditNganhController, NganhComandControllerImpl>();   
             //lop DI
             services.AddTransient<ILopRepository, LopRepositoryImpl>();
-            services.AddTransient<IGetAllLop, LopQueryImpl>();
-            services.AddTransient<ILopController, LopControllerImpl>();
+            services.AddTransient<IGetAllLop, LopQueryIServicempl>();
+            services.AddTransient<ILopController, LopQueryControllerImpl>();
+            services.AddTransient<IAddLopService,LopComandServiceImpl>();
+            services.AddTransient<IAddLopController, LopComandControllerImpl>();
+            services.AddTransient<IDeleteLopService, LopComandServiceImpl>();
+            services.AddTransient<IDeleteLopController,LopComandControllerImpl>();
+            services.AddTransient<IEditLopService, LopComandServiceImpl>();
+            services.AddTransient<IEditLopController, LopComandControllerImpl>();
             //khoa DI
             services.AddTransient<IKhoaRepository, KhoaRepositoryImpl>();
             services.AddTransient<IGetAllKhoa, KhoaQueryServicesImpl>();
@@ -91,14 +101,18 @@ namespace QuanLyHoSoSinhVien
             services.AddTransient<LoginFrm>();
             services.AddTransient<MenuManagement>();
             services.AddTransient<ThemKhoa>();
+
             services.AddTransient<ChiTietHoSo>();
+
+            services.AddTransient<ThemLopFrm>();
+            services.AddTransient<MenuStudent>();
+
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             var serviceProvider = services.BuildServiceProvider();
 
             // Lấy LoginFrm từ container (có inject UserControllers)
-            var loginForm = serviceProvider.GetRequiredService<MenuManagement>();
-            
+            var loginForm = serviceProvider.GetRequiredService<LoginFrm>();
             Application.Run(loginForm);
         }
     }

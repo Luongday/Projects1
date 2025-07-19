@@ -21,7 +21,11 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.StudentRepository
 
         public SinhVien GetStudentId(string id)
         {
-            var sinhvien = _context.SinhViens.Where(sv => sv.masv == id).FirstOrDefault();
+            var sinhvien = _context.SinhViens
+                .Include(sv=>sv.Lop)
+                .ThenInclude(lop=>lop.nganh)
+                .ThenInclude(nganh=>nganh.Khoa)
+                .Where(sv => sv.masv == id).FirstOrDefault();
             return sinhvien;
         }
     }

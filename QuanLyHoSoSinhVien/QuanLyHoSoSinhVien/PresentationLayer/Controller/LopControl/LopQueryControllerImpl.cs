@@ -8,11 +8,11 @@ using QuanLyHoSoSinhVien.PresentationLayer.DTO.LopDTO;
 
 namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.LopControl
 {
-    public class LopControllerImpl : ILopController
+    public class LopQueryControllerImpl : ILopController
     {
         IGetAllLop _getAllLop;
 
-        public LopControllerImpl(IGetAllLop getAllLop)
+        public LopQueryControllerImpl(IGetAllLop getAllLop)
         {
             _getAllLop = getAllLop;
         }

@@ -21,6 +21,7 @@ using QuanLyHoSoSinhVien.PresentationLayer.Controller.NganhControl;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.HoSoDto;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.KhoaDTO;
+using QuanLyHoSoSinhVien.PresentationLayer.DTO.LopDTO;
 using QuanLyHoSoSinhVien.PresentationLayer.view;
 
 namespace QuanLyHoSoSinhVien.view
@@ -32,6 +33,10 @@ namespace QuanLyHoSoSinhVien.view
         INganhControllers nganhControllers;
         IDeleteNganhController deleteNganhController;
         ILopController lopController;
+        IAddLopController addLopController;
+        IDeleteLopController deleteLopController;
+        // IEditLopController editLopController;
+        IEditLopController editLopController;
         IKhoaController khoaController;
         IProfileController hoSoController;
         private readonly IDetailsProfileController chitietHSController;
@@ -57,6 +62,9 @@ namespace QuanLyHoSoSinhVien.view
             this.chitietHSController = managerServicesFacade.detailsProfileController;
             this.deleteProfileController = managerServicesFacade.deleteProfileController;
             this.editProfileController = managerServicesFacade.editProfileController;
+            this.addLopController = managerServicesFacade.addLopController;
+            this.deleteLopController = managerServicesFacade.deleteLopController;
+            this.editLopController = managerServicesFacade.editLopController;
             TongSoSV.Text = studentController.totalStudent().ToString();
         }
 
@@ -104,6 +112,7 @@ namespace QuanLyHoSoSinhVien.view
         }
         private void LoadLopDataToGrid()
         {
+            dgvLop.Rows.Clear();
             var dsLop = lopController.getAllLopWithFullInfor();
             foreach (var lop in dsLop)
             {
@@ -149,7 +158,7 @@ namespace QuanLyHoSoSinhVien.view
             }
 
         }
-        
+
         public void AddKhoaToComboBoxKhoaInTabPageNganh()
         {
             try
@@ -373,8 +382,8 @@ namespace QuanLyHoSoSinhVien.view
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvHoSoSv.Rows[e.RowIndex];
-                    selectedMaHs = row.Cells["mahs"].Value?.ToString();
-                    selectedMaSv = row.Cells["masv"].Value?.ToString();
+                selectedMaHs = row.Cells["mahs"].Value?.ToString();
+                selectedMaSv = row.Cells["masv"].Value?.ToString();
                 hoSoDto = new HoSoDto
                 {
                     mahs = row.Cells["mahs"].Value?.ToString() ?? "a",
@@ -382,10 +391,10 @@ namespace QuanLyHoSoSinhVien.view
                     ngaycapnhat = DateTime.Parse(row.Cells["ngayct"].Value?.ToString() ?? "2000/1/1"),
                     trangthaihoso = row.Cells["tt"].Value?.ToString() == "Không hoạt động" ? false : true
                 };
-                
+
             }
         }
-        
+
         private void guna2HtmlLabel5_Click(object sender, EventArgs e)
         {
 
@@ -395,7 +404,7 @@ namespace QuanLyHoSoSinhVien.view
         {
 
 
-            if(string.IsNullOrWhiteSpace(selectedMaHs) == null)
+            if (string.IsNullOrWhiteSpace(selectedMaHs) == null)
             {
                 MessageBox.Show("!");
                 return;
@@ -414,7 +423,8 @@ namespace QuanLyHoSoSinhVien.view
             }
 
             var tmp = deleteProfileController.DeleteProfile(selectedMaHs);
-            if (tmp != null) {
+            if (tmp != null)
+            {
                 MessageBox.Show(tmp);
                 LoadHoSo();
             }
@@ -422,6 +432,81 @@ namespace QuanLyHoSoSinhVien.view
             {
                 MessageBox.Show(tmp);
             }
+        }
+
+        private void btnThemLop_Click(object sender, EventArgs e)
+        {
+            var themLopFrm = serviceProvider.GetRequiredService<ThemLopFrm>();
+            themLopFrm.Show();
+            this.Hide();
+        }
+
+        private void btnXoaLop_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtMaLop.Text))
+            {
+                MessageBox.Show("Bạn cần nhập mã lớp muốn xóa");
+                return;
+            }
+            DialogResult result = MessageBox.Show("Bạn muốn xóa lớp này?", "Thông báo", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                if (deleteLopController.deleteLop(txtMaLop.Text))
+                {
+                    MessageBox.Show("Xóa lớp thành công");
+                    LoadLopDataToGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Không có lớp này");
+                }
+            }
+        }
+
+        private void btnSuaLop_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtMaLop.Text) || string.IsNullOrEmpty(txtTenLop.Text))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
+                return;
+            }
+            DialogResult result = MessageBox.Show("Bạn muốn sửa thông tin lớp này?", "Thông báo", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                if (editLopController.editLop(new LopDto
+                {
+                    maLop = txtMaLop.Text,
+                    tenLop = txtTenLop.Text,
+                    nganh = cbxNganhAtTPLop.SelectedItem.ToString()??""
+                }))
+                {
+                    MessageBox.Show("Sửa lớp thành công");
+                    LoadLopDataToGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Sửa lớp thất bại, vui lòng kiểm tra lại thông tin");
+                }
+            }
+        }
+
+        private void dgvLop_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow current = dgvLop.CurrentRow;
+            if (current != null)
+            {
+                txtMaLop.Text = current.Cells["maLopColAtTpLop"].Value?.ToString();
+                txtTenLop.Text = current.Cells["tenLopColAtTpLop"].Value?.ToString();
+                cbxNganhAtTPLop.Text = current.Cells["nganhColAtTpLop"].Value?.ToString();
+            }
+
+        }
+
+        private void btnClearText_Click(object sender, EventArgs e)
+        {
+            txtMaLop.Text = "";
+            txtTenLop.Text = "";
+            cbxNganhAtTPLop.SelectedIndex = -1; 
         }
     }
 }

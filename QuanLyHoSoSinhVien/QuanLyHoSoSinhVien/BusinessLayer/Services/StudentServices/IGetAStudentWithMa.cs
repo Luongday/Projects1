@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
+using QuanLyHoSoSinhVien.PresentationLayer.DTO.StudentDTO;
 
 namespace QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices
 {
-    public interface IGetAllStudent
+    public interface IGetAStudentWithMa
     {
-        public List<SinhVien> getAll();
+        public SinhVien getAStudentForMa(string maSV);
     }
 }

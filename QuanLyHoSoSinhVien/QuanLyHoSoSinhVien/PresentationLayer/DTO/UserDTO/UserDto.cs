@@ -8,6 +8,7 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.DTO.UserDTO
 {
     public class UserDto
     {
+        public string userId { get; set; }
         public String userName { get; set; }
         public String passWord { get; set; }
         public bool isAdmin { get; set; }
