@@ -31,8 +31,11 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChiTietHoSo));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            lblDateTime = new Label();
+            guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             lblEmail = new Label();
             lblAddress = new Label();
             lblTonGiao = new Label();
@@ -40,7 +43,6 @@
             lblNoiSinh = new Label();
             lblSdt = new Label();
             lblCCCD = new Label();
-            lblDateTime = new Label();
             label12 = new Label();
             lblGioiTinh = new Label();
             lblTenSv = new Label();
@@ -66,15 +68,21 @@
             label1 = new Label();
             guna2HtmlLabel10 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2CustomGradientPanel2 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2CustomGradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).BeginInit();
             SuspendLayout();
             // 
             // guna2CustomGradientPanel1
             // 
+            guna2CustomGradientPanel1.BackColor = Color.Transparent;
+            guna2CustomGradientPanel1.BorderColor = Color.Black;
+            guna2CustomGradientPanel1.BorderRadius = 25;
+            guna2CustomGradientPanel1.BorderThickness = 1;
+            guna2CustomGradientPanel1.Controls.Add(lblDateTime);
+            guna2CustomGradientPanel1.Controls.Add(guna2PictureBox1);
             guna2CustomGradientPanel1.Controls.Add(lblEmail);
             guna2CustomGradientPanel1.Controls.Add(lblAddress);
             guna2CustomGradientPanel1.Controls.Add(lblTonGiao);
@@ -82,7 +90,6 @@
             guna2CustomGradientPanel1.Controls.Add(lblNoiSinh);
             guna2CustomGradientPanel1.Controls.Add(lblSdt);
             guna2CustomGradientPanel1.Controls.Add(lblCCCD);
-            guna2CustomGradientPanel1.Controls.Add(lblDateTime);
             guna2CustomGradientPanel1.Controls.Add(label12);
             guna2CustomGradientPanel1.Controls.Add(lblGioiTinh);
             guna2CustomGradientPanel1.Controls.Add(lblTenSv);
@@ -108,26 +115,59 @@
             guna2CustomGradientPanel1.Controls.Add(label1);
             guna2CustomGradientPanel1.Controls.Add(guna2HtmlLabel10);
             guna2CustomGradientPanel1.Controls.Add(guna2HtmlLabel7);
-            guna2CustomGradientPanel1.Controls.Add(guna2CustomGradientPanel2);
             guna2CustomGradientPanel1.Controls.Add(guna2HtmlLabel9);
             guna2CustomGradientPanel1.Controls.Add(guna2HtmlLabel1);
             guna2CustomGradientPanel1.Controls.Add(guna2HtmlLabel4);
             guna2CustomGradientPanel1.CustomizableEdges = customizableEdges3;
-            guna2CustomGradientPanel1.Location = new Point(0, 3);
+            guna2CustomGradientPanel1.FillColor = Color.Transparent;
+            guna2CustomGradientPanel1.FillColor2 = Color.Transparent;
+            guna2CustomGradientPanel1.FillColor3 = Color.Transparent;
+            guna2CustomGradientPanel1.FillColor4 = Color.Transparent;
+            guna2CustomGradientPanel1.ForeColor = SystemColors.ControlText;
+            guna2CustomGradientPanel1.Location = new Point(1, -4);
             guna2CustomGradientPanel1.Margin = new Padding(4, 3, 4, 3);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
             guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            guna2CustomGradientPanel1.Size = new Size(1108, 781);
+            guna2CustomGradientPanel1.Size = new Size(1107, 788);
             guna2CustomGradientPanel1.TabIndex = 0;
+            guna2CustomGradientPanel1.Paint += guna2CustomGradientPanel1_Paint;
+            // 
+            // lblDateTime
+            // 
+            lblDateTime.AutoSize = true;
+            lblDateTime.BackColor = Color.Transparent;
+            lblDateTime.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            lblDateTime.Location = new Point(136, 397);
+            lblDateTime.Name = "lblDateTime";
+            lblDateTime.Size = new Size(66, 19);
+            lblDateTime.TabIndex = 50;
+            lblDateTime.Text = "Ngành:";
+            // 
+            // guna2PictureBox1
+            // 
+            guna2PictureBox1.AutoRoundedCorners = true;
+            guna2PictureBox1.BackColor = Color.Transparent;
+            guna2PictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            guna2PictureBox1.BorderRadius = 92;
+            guna2PictureBox1.CustomizableEdges = customizableEdges1;
+            guna2PictureBox1.Image = (Image)resources.GetObject("guna2PictureBox1.Image");
+            guna2PictureBox1.ImageRotate = 0F;
+            guna2PictureBox1.Location = new Point(15, 19);
+            guna2PictureBox1.Name = "guna2PictureBox1";
+            guna2PictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2PictureBox1.Size = new Size(224, 187);
+            guna2PictureBox1.TabIndex = 49;
+            guna2PictureBox1.TabStop = false;
+            guna2PictureBox1.Click += guna2PictureBox1_Click;
             // 
             // lblEmail
             // 
             lblEmail.AutoSize = true;
             lblEmail.BackColor = Color.Transparent;
-            lblEmail.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            lblEmail.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
             lblEmail.Location = new Point(482, 513);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(61, 19);
+            lblEmail.Size = new Size(66, 19);
             lblEmail.TabIndex = 47;
             lblEmail.Text = "Ngành:";
             // 
@@ -135,10 +175,10 @@
             // 
             lblAddress.AutoSize = true;
             lblAddress.BackColor = Color.Transparent;
-            lblAddress.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            lblAddress.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
             lblAddress.Location = new Point(482, 455);
             lblAddress.Name = "lblAddress";
-            lblAddress.Size = new Size(61, 19);
+            lblAddress.Size = new Size(66, 19);
             lblAddress.TabIndex = 46;
             lblAddress.Text = "Ngành:";
             // 
@@ -146,10 +186,10 @@
             // 
             lblTonGiao.AutoSize = true;
             lblTonGiao.BackColor = Color.Transparent;
-            lblTonGiao.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            lblTonGiao.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
             lblTonGiao.Location = new Point(721, 397);
             lblTonGiao.Name = "lblTonGiao";
-            lblTonGiao.Size = new Size(61, 19);
+            lblTonGiao.Size = new Size(66, 19);
             lblTonGiao.TabIndex = 45;
             lblTonGiao.Text = "Ngành:";
             // 
@@ -157,10 +197,10 @@
             // 
             lblDanToc.AutoSize = true;
             lblDanToc.BackColor = Color.Transparent;
-            lblDanToc.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
-            lblDanToc.Location = new Point(395, 397);
+            lblDanToc.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            lblDanToc.Location = new Point(482, 397);
             lblDanToc.Name = "lblDanToc";
-            lblDanToc.Size = new Size(61, 19);
+            lblDanToc.Size = new Size(66, 19);
             lblDanToc.TabIndex = 44;
             lblDanToc.Text = "Ngành:";
             // 
@@ -168,10 +208,10 @@
             // 
             lblNoiSinh.AutoSize = true;
             lblNoiSinh.BackColor = Color.Transparent;
-            lblNoiSinh.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            lblNoiSinh.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
             lblNoiSinh.Location = new Point(137, 574);
             lblNoiSinh.Name = "lblNoiSinh";
-            lblNoiSinh.Size = new Size(61, 19);
+            lblNoiSinh.Size = new Size(66, 19);
             lblNoiSinh.TabIndex = 43;
             lblNoiSinh.Text = "Ngành:";
             // 
@@ -179,10 +219,10 @@
             // 
             lblSdt.AutoSize = true;
             lblSdt.BackColor = Color.Transparent;
-            lblSdt.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            lblSdt.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
             lblSdt.Location = new Point(137, 513);
             lblSdt.Name = "lblSdt";
-            lblSdt.Size = new Size(61, 19);
+            lblSdt.Size = new Size(66, 19);
             lblSdt.TabIndex = 42;
             lblSdt.Text = "Ngành:";
             // 
@@ -190,23 +230,12 @@
             // 
             lblCCCD.AutoSize = true;
             lblCCCD.BackColor = Color.Transparent;
-            lblCCCD.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            lblCCCD.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
             lblCCCD.Location = new Point(136, 455);
             lblCCCD.Name = "lblCCCD";
-            lblCCCD.Size = new Size(61, 19);
+            lblCCCD.Size = new Size(66, 19);
             lblCCCD.TabIndex = 41;
             lblCCCD.Text = "Ngành:";
-            // 
-            // lblDateTime
-            // 
-            lblDateTime.AutoSize = true;
-            lblDateTime.BackColor = Color.Transparent;
-            lblDateTime.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
-            lblDateTime.Location = new Point(136, 397);
-            lblDateTime.Name = "lblDateTime";
-            lblDateTime.Size = new Size(61, 19);
-            lblDateTime.TabIndex = 40;
-            lblDateTime.Text = "Ngành:";
             // 
             // label12
             // 
@@ -223,10 +252,10 @@
             // 
             lblGioiTinh.AutoSize = true;
             lblGioiTinh.BackColor = Color.Transparent;
-            lblGioiTinh.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
-            lblGioiTinh.Location = new Point(86, 203);
+            lblGioiTinh.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            lblGioiTinh.Location = new Point(95, 271);
             lblGioiTinh.Name = "lblGioiTinh";
-            lblGioiTinh.Size = new Size(61, 19);
+            lblGioiTinh.Size = new Size(66, 19);
             lblGioiTinh.TabIndex = 38;
             lblGioiTinh.Text = "Ngành:";
             // 
@@ -234,10 +263,10 @@
             // 
             lblTenSv.AutoSize = true;
             lblTenSv.BackColor = Color.Transparent;
-            lblTenSv.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
-            lblTenSv.Location = new Point(75, 172);
+            lblTenSv.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            lblTenSv.Location = new Point(84, 240);
             lblTenSv.Name = "lblTenSv";
-            lblTenSv.Size = new Size(61, 19);
+            lblTenSv.Size = new Size(66, 19);
             lblTenSv.TabIndex = 37;
             lblTenSv.Text = "Ngành:";
             lblTenSv.Click += label15_Click;
@@ -246,10 +275,10 @@
             // 
             lblMaSv.AutoSize = true;
             lblMaSv.BackColor = Color.Transparent;
-            lblMaSv.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
-            lblMaSv.Location = new Point(113, 147);
+            lblMaSv.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            lblMaSv.Location = new Point(111, 215);
             lblMaSv.Name = "lblMaSv";
-            lblMaSv.Size = new Size(61, 19);
+            lblMaSv.Size = new Size(66, 19);
             lblMaSv.TabIndex = 36;
             lblMaSv.Text = "Ngành:";
             // 
@@ -257,10 +286,10 @@
             // 
             lblMaHoSo.AutoSize = true;
             lblMaHoSo.BackColor = Color.Transparent;
-            lblMaHoSo.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            lblMaHoSo.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
             lblMaHoSo.Location = new Point(721, 106);
             lblMaHoSo.Name = "lblMaHoSo";
-            lblMaHoSo.Size = new Size(61, 19);
+            lblMaHoSo.Size = new Size(66, 19);
             lblMaHoSo.TabIndex = 35;
             lblMaHoSo.Text = "Ngành:";
             lblMaHoSo.Click += label18_Click;
@@ -269,10 +298,10 @@
             // 
             lbltt.AutoSize = true;
             lbltt.BackColor = Color.Transparent;
-            lbltt.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            lbltt.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
             lbltt.Location = new Point(453, 106);
             lbltt.Name = "lbltt";
-            lbltt.Size = new Size(61, 19);
+            lbltt.Size = new Size(66, 19);
             lbltt.TabIndex = 34;
             lbltt.Text = "Ngành:";
             // 
@@ -280,10 +309,10 @@
             // 
             lblKhoa.AutoSize = true;
             lblKhoa.BackColor = Color.Transparent;
-            lblKhoa.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            lblKhoa.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
             lblKhoa.Location = new Point(690, 200);
             lblKhoa.Name = "lblKhoa";
-            lblKhoa.Size = new Size(61, 19);
+            lblKhoa.Size = new Size(66, 19);
             lblKhoa.TabIndex = 33;
             lblKhoa.Text = "Ngành:";
             // 
@@ -291,10 +320,10 @@
             // 
             lblNganh.AutoSize = true;
             lblNganh.BackColor = Color.Transparent;
-            lblNganh.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            lblNganh.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
             lblNganh.Location = new Point(428, 200);
             lblNganh.Name = "lblNganh";
-            lblNganh.Size = new Size(61, 19);
+            lblNganh.Size = new Size(66, 19);
             lblNganh.TabIndex = 32;
             lblNganh.Text = "Ngành:";
             // 
@@ -302,10 +331,10 @@
             // 
             lblClass.AutoSize = true;
             lblClass.BackColor = Color.Transparent;
-            lblClass.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            lblClass.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
             lblClass.Location = new Point(410, 153);
             lblClass.Name = "lblClass";
-            lblClass.Size = new Size(61, 19);
+            lblClass.Size = new Size(66, 19);
             lblClass.TabIndex = 31;
             lblClass.Text = "Ngành:";
             // 
@@ -347,11 +376,12 @@
             label9.AutoSize = true;
             label9.BackColor = Color.Transparent;
             label9.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
-            label9.Location = new Point(318, 397);
+            label9.Location = new Point(412, 397);
             label9.Name = "label9";
             label9.Size = new Size(71, 19);
             label9.TabIndex = 26;
             label9.Text = "Dân tộc:";
+            label9.Click += label9_Click;
             // 
             // label8
             // 
@@ -390,10 +420,11 @@
             // 
             guna2HtmlLabel3.AutoSize = false;
             guna2HtmlLabel3.BackColor = Color.Transparent;
-            guna2HtmlLabel3.Font = new Font("Arial", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            guna2HtmlLabel3.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            guna2HtmlLabel3.ForeColor = SystemColors.Highlight;
             guna2HtmlLabel3.Location = new Point(15, 321);
             guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            guna2HtmlLabel3.Size = new Size(168, 22);
+            guna2HtmlLabel3.Size = new Size(224, 22);
             guna2HtmlLabel3.TabIndex = 15;
             guna2HtmlLabel3.Text = "THÔNG TIN CÁ NHÂN";
             // 
@@ -403,7 +434,7 @@
             guna2HtmlLabel2.BackColor = Color.Transparent;
             guna2HtmlLabel2.Location = new Point(15, 349);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            guna2HtmlLabel2.Size = new Size(1000, 45);
+            guna2HtmlLabel2.Size = new Size(1070, 45);
             guna2HtmlLabel2.TabIndex = 22;
             guna2HtmlLabel2.Text = "<hr>\r\n";
             // 
@@ -469,7 +500,7 @@
             guna2HtmlLabel10.BackColor = Color.Transparent;
             guna2HtmlLabel10.Location = new Point(361, 58);
             guna2HtmlLabel10.Name = "guna2HtmlLabel10";
-            guna2HtmlLabel10.Size = new Size(691, 45);
+            guna2HtmlLabel10.Size = new Size(709, 45);
             guna2HtmlLabel10.TabIndex = 16;
             guna2HtmlLabel10.Text = "<hr>\r\n";
             guna2HtmlLabel10.Click += guna2HtmlLabel10_Click;
@@ -477,25 +508,18 @@
             // guna2HtmlLabel7
             // 
             guna2HtmlLabel7.BackColor = Color.Transparent;
+            guna2HtmlLabel7.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            guna2HtmlLabel7.ForeColor = SystemColors.Highlight;
             guna2HtmlLabel7.Location = new Point(361, 30);
             guna2HtmlLabel7.Name = "guna2HtmlLabel7";
-            guna2HtmlLabel7.Size = new Size(150, 22);
+            guna2HtmlLabel7.Size = new Size(210, 26);
             guna2HtmlLabel7.TabIndex = 15;
             guna2HtmlLabel7.Text = "THÔNG TIN HỌC VẤN";
-            // 
-            // guna2CustomGradientPanel2
-            // 
-            guna2CustomGradientPanel2.CustomizableEdges = customizableEdges1;
-            guna2CustomGradientPanel2.Location = new Point(15, 30);
-            guna2CustomGradientPanel2.Name = "guna2CustomGradientPanel2";
-            guna2CustomGradientPanel2.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            guna2CustomGradientPanel2.Size = new Size(141, 108);
-            guna2CustomGradientPanel2.TabIndex = 14;
             // 
             // guna2HtmlLabel9
             // 
             guna2HtmlLabel9.BackColor = Color.Transparent;
-            guna2HtmlLabel9.Location = new Point(15, 144);
+            guna2HtmlLabel9.Location = new Point(24, 212);
             guna2HtmlLabel9.Margin = new Padding(6, 3, 6, 3);
             guna2HtmlLabel9.Name = "guna2HtmlLabel9";
             guna2HtmlLabel9.Size = new Size(88, 22);
@@ -505,7 +529,7 @@
             // guna2HtmlLabel1
             // 
             guna2HtmlLabel1.BackColor = Color.Transparent;
-            guna2HtmlLabel1.Location = new Point(15, 172);
+            guna2HtmlLabel1.Location = new Point(24, 240);
             guna2HtmlLabel1.Margin = new Padding(6, 3, 6, 3);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             guna2HtmlLabel1.Size = new Size(51, 22);
@@ -515,7 +539,7 @@
             // guna2HtmlLabel4
             // 
             guna2HtmlLabel4.BackColor = Color.Transparent;
-            guna2HtmlLabel4.Location = new Point(15, 200);
+            guna2HtmlLabel4.Location = new Point(24, 268);
             guna2HtmlLabel4.Margin = new Padding(6, 3, 6, 3);
             guna2HtmlLabel4.Name = "guna2HtmlLabel4";
             guna2HtmlLabel4.Size = new Size(62, 22);
@@ -535,6 +559,7 @@
             Load += ChiTietHoSo_Load;
             guna2CustomGradientPanel1.ResumeLayout(false);
             guna2CustomGradientPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -544,7 +569,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel9;
-        private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel2;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel10;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel7;
         private Label label1;
@@ -576,7 +600,8 @@
         private Label lblNoiSinh;
         private Label lblSdt;
         private Label lblCCCD;
-        private Label lblDateTime;
         private Label lblEmail;
+        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
+        private Label lblDateTime;
     }
 }

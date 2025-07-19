@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using QuanLyHoSoSinhVien.PresentationLayer.Controller.DetailsProfileController;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.HoSoController;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.KhoaControl;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.LopControl;
@@ -20,17 +21,23 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
         public IKhoaController KhoaController { get; }
         public IAddKhoaController addKhoaController { get; }
         public IDeleteKhoaController deleteKhoaController { get; }
-        public IHoSoController hoSoController { get; }
+        public IProfileController hoSoController { get; }
         public IEditKhoaController editKhoaController { get; }
         public IAddNganhController addNganhController { get; }
         public IDeleteNganhController deleteNganhController { get; }
         public IEditNganhController editnganhController { get; }
+        public IDetailsProfileController detailsProfileController { get; }
+        
+        public IDeleteProfileController deleteProfileController { get; }
+
+        public IEditProfileController editProfileController { get; }
+
         public ManagerServicesFacade(IStudentController studentController, INganhControllers nganhControllers, 
                                      ILopController lopController,IKhoaController khoaController,
-                                     IAddKhoaController addKhoaController, IHoSoController hoSoController,
+                                     IAddKhoaController addKhoaController, IProfileController hoSoController,
                                      IDeleteKhoaController deleteKhoaController, IEditKhoaController editKhoaController,
                                      IAddNganhController addNganhController, IDeleteNganhController deleteNganhController,
-                                     IEditNganhController editNganhController)
+                                     IEditNganhController editNganhController, IDetailsProfileController detailsProfileController, IDeleteProfileController deleteProfileController, IEditProfileController editProfileController)
                                      
         {
             this.studentController = studentController;
@@ -44,6 +51,9 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
             this.addNganhController = addNganhController;
             this.deleteNganhController = deleteNganhController;
             this.editnganhController = editNganhController;
+            this.detailsProfileController = detailsProfileController;
+            this.editProfileController = editProfileController;
+            this.deleteProfileController = deleteProfileController;
         }
     }
 }

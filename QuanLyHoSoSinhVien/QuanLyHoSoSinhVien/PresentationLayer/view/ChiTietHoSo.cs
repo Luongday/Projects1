@@ -2,6 +2,7 @@
 using QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices;
 using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
 using QuanLyHoSoSinhVien.DataAccessLayer.Repository.DetailsProfileRepository;
+using QuanLyHoSoSinhVien.PresentationLayer.Controller.DetailsProfileController;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.DetailsProfileDTO;
 using System;
 using System.Collections.Generic;
@@ -17,35 +18,46 @@ namespace QuanLyHoSoSinhVien.view
 {
     public partial class ChiTietHoSo : Form
     {
-        private readonly IGetInforStudent _getInforStudent;
-        public ChiTietHoSo()
+        private string _maSv;
+        private string _maHs;
+        private readonly IDetailsProfileController _controller;
+        public ChiTietHoSo(string masv, string mahs, IDetailsProfileController controller)
         {
             InitializeComponent();
-            _getInforStudent = new GetInforStudentImpl(new DetailsProfileRepository(new DataContext()));
-
+            _maHs = mahs;
+            _maSv = masv;
+            _controller = controller;
         }
 
-      
-        private void LoadHoSoSinhVien(DetailsProfileDto dp)
+
+        private void LoadChiTietHoSo()
         {
-            lblMaSv.Text = dp.maSV;
-            lblTenSv.Text = dp.tenSv;
-            lblDateTime.Text = dp.ngaySinh.ToString("dd/MM/yyyy");
-            lblGioiTinh.Text = dp.GioiTinh;
-            lblAddress.Text = dp.diaChi;
-            lblEmail.Text = dp.email;
-            lblCCCD.Text = dp.cccd;
-            lblSdt.Text = dp.sdt;
-            lblDanToc.Text = dp.danToc;
-            lblTonGiao.Text = dp.tonGiao;
-            lblNoiSinh.Text = dp.noiSinh;
-            lbltt.Text = dp.trangThai;
-            lblClass.Text = dp.tenLop;
-            lblNganh.Text = dp.tenNganh;
-            lblKhoa.Text = dp.tenKhoa;
+            var Dto = _controller.takeAStudentWithFullInfor(_maSv);
+            if (Dto == null)
+            {
+                MessageBox.Show("Không tìm thấy sinh viên.");
+                return;
+            }
+
+            lblMaHoSo.Text = _maHs;
+            lblMaSv.Text = Dto.maSV;
+            lblTenSv.Text = Dto.tenSv;
+            lblDateTime.Text = Dto.ngaySinh.ToString();
+            lblGioiTinh.Text = Dto.GioiTinh;
+            lblDanToc.Text = Dto.danToc;
+            lblTonGiao.Text = Dto.tonGiao;
+            lblNoiSinh.Text = Dto.noiSinh;
+            lblSdt.Text = Dto.sdt;
+            lbltt.Text = Dto.trangThai;
+            lblCCCD.Text = Dto.cccd;
+            lblAddress.Text = Dto.diaChi;
+            lblEmail.Text = Dto.email;
+            lblClass.Text = Dto.tenLop;
+            lblNganh.Text = Dto.tenNganh;
+            lblKhoa.Text = Dto.tenKhoa;
         }
 
-       
+
         private void label5_Click(object sender, EventArgs e)
         {
 
@@ -58,7 +70,7 @@ namespace QuanLyHoSoSinhVien.view
 
         private void ChiTietHoSo_Load(object sender, EventArgs e)
         {
-
+            LoadChiTietHoSo();
         }
 
         private void label15_Click(object sender, EventArgs e)
@@ -67,6 +79,21 @@ namespace QuanLyHoSoSinhVien.view
         }
 
         private void guna2HtmlLabel10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2CustomGradientPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2PictureBox1_Click(object sender, EventArgs e)
         {
 
         }

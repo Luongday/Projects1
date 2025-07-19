@@ -69,7 +69,7 @@
             guna2CustomGradientPanel1.Location = new Point(3, 2);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
             guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            guna2CustomGradientPanel1.Size = new Size(485, 512);
+            guna2CustomGradientPanel1.Size = new Size(550, 512);
             guna2CustomGradientPanel1.TabIndex = 0;
             // 
             // guna2PictureBox1
@@ -80,7 +80,7 @@
             guna2PictureBox1.Location = new Point(0, 3);
             guna2PictureBox1.Name = "guna2PictureBox1";
             guna2PictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            guna2PictureBox1.Size = new Size(503, 506);
+            guna2PictureBox1.Size = new Size(550, 506);
             guna2PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             guna2PictureBox1.TabIndex = 0;
             guna2PictureBox1.TabStop = false;
@@ -97,7 +97,7 @@
             guna2CustomGradientPanel2.Controls.Add(label2);
             guna2CustomGradientPanel2.Controls.Add(label1);
             guna2CustomGradientPanel2.CustomizableEdges = customizableEdges15;
-            guna2CustomGradientPanel2.Location = new Point(486, 2);
+            guna2CustomGradientPanel2.Location = new Point(552, 2);
             guna2CustomGradientPanel2.Name = "guna2CustomGradientPanel2";
             guna2CustomGradientPanel2.ShadowDecoration.CustomizableEdges = customizableEdges16;
             guna2CustomGradientPanel2.Size = new Size(466, 512);
@@ -106,6 +106,9 @@
             // 
             // btnExit
             // 
+            btnExit.AutoRoundedCorners = true;
+            btnExit.BackColor = Color.Transparent;
+            btnExit.BorderRadius = 24;
             btnExit.CustomizableEdges = customizableEdges5;
             btnExit.DisabledState.BorderColor = Color.DarkGray;
             btnExit.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -147,7 +150,9 @@
             // 
             // btnLogin
             // 
-            btnLogin.BorderRadius = 3;
+            btnLogin.AutoRoundedCorners = true;
+            btnLogin.BackColor = Color.Transparent;
+            btnLogin.BorderRadius = 24;
             btnLogin.CustomizableEdges = customizableEdges9;
             btnLogin.DisabledState.BorderColor = Color.DarkGray;
             btnLogin.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -158,6 +163,7 @@
             btnLogin.ForeColor = Color.White;
             btnLogin.Location = new Point(82, 407);
             btnLogin.Name = "btnLogin";
+            btnLogin.ShadowDecoration.BorderRadius = 24;
             btnLogin.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btnLogin.Size = new Size(123, 50);
             btnLogin.TabIndex = 5;
@@ -181,7 +187,9 @@
             // 
             // txtPassword
             // 
+            txtPassword.BackColor = Color.Transparent;
             txtPassword.BorderColor = Color.Black;
+            txtPassword.BorderRadius = 8;
             txtPassword.CustomizableEdges = customizableEdges11;
             txtPassword.DefaultText = "";
             txtPassword.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -202,7 +210,9 @@
             // 
             // txtUserName
             // 
+            txtUserName.BackColor = Color.Transparent;
             txtUserName.BorderColor = Color.FromArgb(0, 0, 64);
+            txtUserName.BorderRadius = 8;
             txtUserName.CustomizableEdges = customizableEdges13;
             txtUserName.DefaultText = "";
             txtUserName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -212,13 +222,13 @@
             txtUserName.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtUserName.Font = new Font("Segoe UI", 9F);
             txtUserName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtUserName.Location = new Point(135, 230);
+            txtUserName.Location = new Point(135, 235);
             txtUserName.Margin = new Padding(3, 4, 3, 4);
             txtUserName.Name = "txtUserName";
-            txtUserName.PlaceholderText = "";
+            txtUserName.PlaceholderText = "Nhập tài khoản";
             txtUserName.SelectedText = "";
             txtUserName.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            txtUserName.Size = new Size(286, 45);
+            txtUserName.Size = new Size(286, 43);
             txtUserName.TabIndex = 2;
             txtUserName.TextChanged += txtUserName_TextChanged;
             // 
@@ -248,7 +258,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(953, 517);
+            ClientSize = new Size(1020, 517);
             Controls.Add(guna2CustomGradientPanel2);
             Controls.Add(guna2CustomGradientPanel1);
             Name = "LoginFrm";

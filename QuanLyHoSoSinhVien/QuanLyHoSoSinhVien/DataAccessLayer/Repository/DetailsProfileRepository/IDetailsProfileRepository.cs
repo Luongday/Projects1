@@ -10,6 +10,6 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.DetailsProfileRepository
 {
     public interface IDetailsProfileRepository
     {
-        public DetailsProfileDto GetAStudentById(String maSv);
+        public SinhVien TakeInfoAStudentById(string masv);
     }
 }

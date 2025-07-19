@@ -9,14 +9,17 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
 using QuanLyHoSoSinhVien.PresentationLayer;
+using QuanLyHoSoSinhVien.PresentationLayer.Controller.DetailsProfileController;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.HoSoController;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.KhoaControl;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.LopControl;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.NganhControl;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl;
+using QuanLyHoSoSinhVien.PresentationLayer.DTO.HoSoDto;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.KhoaDTO;
 using QuanLyHoSoSinhVien.PresentationLayer.view;
 
@@ -30,9 +33,12 @@ namespace QuanLyHoSoSinhVien.view
         IDeleteNganhController deleteNganhController;
         ILopController lopController;
         IKhoaController khoaController;
-        IHoSoController hoSoController;
+        IProfileController hoSoController;
+        private readonly IDetailsProfileController chitietHSController;
         IDeleteKhoaController deleteKhoaController;
         IEditKhoaController editKhoaController;
+        IEditProfileController editProfileController;
+        IDeleteProfileController deleteProfileController;
         ManagerServicesFacade managerServicesFacade;
 
         public MenuManagement(ManagerServicesFacade managerServicesFacade, IServiceProvider serviceProvider)
@@ -48,6 +54,9 @@ namespace QuanLyHoSoSinhVien.view
             this.deleteKhoaController = managerServicesFacade.deleteKhoaController;
             this.editKhoaController = managerServicesFacade.editKhoaController;
             this.serviceProvider = serviceProvider;
+            this.chitietHSController = managerServicesFacade.detailsProfileController;
+            this.deleteProfileController = managerServicesFacade.deleteProfileController;
+            this.editProfileController = managerServicesFacade.editProfileController;
             TongSoSV.Text = studentController.totalStudent().ToString();
         }
 
@@ -120,11 +129,13 @@ namespace QuanLyHoSoSinhVien.view
                     khoa.soLop
                 );
             }
-            dgvKhoa.Refresh();
         }
 
         private void LoadHoSo()
         {
+            lblTotalProfile.Text = hoSoController.TotalProfile().ToString();
+            dgvHoSoSv.Rows.Clear();
+            dgvHoSoSv.Refresh();
             var hoso = hoSoController.getAllHoSo();
             foreach (var ho in hoso)
             {
@@ -133,10 +144,12 @@ namespace QuanLyHoSoSinhVien.view
                 ho.masv,
                 ho.ngaytao,
                 ho.ngaycapnhat,
-                ho.trangthaihoso
+                ho.TrangThaiText
                 );
             }
+
         }
+        
         public void AddKhoaToComboBoxKhoaInTabPageNganh()
         {
             try
@@ -191,10 +204,17 @@ namespace QuanLyHoSoSinhVien.view
             lblTongSoKhoa.Text = khoaController.totalKhoa().ToString();
         }
 
+        private string? selectedMaSv = null;
+        private string? selectedMaHs = null;
         private void guna2Button1_Click_1(object sender, EventArgs e)
         {
-            this.Hide();
-            new view.ChiTietHoSo().Show();
+            if (string.IsNullOrWhiteSpace(selectedMaSv) || string.IsNullOrWhiteSpace(selectedMaHs))
+            {
+                MessageBox.Show("Vui lòng chọn hồ sơ sinh viên từ danh sách!");
+                return;
+            }
+            var chiTietHoSo = new ChiTietHoSo(selectedMaSv, selectedMaHs, chitietHSController);
+            chiTietHoSo.ShowDialog();
         }
 
         private void guna2DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -202,20 +222,8 @@ namespace QuanLyHoSoSinhVien.view
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvHoSoSv.Rows[e.RowIndex];
-
-                string? s = row.Cells[1].Value?.ToString();
-
-                if (s == null)
-                {
-                    MessageBox.Show("Không có thông tin sinh viên với mã này!");
-                    return;
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn một hồ sơ!");
-                return;
+                selectedMaHs = row.Cells["mahs"].Value?.ToString();
+                selectedMaSv = row.Cells["masv"].Value?.ToString();
             }
         }
 
@@ -357,6 +365,63 @@ namespace QuanLyHoSoSinhVien.view
             var ThemNganhFrm = serviceProvider.GetRequiredService<ThemNganhFrm>();
             ThemNganhFrm.Show();
             this.Hide();
+        }
+        HoSoDto hoSoDto;
+
+        private void dgvHoSoSv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvHoSoSv.Rows[e.RowIndex];
+                    selectedMaHs = row.Cells["mahs"].Value?.ToString();
+                    selectedMaSv = row.Cells["masv"].Value?.ToString();
+                hoSoDto = new HoSoDto
+                {
+                    mahs = row.Cells["mahs"].Value?.ToString() ?? "a",
+                    masv = row.Cells["masv"].Value?.ToString() ?? "b",
+                    ngaycapnhat = DateTime.Parse(row.Cells["ngayct"].Value?.ToString() ?? "2000/1/1"),
+                    trangthaihoso = row.Cells["tt"].Value?.ToString() == "Không hoạt động" ? false : true
+                };
+                
+            }
+        }
+        
+        private void guna2HtmlLabel5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+
+
+            if(string.IsNullOrWhiteSpace(selectedMaHs) == null)
+            {
+                MessageBox.Show("!");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(selectedMaSv) || string.IsNullOrWhiteSpace(selectedMaHs))
+            {
+                MessageBox.Show("Vui lòng chọn hồ sơ sinh viên từ danh sách!");
+                return;
+            }
+
+            if (hoSoDto.trangthaihoso == false)
+            {
+                MessageBox.Show("Hồ sơ đã bị xóa!");
+                return;
+            }
+
+            var tmp = deleteProfileController.DeleteProfile(selectedMaHs);
+            if (tmp != null) {
+                MessageBox.Show(tmp);
+                LoadHoSo();
+            }
+            else
+            {
+                MessageBox.Show(tmp);
+            }
         }
     }
 }

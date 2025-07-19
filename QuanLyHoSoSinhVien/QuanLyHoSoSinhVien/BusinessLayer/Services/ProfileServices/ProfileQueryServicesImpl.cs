@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace QuanLyHoSoSinhVien.BusinessLayer.Services.ProfileServices
 {
-    public class HoSoQueryImpl : IGetAllHoSoServices
+    public class ProfileQueryServicesImpl : IGetAllHoSoServices, ITakeProfileByIdServices
     {
 
         IHoSoRepository _hoSoRepository;
 
-        public HoSoQueryImpl(IHoSoRepository hoSoRepository)
+        public ProfileQueryServicesImpl(IHoSoRepository hoSoRepository)
         {
             _hoSoRepository = hoSoRepository;
         }
@@ -21,7 +21,15 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.ProfileServices
         public List<HoSo> getAllHoSo()
         {
             return _hoSoRepository.getAllHoSo();
+        }
 
+        public HoSo TakeProfileById(string mahs)
+        {
+            var hs = _hoSoRepository.getHoSoById(mahs);
+
+            if(hs == null) return new HoSo { };
+
+            return hs;
         }
     }
 }

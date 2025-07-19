@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace QuanLyHoSoSinhVien.BusinessLayer.Services.DetailsProefileServices
 {
-    public interface IGetInforStudent
+    public interface ITakeADetailsProfileOfTheStudentServices
     {
-        public DetailsProfileDto getAStudentInfo(string maSv);
+        public SinhVien TakeInfoAStudent(string masv);
+        public DetailsProfileDto MapToDto(SinhVien sv);
     }
 }
-

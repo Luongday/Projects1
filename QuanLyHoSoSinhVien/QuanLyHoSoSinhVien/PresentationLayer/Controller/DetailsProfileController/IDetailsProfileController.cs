@@ -11,7 +11,7 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.DetailsProfileControll
 {
     public interface IDetailsProfileController
     {
-        public DetailsProfileDto getAStudentWithFullInfor(string id);
+        public DetailsProfileDto takeAStudentWithFullInfor(string masv);
     }
 }
 

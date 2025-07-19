@@ -10,7 +10,7 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Entity
     public class User
     {
         [Key]
-        public int userId {  get; set; }
+        public string? userId {  get; set; }
 
         [Required]
         [MaxLength(20)]

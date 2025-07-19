@@ -21,6 +21,9 @@ using QuanLyHoSoSinhVien.DataAccessLayer.Repository.HoSoRepository;
 using QuanLyHoSoSinhVien.BusinessLayer.Services.ProfileServices;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.HoSoController;
 using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
+using QuanLyHoSoSinhVien.DataAccessLayer.Repository.DetailsProfileRepository;
+using QuanLyHoSoSinhVien.PresentationLayer.Controller.DetailsProfileController;
+using QuanLyHoSoSinhVien.BusinessLayer.Services.DetailsProefileServices;
 
 namespace QuanLyHoSoSinhVien
 {
@@ -39,7 +42,7 @@ namespace QuanLyHoSoSinhVien
             services.AddSingleton<DataContext>();
             //user DI
             services.AddTransient<IUserController, UserControllerImpl>();
-            //services.AddTransient<IUserDAO,UserDAO>();
+            services.AddTransient<IUserDAO,UserDAO>();
             services.AddTransient<IUserService,UserServicesImpl>();
             //student DI
             services.AddTransient<IStudentController, StudentControllerImpl>();
@@ -72,13 +75,23 @@ namespace QuanLyHoSoSinhVien
             services.AddTransient<IEditKhoaController, KhoaComandImpl>();
             //HoSo DI
             services.AddTransient<IHoSoRepository, HoSoRepositoryImpl>();
-            services.AddTransient<IGetAllHoSoServices, HoSoQueryImpl>();
-            services.AddTransient<IHoSoController, HoSoControllerImpl>();
-            
+            services.AddTransient<IGetAllHoSoServices, ProfileQueryServicesImpl>();
+            services.AddTransient<IProfileController, ProfileControllerImpl>();
+            services.AddTransient<IEditProfileController, ProfileComandControllerImpl>();
+            services.AddTransient<IDeleteProfileController, ProfileComandControllerImpl>();
+            services.AddTransient<IEditProfileServices, ProfileComandServicesImpl>();
+            services.AddTransient<IDeleteProfileServices, ProfileComandServicesImpl>();
+            //Chi tiet ho so DI
+            services.AddTransient<IDetailsProfileRepository, DetailsProfileRepositoryImpl>();
+            services.AddTransient<IDetailsProfileController, DetailsProfileControllerImpl>();
+            services.AddTransient<ITakeADetailsProfileOfTheStudentServices, DetailsProfileQueryImpl>();
+
+
             services.AddTransient<ThemNganhFrm>();
             services.AddTransient<LoginFrm>();
             services.AddTransient<MenuManagement>();
             services.AddTransient<ThemKhoa>();
+            services.AddTransient<ChiTietHoSo>();
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             var serviceProvider = services.BuildServiceProvider();
@@ -87,8 +100,6 @@ namespace QuanLyHoSoSinhVien
             var loginForm = serviceProvider.GetRequiredService<MenuManagement>();
             
             Application.Run(loginForm);
-
-           
         }
     }
 }

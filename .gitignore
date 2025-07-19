@@ -1,9 +1,5 @@
 bin/
 obj/
-
 .vs/
-
 Migrations/
-QuanLyHoSoSinhVien/QuanLyHoSoSinhVien/model/DataContext.cs
-
 QuanLyHoSoSinhVien/QuanLyHoSoSinhVien/DataAccessLayer/Entity/DataContext.cs

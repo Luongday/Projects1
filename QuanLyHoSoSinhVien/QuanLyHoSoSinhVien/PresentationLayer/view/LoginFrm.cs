@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Guna.UI2.WinForms.Internal;
+using Microsoft.Extensions.DependencyInjection;
 using QuanLyHoSoSinhVien.BusinessLayer.Services.UserServices;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.UserControl;
@@ -25,6 +26,7 @@ namespace QuanLyHoSoSinhVien.view
             txtPassword.UseSystemPasswordChar = true;
             tgShowHidePass.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
             this.serviceProvider = serviceProvider;
+            txtPassword.PlaceholderText = ". . . . . . . .";
         }
 
         private void guna2CustomGradientPanel2_Paint(object sender, PaintEventArgs e)
@@ -53,11 +55,13 @@ namespace QuanLyHoSoSinhVien.view
         {
             if (tgShowHidePass.IconChar == FontAwesome.Sharp.IconChar.EyeSlash)
             {
+                txtPassword.PlaceholderText = "Nhập mật khẩu";
                 tgShowHidePass.IconChar = FontAwesome.Sharp.IconChar.Eye;
                 txtPassword.UseSystemPasswordChar = false;
             }
             else
             {
+                txtPassword.PlaceholderText = ". . . . . . . . .";
                 tgShowHidePass.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
                 txtPassword.UseSystemPasswordChar = true;
             }
