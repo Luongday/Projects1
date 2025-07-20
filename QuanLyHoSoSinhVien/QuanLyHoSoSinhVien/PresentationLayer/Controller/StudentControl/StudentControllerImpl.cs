@@ -10,14 +10,62 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl
 {
-    public class StudentControllerImpl : IStudentController,IGetAStudentController
+    public class StudentControllerImpl : IStudentController,IGetAStudentController,IGetAllStudentDangHocController,IGetSinhVienTamVangController
     {
         IGetAllStudent getAllStudent;
         IGetAStudentWithMa getAStudentWithMa;
-        public StudentControllerImpl(IGetAllStudent getAllStudent,IGetAStudentWithMa getAStudent)
+        IGetAllStudentDangHocService getAllStudentDangHocService;
+        IGetAllStudentTamVang getAllStudentTamVang;
+        public StudentControllerImpl(IGetAllStudent getAllStudent,IGetAStudentWithMa getAStudent, IGetAllStudentDangHocService getAllStudentDangHocService, IGetAllStudentTamVang getAllStudentTamVang)
         {
             this.getAllStudent = getAllStudent;
             this.getAStudentWithMa = getAStudent;
+            this.getAllStudentDangHocService = getAllStudentDangHocService;
+            this.getAllStudentTamVang = getAllStudentTamVang;
+        }
+
+        public List<StudentDto> getAllSinhVienTamVang()
+        {
+            return getAllStudentTamVang.getAllSinhVienTamVang().Select(sv=>new StudentDto
+            {
+                maSV = sv.masv,
+                tenSv = sv.tensv,
+                ngaySinh = sv.NgaySinh,
+                GioiTinh = sv.gt ? "Nam" : "Nữ",
+                diaChi = sv.dc,
+                danToc = sv.dantoc,
+                tonGiao = sv.tongiao,
+                email = sv.email,
+                sdt = sv.sdt,
+                cccd = sv.cccd,
+                noiSinh = sv.noisinh,
+                trangThai = sv.trangthai,
+                tenLop = sv.Lop?.tenlop ?? "",
+                tenNganh = sv.Lop?.nganh?.tennganh ?? "",
+                tenKhoa = sv.Lop?.nganh?.Khoa?.tenkhoa ?? ""
+            }).ToList();
+        }
+
+        public List<StudentDto> getAllStudentDangHoc()
+        {
+            return getAllStudentDangHocService.getAllStdentDangHoc().Select(sv => new StudentDto
+            {
+                maSV = sv.masv,
+                tenSv = sv.tensv,
+                ngaySinh = sv.NgaySinh,
+                GioiTinh = sv.gt ? "Nam" : "Nữ",
+                diaChi = sv.dc,
+                danToc = sv.dantoc,
+                tonGiao = sv.tongiao,
+                email = sv.email,
+                sdt = sv.sdt,
+                cccd = sv.cccd,
+                noiSinh = sv.noisinh,
+                trangThai = sv.trangthai,
+                tenLop = sv.Lop?.tenlop ?? "",
+                tenNganh = sv.Lop?.nganh?.tennganh ?? "",
+                tenKhoa = sv.Lop?.nganh?.Khoa?.tenkhoa ?? ""
+            }).ToList();
         }
 
         public List<StudentDto> getAllStudentWithFullInfor()
@@ -75,6 +123,16 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl
             int countStudent = 0;
             countStudent = getAllStudent.getAll().Count();
             return countStudent;
+        }
+
+        public int totalStudentDangHoc()
+        {
+            return getAllStudentDangHocService.getAllStdentDangHoc().Count();
+        }
+
+        public int totalStudentTamVang()
+        {
+            return getAllStudentTamVang.getAllSinhVienTamVang().Count();
         }
     }
 }

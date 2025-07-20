@@ -52,6 +52,10 @@ namespace QuanLyHoSoSinhVien
             services.AddTransient<IGetAllStudent,SinhVienQueryImpl>();
             services.AddTransient<IGetAStudentWithMa, SinhVienQueryImpl>();
             services.AddTransient<IGetAStudentController, StudentControllerImpl>();
+            services.AddTransient<IGetAllStudentDangHocService,SinhVienQueryImpl>();
+            services.AddTransient<IGetAllStudentDangHocController,StudentControllerImpl> ();
+            services.AddTransient<IGetAllStudentTamVang,SinhVienQueryImpl>();
+            services.AddTransient<IGetSinhVienTamVangController,StudentControllerImpl>();
             //nganh DI
             services.AddTransient<INganhRepository, NganhRepositoryImpl>();
             services.AddTransient<IGetAllNganhService,NganhQueryServiceImpl>();
@@ -62,6 +66,10 @@ namespace QuanLyHoSoSinhVien
             services.AddTransient<IDeleteNganhController,NganhComandControllerImpl>();
             services.AddTransient<IEditNganhService, NganhCommandServiceImpl>();   
             services.AddTransient<IEditNganhController, NganhComandControllerImpl>();   
+            services.AddTransient<IGetNganhForNameService,NganhQueryServiceImpl>();
+            services.AddTransient<IGetNganhForNameController,NganhQueryControllerImpl>();
+            services.AddTransient<IGetNganhForKhoaService,NganhQueryServiceImpl>();
+            services.AddTransient<IGetNganhForKhoaController,NganhQueryControllerImpl>();
             //lop DI
             services.AddTransient<ILopRepository, LopRepositoryImpl>();
             services.AddTransient<IGetAllLop, LopQueryIServicempl>();
@@ -72,6 +80,12 @@ namespace QuanLyHoSoSinhVien
             services.AddTransient<IDeleteLopController,LopComandControllerImpl>();
             services.AddTransient<IEditLopService, LopComandServiceImpl>();
             services.AddTransient<IEditLopController, LopComandControllerImpl>();
+            services.AddTransient<IGetLopWithMaService,LopQueryIServicempl>();
+            services.AddTransient<IGetLopWithMaController,LopQueryControllerImpl>();
+            services.AddTransient<IGetLopWithNameService,LopQueryIServicempl>();
+            services.AddTransient<IGetLopWithNameController,LopQueryControllerImpl>();
+            services.AddTransient<IGetLopForNganhService,LopQueryIServicempl>();
+            services.AddTransient<IGetLopForNganhController,LopQueryControllerImpl>();
             //khoa DI
             services.AddTransient<IKhoaRepository, KhoaRepositoryImpl>();
             services.AddTransient<IGetAllKhoa, KhoaQueryServicesImpl>();
@@ -83,6 +97,8 @@ namespace QuanLyHoSoSinhVien
             services.AddTransient<IDeleteKhoaController, KhoaComandImpl>();
             services.AddTransient<IEditKhoaService, KhoaComandServicesImpl>();
             services.AddTransient<IEditKhoaController, KhoaComandImpl>();
+            services.AddTransient<IgetKhoaForNameService,KhoaQueryServicesImpl>();
+            services.AddTransient<IGetKhoaForNameController, KhoaQueryControllerImpl>();
             //HoSo DI
             services.AddTransient<IHoSoRepository, HoSoRepositoryImpl>();
             services.AddTransient<IGetAllHoSoServices, ProfileQueryServicesImpl>();
@@ -112,7 +128,7 @@ namespace QuanLyHoSoSinhVien
             var serviceProvider = services.BuildServiceProvider();
 
             // Lấy LoginFrm từ container (có inject UserControllers)
-            var loginForm = serviceProvider.GetRequiredService<LoginFrm>();
+            var loginForm = serviceProvider.GetRequiredService<MenuManagement>();
             Application.Run(loginForm);
         }
     }

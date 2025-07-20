@@ -27,15 +27,20 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
         public IDeleteNganhController deleteNganhController { get; }
         public IEditNganhController editnganhController { get; }
         public IDetailsProfileController detailsProfileController { get; }
-        
         public IDeleteProfileController deleteProfileController { get; }
-
         public IEditProfileController editProfileController { get; }
-
         public IAddLopController addLopController { get; }
         public IGetAStudentController getAStudent { get; }
         public IDeleteLopController deleteLopController { get; }
         public IEditLopController editLopController { get; }
+        public IGetKhoaForNameController getKhoaForNameController { get; }
+        public IGetNganhForNameController getNganhForNameController { get; }
+        public IGetNganhForKhoaController getNganhForKhoaController { get; }
+        public IGetLopWithMaController getLopWithMa { get; }
+        public IGetLopWithNameController getLopWithName { get; }
+        public IGetLopForNganhController getLopForNganh { get; }
+        public IGetAllStudentDangHocController getAllStudentDangHocController { get; }
+        public IGetSinhVienTamVangController getAllSinhVienTamVangComtroller { get; }
         public ManagerServicesFacade(IStudentController studentController, INganhControllers nganhControllers, 
                                      ILopController lopController,IKhoaController khoaController,
                                      IAddKhoaController addKhoaController, IProfileController hoSoController,
@@ -44,7 +49,11 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
                                      IEditNganhController editNganhController, IDetailsProfileController detailsProfileController,
                                      IDeleteProfileController deleteProfileController, IEditProfileController editProfileController,
                                       IAddLopController addLopController, IGetAStudentController getAStudent,
-                                      IDeleteLopController deleteLopController , IEditLopController editLopController)
+                                      IDeleteLopController deleteLopController , IEditLopController editLopController,
+                                      IGetKhoaForNameController getKhoaForNameController, IGetNganhForNameController getNganhForNameController,
+                                      IGetNganhForKhoaController getNganhForKhoaController, IGetLopWithMaController getLopWithMa,
+                                      IGetLopWithNameController getLopWithName, IGetLopForNganhController getLopForNganh,
+                                      IGetAllStudentDangHocController getAllStudentDangHocController, IGetSinhVienTamVangController getAllSinhVienTamVangComtroller)
                                      
         {
             this.studentController = studentController;
@@ -65,6 +74,14 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
             this.getAStudent = getAStudent;
             this.deleteLopController = deleteLopController;
             this.editLopController = editLopController;
+            this.getKhoaForNameController = getKhoaForNameController;
+            this.getNganhForNameController = getNganhForNameController;
+            this.getNganhForKhoaController = getNganhForKhoaController;
+            this.getLopWithMa = getLopWithMa;
+            this.getLopWithName = getLopWithName;
+            this.getLopForNganh = getLopForNganh;
+            this.getAllStudentDangHocController = getAllStudentDangHocController;
+            this.getAllSinhVienTamVangComtroller = getAllSinhVienTamVangComtroller;
         }
     }
 }

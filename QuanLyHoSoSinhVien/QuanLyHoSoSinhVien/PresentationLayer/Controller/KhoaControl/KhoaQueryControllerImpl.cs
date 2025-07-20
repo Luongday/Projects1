@@ -9,15 +9,17 @@ using QuanLyHoSoSinhVien.PresentationLayer.DTO.KhoaDTO;
 
 namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.KhoaControl
 {
-    public class KhoaQueryControllerImpl : IKhoaController
+    public class KhoaQueryControllerImpl : IKhoaController,IGetKhoaForNameController
     {
         IGetAllKhoa getAllKhoa;
         IGetKhoaForId getbyID;
+        IgetKhoaForNameService getKhoaForNameService;
 
-        public KhoaQueryControllerImpl(IGetAllKhoa getAllKhoa, IGetKhoaForId getbyID)
+        public KhoaQueryControllerImpl(IGetAllKhoa getAllKhoa, IGetKhoaForId getbyID, IgetKhoaForNameService getKhoaForNameService)
         {
             this.getAllKhoa = getAllKhoa;
             this.getbyID = getbyID;
+            this.getKhoaForNameService = getKhoaForNameService;
         }
 
         public List<KhoaDto> getAllKhoaWithFullInfor()
@@ -45,6 +47,21 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.KhoaControl
                 return khoa;
             }
             return null;
+        }
+
+        public List<KhoaDto> getKhoaForName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                return new List<KhoaDto>();
+            }
+            return getKhoaForNameService.getKhoaForName(name).Select(khoa => new KhoaDto
+            {
+                maKhoa = khoa.makhoa,
+                tenKhoa = khoa.tenkhoa,
+                soNganh = khoa.Nganh?.Count ?? 0,
+                soLop = khoa.Nganh?.SelectMany(n => n.Lop)?.Count() ?? 0
+            }).ToList() ?? new List<KhoaDto>();
         }
 
         public int totalKhoa()

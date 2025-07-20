@@ -9,6 +9,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+using Guna.UI2.WinForms;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
@@ -22,6 +24,7 @@ using QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.HoSoDto;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.KhoaDTO;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.LopDTO;
+using QuanLyHoSoSinhVien.PresentationLayer.DTO.NganhDTO;
 using QuanLyHoSoSinhVien.PresentationLayer.view;
 
 namespace QuanLyHoSoSinhVien.view
@@ -30,6 +33,8 @@ namespace QuanLyHoSoSinhVien.view
     {
         private IServiceProvider serviceProvider;
         IStudentController studentController;
+        IGetAllStudentDangHocController getAllStudentDangHocController;
+        IGetSinhVienTamVangController getAllSinhVienTamVangComtroller;
         INganhControllers nganhControllers;
         IDeleteNganhController deleteNganhController;
         ILopController lopController;
@@ -65,6 +70,8 @@ namespace QuanLyHoSoSinhVien.view
             this.addLopController = managerServicesFacade.addLopController;
             this.deleteLopController = managerServicesFacade.deleteLopController;
             this.editLopController = managerServicesFacade.editLopController;
+            this.getAllStudentDangHocController = managerServicesFacade.getAllStudentDangHocController;
+            this.getAllSinhVienTamVangComtroller = managerServicesFacade.getAllSinhVienTamVangComtroller;
             TongSoSV.Text = studentController.totalStudent().ToString();
         }
 
@@ -93,6 +100,50 @@ namespace QuanLyHoSoSinhVien.view
                     sv.tenLop,
                     sv.tenNganh,
                     sv.tenKhoa
+                );
+            }
+        }
+        private void LoadSinhVienDangHoc()
+        {
+            dgvDSSVDangHoc.Rows.Clear();
+
+
+            var danhSach = getAllStudentDangHocController.getAllStudentDangHoc();
+            //  dgvDSSVDangHoc.DataSource = danhSach;
+
+
+            foreach (var sv in danhSach)
+            {
+                dgvDSSVDangHoc.Rows.Add(
+                    sv.maSV,
+                    sv.tenSv,
+                    sv.ngaySinh.ToString("dd/MM/yyyy"),
+                    sv.GioiTinh,
+                    sv.diaChi,
+                    sv.sdt,
+                    sv.tenLop
+                );
+            }
+        }
+        private void LoadSinhVienTamVang()
+        {
+            dgvDSSVTamVang.Rows.Clear();
+
+
+            var danhSach = getAllSinhVienTamVangComtroller.getAllSinhVienTamVang();
+            //  dgvDSSVDangHoc.DataSource = danhSach;
+
+
+            foreach (var sv in danhSach)
+            {
+                dgvDSSVTamVang.Rows.Add(
+                    sv.maSV,
+                    sv.tenSv,
+                    sv.ngaySinh.ToString("dd/MM/yyyy"),
+                    sv.GioiTinh,
+                    sv.diaChi,
+                    sv.sdt,
+                    sv.tenLop
                 );
             }
         }
@@ -158,7 +209,119 @@ namespace QuanLyHoSoSinhVien.view
             }
 
         }
+        private void LoadChartThongKe(int dangHoc, int tamVang)
+        {
+            //chartThongKe.Series.Clear();
+            //chartThongKe.Titles.Clear();
 
+            //chartThongKe.Titles.Add("Thống kê sinh viên");
+
+            //Series series = new Series
+            //{
+            //    Name = "SinhVien",
+            //    IsValueShownAsLabel = true,
+            //    ChartType = SeriesChartType.Pie
+            //};
+
+            //series.Points.AddXY("Đang học", dangHoc);
+            //series.Points.AddXY("Tạm vắng", tamVang);
+            //series.Points[0].Color = Color.Green;  // Đang học = Xanh
+            //series.Points[1].Color = Color.Red;
+            int totalDangHoc = studentController.totalStudentDangHoc();
+            int totalTamVang = studentController.totalStudentTamVang();
+
+            // Cập nhật giá trị Y của từng DataPoint
+            chartThongKe.Series["Series1"].Points[0].YValues[0] = totalDangHoc;
+            chartThongKe.Series["Series1"].Points[1].YValues[0] = totalTamVang;
+
+        }
+
+        public void AddNganhToComboBox(ComboBox cbx)
+        {
+            try
+            {
+                List<NganhDto> lNganhDto = nganhControllers.getAllNganhWithFullInfor() ?? new List<NganhDto>();
+                cbx.DataSource = null;
+                cbx.Items.Clear();
+                cbx.DataSource = lNganhDto.Select(ng => ng.tenNganh).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("NganhController is null");
+            }
+
+        }
+        public void AddMaNganhToComboBox(ComboBox cbx)
+        {
+            try
+            {
+                List<NganhDto> lNganhDto = nganhControllers.getAllNganhWithFullInfor() ?? new List<NganhDto>();
+                cbx.DataSource = null;
+                cbx.Items.Clear();
+                cbx.DataSource = lNganhDto.Select(ng => ng.maNganh).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("NganhController is null");
+            }
+
+        }
+        public void addKhoaToCombobox(ComboBox cbx)
+        {
+            try
+            {
+                List<KhoaDto> lKhoaDto = khoaController.getAllKhoaWithFullInfor() ?? new List<KhoaDto>();
+                cbx.DataSource = null;
+                cbx.Items.Clear();
+                cbx.DataSource = lKhoaDto.Select(kh => kh.tenKhoa).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("NganhController is null");
+            }
+        }
+        public void addMaKhoaToCombobox(ComboBox cbx)
+        {
+            try
+            {
+                List<KhoaDto> lKhoaDto = khoaController.getAllKhoaWithFullInfor() ?? new List<KhoaDto>();
+                cbx.DataSource = null;
+                cbx.Items.Clear();
+                cbx.DataSource = lKhoaDto.Select(kh => kh.maKhoa).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("NganhController is null");
+            }
+        }
+        public void addLopToCombobox(ComboBox cbx)
+        {
+            try
+            {
+                List<LopDto> lLopDto = lopController.getAllLopWithFullInfor() ?? new List<LopDto>();
+                cbx.DataSource = null;
+                cbx.Items.Clear();
+                cbx.DataSource = lLopDto.Select(l => l.tenLop).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("NganhController is null");
+            }
+        }
+        public void addMaLopToCombobox(ComboBox cbx)
+        {
+            try
+            {
+                List<LopDto> lLopDto = lopController.getAllLopWithFullInfor() ?? new List<LopDto>();
+                cbx.DataSource = null;
+                cbx.Items.Clear();
+                cbx.DataSource = lLopDto.Select(l => l.maLop).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("NganhController is null");
+            }
+        }
         public void AddKhoaToComboBoxKhoaInTabPageNganh()
         {
             try
@@ -176,6 +339,21 @@ namespace QuanLyHoSoSinhVien.view
                 MessageBox.Show("khoaController is null");
             }
 
+        }
+        public void setPanel()
+        {
+            btnDSSVDangHoc.Enabled = true; // Bật tương tác
+            btnDSSVDangHoc.Visible = true; // Hiển thị panel
+            btnDSSVDangHoc.ShadowDepth = 20; // Độ sâu bóng (từ 1-10, càng cao càng đậm)
+            btnDSSVDangHoc.ShadowShift = 10;
+            btnDSSVDangHoc.ShadowColor = Color.DarkGray;
+            btnDSSVDangHoc.Tag = btnDSSVDangHoc.Location;
+            btnDSSVTamVang.Enabled = true; // Bật tương tác
+            btnDSSVTamVang.Visible = true; // Hiển thị panel
+            btnDSSVTamVang.ShadowDepth = 20; // Độ sâu bóng (từ 1-10, càng cao càng đậm)
+            btnDSSVTamVang.ShadowShift = 10;
+            btnDSSVTamVang.ShadowColor = Color.DarkGray;
+            btnDSSVTamVang.Tag = btnDSSVTamVang.Location;
         }
         private void MenuManagement_Load(object sender, EventArgs e)
         {
@@ -241,6 +419,12 @@ namespace QuanLyHoSoSinhVien.view
             if (tcMenuManager.SelectedTab == tpQuanLiHoSo)
             {
                 LoadHoSo();
+            }
+            if(tcMenuManager.SelectedTab == tpBaoCaoThongKe)
+            {
+                lblToTalSinhVienDangHoc.Text = studentController.totalStudentDangHoc().ToString();
+                lblTotalSinVienTamVang.Text = studentController.totalStudentTamVang().ToString();
+                LoadChartThongKe(studentController.totalStudentDangHoc(), studentController.totalStudentTamVang());
             }
         }
 
@@ -477,7 +661,7 @@ namespace QuanLyHoSoSinhVien.view
                 {
                     maLop = txtMaLop.Text,
                     tenLop = txtTenLop.Text,
-                    nganh = cbxNganhAtTPLop.SelectedItem.ToString()??""
+                    nganh = cbxNganhAtTPLop.SelectedItem.ToString() ?? ""
                 }))
                 {
                     MessageBox.Show("Sửa lớp thành công");
@@ -506,7 +690,210 @@ namespace QuanLyHoSoSinhVien.view
         {
             txtMaLop.Text = "";
             txtTenLop.Text = "";
-            cbxNganhAtTPLop.SelectedIndex = -1; 
+            cbxNganhAtTPLop.SelectedIndex = -1;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex == 0)
+            {
+                AddMaNganhToComboBox(cbxTimKiemForNganh);
+            }
+            else if (comboBox1.SelectedIndex == 1)
+            {
+                AddNganhToComboBox(cbxTimKiemForNganh);
+            }
+            else if (comboBox1.SelectedIndex == 2)
+            {
+                addKhoaToCombobox(cbxTimKiemForNganh);
+            }
+            else
+            {
+                AddNganhToComboBox(cbxTimKiemForNganh);
+            }
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox3.SelectedIndex == 0)
+            {
+                addMaKhoaToCombobox(cbxTimKiemForKhoa);
+            }
+            else if (comboBox3.SelectedIndex == 1)
+            {
+                addKhoaToCombobox(cbxTimKiemForKhoa);
+            }
+            else
+            {
+                addKhoaToCombobox(cbxTimKiemForKhoa);
+            }
+        }
+
+        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox5.SelectedIndex == 0)
+            {
+                addMaLopToCombobox(cbxTimKiemForLop);
+            }
+            else if (comboBox5.SelectedIndex == 1)
+            {
+                addLopToCombobox(cbxTimKiemForLop);
+            }
+            else if (comboBox5.SelectedIndex == 2)
+            {
+                AddNganhToComboBox(cbxTimKiemForLop);
+            }
+            else
+            {
+                addLopToCombobox(cbxTimKiemForLop);
+            }
+        }
+
+        private void guna2ShadowPanel6_Paint(object sender, PaintEventArgs e)
+        {
+            //dgvDSSVDangHoc.Visible = true;
+
+            //LoadSinhVienDangHoc();
+
+            //dgvDSSVDangHoc.Show();
+        }
+
+        private void label21_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDSSVDangHoc_MouseEnter(object sender, EventArgs e)
+        {
+            var panel = sender as Guna2ShadowPanel;
+
+
+            // Nâng panel lên 8px
+            panel.Location = new Point(panel.Location.X, panel.Location.Y - 8);
+
+            // Tăng shadow
+            if (panel != null)
+            {
+                // Đảm bảo Tag là Point trước khi sử dụng
+                if (panel.Tag is Point originalLocation)
+                {
+                    panel.Tag = originalLocation; // Giữ nguyên vị trí ban đầu
+                }
+                else
+                {
+                    panel.Tag = panel.Location; // Lưu vị trí hiện tại nếu chưa có
+                }
+                // Nâng panel lên 8px
+                panel.Location = new Point(panel.Location.X, panel.Location.Y - 8);
+
+                //Tăng hiệu ứng bóng
+                panel.ShadowDepth = 100;
+                panel.ShadowShift = 15;
+                panel.ShadowColor = Color.Gray;
+            }
+        }
+
+        private void btnDSSVDangHoc_MouseLeave(object sender, EventArgs e)
+        {
+            var panel = sender as Guna2ShadowPanel;
+
+            // Đưa panel về vị trí cũ
+            panel.Location = new Point(panel.Location.X, panel.Location.Y + 8);
+
+            if (panel != null)
+            {
+                // Trả panel về vị trí cũ từ Tag
+                if (panel.Tag is Point originalLocation)
+                {
+                    panel.Location = originalLocation;
+                }
+
+                // Giảm hiệu ứng bóng
+                panel.ShadowStyle = Guna.UI2.WinForms.Guna2ShadowPanel.ShadowMode.Dropped;
+                panel.ShadowDepth = 20;
+                panel.ShadowShift = 15;
+                panel.ShadowColor = Color.DarkGray;
+
+            }
+        }
+
+        private void btnDSSVTamVang_MouseEnter(object sender, EventArgs e)
+        {
+            var panel = sender as Guna2ShadowPanel;
+
+            // Nâng panel lên 8px
+            panel.Location = new Point(panel.Location.X, panel.Location.Y - 8);
+
+            // Tăng shadow
+            if (panel != null)
+            {
+                // Đảm bảo Tag là Point trước khi sử dụng
+                if (panel.Tag is Point originalLocation)
+                {
+                    panel.Tag = originalLocation; // Giữ nguyên vị trí ban đầu
+                }
+                else
+                {
+                    panel.Tag = panel.Location; // Lưu vị trí hiện tại nếu chưa có
+                }
+                // Nâng panel lên 8px
+                panel.Location = new Point(panel.Location.X, panel.Location.Y - 8);
+
+                // Tăng hiệu ứng bóng
+                panel.ShadowDepth = 100;
+                panel.ShadowShift = 15;
+                panel.ShadowColor = Color.Gray;
+
+            }
+        }
+
+        private void btnDSSVTamVang_MouseLeave(object sender, EventArgs e)
+        {
+            var panel = sender as Guna2ShadowPanel;
+
+
+            // Đưa panel về vị trí cũ
+            panel.Location = new Point(panel.Location.X, panel.Location.Y + 6);
+
+            if (panel != null)
+            {
+                // Trả panel về vị trí cũ từ Tag
+                if (panel.Tag is Point originalLocation)
+                {
+                    panel.Location = originalLocation;
+                }
+
+                // Giảm hiệu ứng bóng
+                panel.ShadowStyle = Guna.UI2.WinForms.Guna2ShadowPanel.ShadowMode.Dropped;
+                panel.ShadowDepth = 20;
+                panel.ShadowShift = 15;
+                panel.ShadowColor = Color.DarkGray;
+
+            }
+        }
+
+        private void btnDSSVDangHoc_MouseClick(object sender, MouseEventArgs e)
+        {
+            dgvDSSVDangHoc.Visible = true;
+
+            LoadSinhVienDangHoc();
+
+            dgvDSSVDangHoc.Show();
+        }
+
+        private void btnDSSVTamVang_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnDSSVTamVang_MouseClick(object sender, MouseEventArgs e)
+        {
+            dgvDSSVTamVang.Visible = true;
+
+            LoadSinhVienTamVang();
+
+            dgvDSSVDangHoc.Hide();
+            dgvDSSVTamVang.Show();
         }
     }
 }

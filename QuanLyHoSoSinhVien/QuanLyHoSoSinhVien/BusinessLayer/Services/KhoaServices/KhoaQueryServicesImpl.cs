@@ -8,7 +8,7 @@ using QuanLyHoSoSinhVien.DataAccessLayer.Repository.KhoaRepository;
 
 namespace QuanLyHoSoSinhVien.BusinessLayer.Services.KhoaServices
 {
-    public class KhoaQueryServicesImpl : IGetAllKhoa,IGetKhoaForId
+    public class KhoaQueryServicesImpl : IGetAllKhoa,IGetKhoaForId,IgetKhoaForNameService
     {
         IKhoaRepository khoaRepository;
 
@@ -29,6 +29,20 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.KhoaServices
                 return khoaRepository.GetByMa(id);
             }
             return new Khoa { };
+        }
+
+        public List<Khoa> getKhoaForName(String name)
+        {
+            if(string.IsNullOrEmpty(name))
+            {
+                return new List<Khoa>();
+            }
+            List<Khoa> dsKhoa = khoaRepository.getAll().Where(kh=>kh.tenkhoa==name).ToList();
+            if (dsKhoa.Count > 0)
+            {
+                return dsKhoa;
+            }
+            return new List<Khoa>();
         }
     }
 }

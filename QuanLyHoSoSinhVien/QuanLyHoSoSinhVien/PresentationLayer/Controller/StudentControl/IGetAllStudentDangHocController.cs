@@ -7,11 +7,8 @@ using QuanLyHoSoSinhVien.PresentationLayer.DTO.StudentDTO;
 
 namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl
 {
-    public interface IStudentController
+    public interface IGetAllStudentDangHocController
     {
-        public List<StudentDto> getAllStudentWithFullInfor();
-        public int totalStudent();
-        public int totalStudentTamVang();
-        public int totalStudentDangHoc();
+        List<StudentDto> getAllStudentDangHoc();
     }
 }

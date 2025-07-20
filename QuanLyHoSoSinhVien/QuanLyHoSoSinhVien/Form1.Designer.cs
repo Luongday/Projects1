@@ -34,6 +34,9 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(components);
             guna2HtmlToolTip1 = new Guna.UI2.WinForms.Guna2HtmlToolTip();
@@ -59,6 +62,7 @@
             iconToolStripButton2 = new FontAwesome.Sharp.IconToolStripButton();
             iconToolStripButton4 = new FontAwesome.Sharp.IconToolStripButton();
             guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             guna2CustomGradientPanel1.SuspendLayout();
             guna2TabControl1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -66,6 +70,7 @@
             tabPage3.SuspendLayout();
             guna2CustomGradientPanel2.SuspendLayout();
             toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
             SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -320,7 +325,7 @@
             // 
             guna2ShadowPanel1.BackColor = Color.Transparent;
             guna2ShadowPanel1.FillColor = Color.White;
-            guna2ShadowPanel1.Location = new Point(165, 126);
+            guna2ShadowPanel1.Location = new Point(675, 215);
             guna2ShadowPanel1.Name = "guna2ShadowPanel1";
             guna2ShadowPanel1.ShadowColor = Color.Black;
             guna2ShadowPanel1.ShadowShift = 10;
@@ -331,12 +336,31 @@
             guna2ShadowPanel1.MouseEnter += guna2ShadowPanel1_MouseEnter;
             guna2ShadowPanel1.MouseLeave += guna2ShadowPanel1_MouseLeave;
             // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            chart1.Legends.Add(legend1);
+            chart1.Location = new Point(1058, 12);
+            chart1.Name = "chart1";
+            chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            chart1.Series.Add(series1);
+            chart1.Size = new Size(450, 450);
+            chart1.TabIndex = 7;
+            chart1.Text = "chart1";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(1559, 989);
+            Controls.Add(chart1);
             Controls.Add(guna2ShadowPanel1);
             Controls.Add(guna2CustomGradientPanel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -353,6 +377,7 @@
             guna2CustomGradientPanel2.PerformLayout();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
             ResumeLayout(false);
         }
 
@@ -382,5 +407,6 @@
         private FontAwesome.Sharp.IconToolStripButton iconToolStripButton2;
         private FontAwesome.Sharp.IconToolStripButton iconToolStripButton4;
         private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
