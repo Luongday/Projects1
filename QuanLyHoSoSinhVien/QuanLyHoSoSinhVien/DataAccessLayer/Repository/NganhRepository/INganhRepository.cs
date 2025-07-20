@@ -12,6 +12,7 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.NganhRepository
         public List<Nganh> getAll();
         public void addNganh(Nganh nganh);
         public void deleteNganh(string id);
-        public void editNganh(Nganh nganhNew); 
+        public void editNganh(Nganh nganhNew);
+        public List<Nganh> getNganhForID(string id);
     }
 }

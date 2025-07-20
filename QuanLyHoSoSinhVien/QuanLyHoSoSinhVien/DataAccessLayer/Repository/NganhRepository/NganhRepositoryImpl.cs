@@ -60,5 +60,13 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.NganhRepository
                 .Include(nganh=>nganh.Khoa)
                 .ToList();    
         }
+
+        public List<Nganh> getNganhForID(string id)
+        {
+            return _context.Nganhs
+                .Include(nganh => nganh.Lop)
+                .Include(nganh => nganh.Khoa)
+                .Where(nganh => nganh.manganh == id).ToList();
+        }
     }
 }

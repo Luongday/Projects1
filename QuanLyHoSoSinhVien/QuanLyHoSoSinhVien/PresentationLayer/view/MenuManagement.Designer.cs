@@ -138,23 +138,23 @@
             guna2ComboBox1 = new Guna.UI2.WinForms.Guna2ComboBox();
             label3 = new Label();
             dgvSinhVien = new Guna.UI2.WinForms.Guna2DataGridView();
-            Column5 = new DataGridViewTextBoxColumn();
-            Column6 = new DataGridViewTextBoxColumn();
-            Column7 = new DataGridViewTextBoxColumn();
-            Column8 = new DataGridViewTextBoxColumn();
-            Column9 = new DataGridViewTextBoxColumn();
-            Column10 = new DataGridViewTextBoxColumn();
-            Column11 = new DataGridViewTextBoxColumn();
-            Column12 = new DataGridViewTextBoxColumn();
-            Column13 = new DataGridViewTextBoxColumn();
-            Column14 = new DataGridViewTextBoxColumn();
-            Column15 = new DataGridViewTextBoxColumn();
-            Column16 = new DataGridViewTextBoxColumn();
-            Column17 = new DataGridViewTextBoxColumn();
-            Column18 = new DataGridViewTextBoxColumn();
-            Column19 = new DataGridViewTextBoxColumn();
+            msvColInDgvSV = new DataGridViewTextBoxColumn();
+            tenSVColInDgvSV = new DataGridViewTextBoxColumn();
+            ngaySinhColInDgvSv = new DataGridViewTextBoxColumn();
+            gtColInDgvSV = new DataGridViewTextBoxColumn();
+            dcColInDgvSV = new DataGridViewTextBoxColumn();
+            sdtColInDgvSV = new DataGridViewTextBoxColumn();
+            danTocInDgvSV = new DataGridViewTextBoxColumn();
+            tonGiaoInDgvSV = new DataGridViewTextBoxColumn();
+            emailInDgvSV = new DataGridViewTextBoxColumn();
+            cccdColInDgvSV = new DataGridViewTextBoxColumn();
+            noiSinhColInDgvSV = new DataGridViewTextBoxColumn();
+            trangThaiColInDgvSV = new DataGridViewTextBoxColumn();
+            lopColInDgvSV = new DataGridViewTextBoxColumn();
+            nganhInDgvSV = new DataGridViewTextBoxColumn();
+            khoaInDgvSV = new DataGridViewTextBoxColumn();
             guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
-            btnXoa = new FontAwesome.Sharp.IconButton();
+            btnXoaSinhVien = new FontAwesome.Sharp.IconButton();
             btnThemSinhVien = new FontAwesome.Sharp.IconButton();
             btnSuaSinhVien = new FontAwesome.Sharp.IconButton();
             btnLuuFile = new FontAwesome.Sharp.IconButton();
@@ -184,7 +184,7 @@
             btnLamMoiNganh = new Guna.UI2.WinForms.Guna2Button();
             btnTimKiemNganh = new Guna.UI2.WinForms.Guna2Button();
             cbxTimKiemForNganh = new ComboBox();
-            comboBox1 = new ComboBox();
+            cbxFieldSearchNganh = new ComboBox();
             guna2CustomGradientPanel5 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             cbxDsKhoa = new ComboBox();
             btnRefreshTxtKhoa = new Guna.UI2.WinForms.Guna2Button();
@@ -208,7 +208,7 @@
             btnLamMoiKhoa = new Guna.UI2.WinForms.Guna2Button();
             btnTimKiemKhoa = new Guna.UI2.WinForms.Guna2Button();
             cbxTimKiemForKhoa = new ComboBox();
-            comboBox3 = new ComboBox();
+            cbxFieldSearchKhoa = new ComboBox();
             guna2CustomGradientPanel7 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             btnHuy = new FontAwesome.Sharp.IconButton();
             btnXoaKhoa = new FontAwesome.Sharp.IconButton();
@@ -230,7 +230,7 @@
             btnLamMoiLop = new Guna.UI2.WinForms.Guna2Button();
             btnTimKiemLop = new Guna.UI2.WinForms.Guna2Button();
             cbxTimKiemForLop = new ComboBox();
-            comboBox5 = new ComboBox();
+            cbxFieldSearchLop = new ComboBox();
             guna2CustomGradientPanel8 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             cbxNganhAtTPLop = new ComboBox();
             label20 = new Label();
@@ -501,7 +501,7 @@
             dgvSinhVien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvSinhVien.ColumnHeadersHeight = 62;
             dgvSinhVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgvSinhVien.Columns.AddRange(new DataGridViewColumn[] { Column5, Column6, Column7, Column8, Column9, Column10, Column11, Column12, Column13, Column14, Column15, Column16, Column17, Column18, Column19 });
+            dgvSinhVien.Columns.AddRange(new DataGridViewColumn[] { msvColInDgvSV, tenSVColInDgvSV, ngaySinhColInDgvSv, gtColInDgvSV, dcColInDgvSV, sdtColInDgvSV, danTocInDgvSV, tonGiaoInDgvSV, emailInDgvSV, cccdColInDgvSV, noiSinhColInDgvSV, trangThaiColInDgvSV, lopColInDgvSV, nganhInDgvSV, khoaInDgvSV });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -539,101 +539,102 @@
             dgvSinhVien.ThemeStyle.RowsStyle.Height = 33;
             dgvSinhVien.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvSinhVien.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dgvSinhVien.CellClick += dgvSinhVien_CellClick;
             // 
-            // Column5
+            // msvColInDgvSV
             // 
-            Column5.HeaderText = "Mã sinh viên";
-            Column5.MinimumWidth = 6;
-            Column5.Name = "Column5";
+            msvColInDgvSV.HeaderText = "Mã sinh viên";
+            msvColInDgvSV.MinimumWidth = 6;
+            msvColInDgvSV.Name = "msvColInDgvSV";
             // 
-            // Column6
+            // tenSVColInDgvSV
             // 
-            Column6.HeaderText = "Tên sinh viên";
-            Column6.MinimumWidth = 6;
-            Column6.Name = "Column6";
+            tenSVColInDgvSV.HeaderText = "Tên sinh viên";
+            tenSVColInDgvSV.MinimumWidth = 6;
+            tenSVColInDgvSV.Name = "tenSVColInDgvSV";
             // 
-            // Column7
+            // ngaySinhColInDgvSv
             // 
-            Column7.HeaderText = "Ngày sinh";
-            Column7.MinimumWidth = 6;
-            Column7.Name = "Column7";
+            ngaySinhColInDgvSv.HeaderText = "Ngày sinh";
+            ngaySinhColInDgvSv.MinimumWidth = 6;
+            ngaySinhColInDgvSv.Name = "ngaySinhColInDgvSv";
             // 
-            // Column8
+            // gtColInDgvSV
             // 
-            Column8.HeaderText = "Giới tính";
-            Column8.MinimumWidth = 6;
-            Column8.Name = "Column8";
+            gtColInDgvSV.HeaderText = "Giới tính";
+            gtColInDgvSV.MinimumWidth = 6;
+            gtColInDgvSV.Name = "gtColInDgvSV";
             // 
-            // Column9
+            // dcColInDgvSV
             // 
-            Column9.HeaderText = "Địa chỉ";
-            Column9.MinimumWidth = 6;
-            Column9.Name = "Column9";
+            dcColInDgvSV.HeaderText = "Địa chỉ";
+            dcColInDgvSV.MinimumWidth = 6;
+            dcColInDgvSV.Name = "dcColInDgvSV";
             // 
-            // Column10
+            // sdtColInDgvSV
             // 
-            Column10.HeaderText = "Số điện thoại";
-            Column10.MinimumWidth = 6;
-            Column10.Name = "Column10";
+            sdtColInDgvSV.HeaderText = "Số điện thoại";
+            sdtColInDgvSV.MinimumWidth = 6;
+            sdtColInDgvSV.Name = "sdtColInDgvSV";
             // 
-            // Column11
+            // danTocInDgvSV
             // 
-            Column11.HeaderText = "Dân tộc";
-            Column11.MinimumWidth = 6;
-            Column11.Name = "Column11";
+            danTocInDgvSV.HeaderText = "Dân tộc";
+            danTocInDgvSV.MinimumWidth = 6;
+            danTocInDgvSV.Name = "danTocInDgvSV";
             // 
-            // Column12
+            // tonGiaoInDgvSV
             // 
-            Column12.HeaderText = "Tôn giáo";
-            Column12.MinimumWidth = 6;
-            Column12.Name = "Column12";
+            tonGiaoInDgvSV.HeaderText = "Tôn giáo";
+            tonGiaoInDgvSV.MinimumWidth = 6;
+            tonGiaoInDgvSV.Name = "tonGiaoInDgvSV";
             // 
-            // Column13
+            // emailInDgvSV
             // 
-            Column13.HeaderText = "Email";
-            Column13.MinimumWidth = 6;
-            Column13.Name = "Column13";
+            emailInDgvSV.HeaderText = "Email";
+            emailInDgvSV.MinimumWidth = 6;
+            emailInDgvSV.Name = "emailInDgvSV";
             // 
-            // Column14
+            // cccdColInDgvSV
             // 
-            Column14.HeaderText = "CCCD";
-            Column14.MinimumWidth = 6;
-            Column14.Name = "Column14";
+            cccdColInDgvSV.HeaderText = "CCCD";
+            cccdColInDgvSV.MinimumWidth = 6;
+            cccdColInDgvSV.Name = "cccdColInDgvSV";
             // 
-            // Column15
+            // noiSinhColInDgvSV
             // 
-            Column15.HeaderText = "Nơi sinh";
-            Column15.MinimumWidth = 6;
-            Column15.Name = "Column15";
+            noiSinhColInDgvSV.HeaderText = "Nơi sinh";
+            noiSinhColInDgvSV.MinimumWidth = 6;
+            noiSinhColInDgvSV.Name = "noiSinhColInDgvSV";
             // 
-            // Column16
+            // trangThaiColInDgvSV
             // 
-            Column16.HeaderText = "Trạng thái";
-            Column16.MinimumWidth = 6;
-            Column16.Name = "Column16";
+            trangThaiColInDgvSV.HeaderText = "Trạng thái";
+            trangThaiColInDgvSV.MinimumWidth = 6;
+            trangThaiColInDgvSV.Name = "trangThaiColInDgvSV";
             // 
-            // Column17
+            // lopColInDgvSV
             // 
-            Column17.HeaderText = "Tên lớp ";
-            Column17.MinimumWidth = 6;
-            Column17.Name = "Column17";
+            lopColInDgvSV.HeaderText = "Tên lớp ";
+            lopColInDgvSV.MinimumWidth = 6;
+            lopColInDgvSV.Name = "lopColInDgvSV";
             // 
-            // Column18
+            // nganhInDgvSV
             // 
-            Column18.HeaderText = "Tên ngành";
-            Column18.MinimumWidth = 6;
-            Column18.Name = "Column18";
+            nganhInDgvSV.HeaderText = "Tên ngành";
+            nganhInDgvSV.MinimumWidth = 6;
+            nganhInDgvSV.Name = "nganhInDgvSV";
             // 
-            // Column19
+            // khoaInDgvSV
             // 
-            Column19.HeaderText = "Tên khoa";
-            Column19.MinimumWidth = 6;
-            Column19.Name = "Column19";
+            khoaInDgvSV.HeaderText = "Tên khoa";
+            khoaInDgvSV.MinimumWidth = 6;
+            khoaInDgvSV.Name = "khoaInDgvSV";
             // 
             // guna2GroupBox1
             // 
             guna2GroupBox1.BorderRadius = 10;
-            guna2GroupBox1.Controls.Add(btnXoa);
+            guna2GroupBox1.Controls.Add(btnXoaSinhVien);
             guna2GroupBox1.Controls.Add(btnThemSinhVien);
             guna2GroupBox1.Controls.Add(btnSuaSinhVien);
             guna2GroupBox1.Controls.Add(btnLuuFile);
@@ -648,24 +649,25 @@
             guna2GroupBox1.TabIndex = 9;
             guna2GroupBox1.Text = "Chức năng";
             // 
-            // btnXoa
+            // btnXoaSinhVien
             // 
-            btnXoa.BackColor = Color.Red;
-            btnXoa.FlatAppearance.BorderSize = 0;
-            btnXoa.FlatStyle = FlatStyle.Flat;
-            btnXoa.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnXoa.ForeColor = SystemColors.HighlightText;
-            btnXoa.IconChar = FontAwesome.Sharp.IconChar.Trash;
-            btnXoa.IconColor = Color.Black;
-            btnXoa.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnXoa.ImageAlign = ContentAlignment.MiddleLeft;
-            btnXoa.Location = new Point(306, 111);
-            btnXoa.Margin = new Padding(4);
-            btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(206, 48);
-            btnXoa.TabIndex = 8;
-            btnXoa.Text = "Xóa";
-            btnXoa.UseVisualStyleBackColor = false;
+            btnXoaSinhVien.BackColor = Color.Red;
+            btnXoaSinhVien.FlatAppearance.BorderSize = 0;
+            btnXoaSinhVien.FlatStyle = FlatStyle.Flat;
+            btnXoaSinhVien.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnXoaSinhVien.ForeColor = SystemColors.HighlightText;
+            btnXoaSinhVien.IconChar = FontAwesome.Sharp.IconChar.Trash;
+            btnXoaSinhVien.IconColor = Color.Black;
+            btnXoaSinhVien.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnXoaSinhVien.ImageAlign = ContentAlignment.MiddleLeft;
+            btnXoaSinhVien.Location = new Point(306, 111);
+            btnXoaSinhVien.Margin = new Padding(4);
+            btnXoaSinhVien.Name = "btnXoaSinhVien";
+            btnXoaSinhVien.Size = new Size(206, 48);
+            btnXoaSinhVien.TabIndex = 8;
+            btnXoaSinhVien.Text = "Xóa";
+            btnXoaSinhVien.UseVisualStyleBackColor = false;
+            btnXoaSinhVien.Click += btnXoaSinhVien_Click;
             // 
             // btnThemSinhVien
             // 
@@ -687,6 +689,7 @@
             btnThemSinhVien.TabIndex = 4;
             btnThemSinhVien.Text = "+ Thêm sinh viên mới";
             btnThemSinhVien.UseVisualStyleBackColor = false;
+            btnThemSinhVien.Click += btnThemSinhVien_Click;
             // 
             // btnSuaSinhVien
             // 
@@ -1058,7 +1061,7 @@
             guna2CustomGradientPanel6.Controls.Add(btnLamMoiNganh);
             guna2CustomGradientPanel6.Controls.Add(btnTimKiemNganh);
             guna2CustomGradientPanel6.Controls.Add(cbxTimKiemForNganh);
-            guna2CustomGradientPanel6.Controls.Add(comboBox1);
+            guna2CustomGradientPanel6.Controls.Add(cbxFieldSearchNganh);
             guna2CustomGradientPanel6.CustomizableEdges = customizableEdges23;
             guna2CustomGradientPanel6.Location = new Point(9, 6);
             guna2CustomGradientPanel6.Margin = new Padding(2);
@@ -1108,6 +1111,7 @@
             btnTimKiemNganh.Size = new Size(128, 44);
             btnTimKiemNganh.TabIndex = 2;
             btnTimKiemNganh.Text = "Tìm kiếm";
+            btnTimKiemNganh.Click += btnTimKiemNganh_Click;
             // 
             // cbxTimKiemForNganh
             // 
@@ -1117,15 +1121,15 @@
             cbxTimKiemForNganh.Size = new Size(263, 33);
             cbxTimKiemForNganh.TabIndex = 1;
             // 
-            // comboBox1
+            // cbxFieldSearchNganh
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Mã ngành", "Tên ngành", "Khoa" });
-            comboBox1.Location = new Point(7, 34);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(99, 33);
-            comboBox1.TabIndex = 0;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            cbxFieldSearchNganh.FormattingEnabled = true;
+            cbxFieldSearchNganh.Items.AddRange(new object[] { "Mã ngành", "Tên ngành", "Khoa" });
+            cbxFieldSearchNganh.Location = new Point(7, 34);
+            cbxFieldSearchNganh.Name = "cbxFieldSearchNganh";
+            cbxFieldSearchNganh.Size = new Size(99, 33);
+            cbxFieldSearchNganh.TabIndex = 0;
+            cbxFieldSearchNganh.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // guna2CustomGradientPanel5
             // 
@@ -1405,7 +1409,7 @@
             guna2Panel1.Controls.Add(btnLamMoiKhoa);
             guna2Panel1.Controls.Add(btnTimKiemKhoa);
             guna2Panel1.Controls.Add(cbxTimKiemForKhoa);
-            guna2Panel1.Controls.Add(comboBox3);
+            guna2Panel1.Controls.Add(cbxFieldSearchKhoa);
             guna2Panel1.CustomizableEdges = customizableEdges43;
             guna2Panel1.Location = new Point(5, 5);
             guna2Panel1.Name = "guna2Panel1";
@@ -1454,6 +1458,7 @@
             btnTimKiemKhoa.Size = new Size(139, 59);
             btnTimKiemKhoa.TabIndex = 2;
             btnTimKiemKhoa.Text = "Tìm kiếm";
+            btnTimKiemKhoa.Click += btnTimKiemKhoa_Click;
             // 
             // cbxTimKiemForKhoa
             // 
@@ -1463,15 +1468,15 @@
             cbxTimKiemForKhoa.Size = new Size(238, 33);
             cbxTimKiemForKhoa.TabIndex = 1;
             // 
-            // comboBox3
+            // cbxFieldSearchKhoa
             // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Items.AddRange(new object[] { "Mã khoa", "Tên khoa" });
-            comboBox3.Location = new Point(9, 42);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(114, 33);
-            comboBox3.TabIndex = 0;
-            comboBox3.SelectedIndexChanged += comboBox3_SelectedIndexChanged;
+            cbxFieldSearchKhoa.FormattingEnabled = true;
+            cbxFieldSearchKhoa.Items.AddRange(new object[] { "Mã khoa", "Tên khoa" });
+            cbxFieldSearchKhoa.Location = new Point(9, 42);
+            cbxFieldSearchKhoa.Name = "cbxFieldSearchKhoa";
+            cbxFieldSearchKhoa.Size = new Size(114, 33);
+            cbxFieldSearchKhoa.TabIndex = 0;
+            cbxFieldSearchKhoa.SelectedIndexChanged += comboBox3_SelectedIndexChanged;
             // 
             // guna2CustomGradientPanel7
             // 
@@ -1716,7 +1721,7 @@
             guna2CustomGradientPanel9.Controls.Add(btnLamMoiLop);
             guna2CustomGradientPanel9.Controls.Add(btnTimKiemLop);
             guna2CustomGradientPanel9.Controls.Add(cbxTimKiemForLop);
-            guna2CustomGradientPanel9.Controls.Add(comboBox5);
+            guna2CustomGradientPanel9.Controls.Add(cbxFieldSearchLop);
             guna2CustomGradientPanel9.CustomizableEdges = customizableEdges55;
             guna2CustomGradientPanel9.Location = new Point(9, 16);
             guna2CustomGradientPanel9.Name = "guna2CustomGradientPanel9";
@@ -1765,6 +1770,7 @@
             btnTimKiemLop.Size = new Size(131, 56);
             btnTimKiemLop.TabIndex = 2;
             btnTimKiemLop.Text = "Tìm kiếm";
+            btnTimKiemLop.Click += btnTimKiemLop_Click;
             // 
             // cbxTimKiemForLop
             // 
@@ -1774,15 +1780,15 @@
             cbxTimKiemForLop.Size = new Size(259, 33);
             cbxTimKiemForLop.TabIndex = 1;
             // 
-            // comboBox5
+            // cbxFieldSearchLop
             // 
-            comboBox5.FormattingEnabled = true;
-            comboBox5.Items.AddRange(new object[] { "Mã lớp", "Tên Lớp", "Ngành" });
-            comboBox5.Location = new Point(3, 33);
-            comboBox5.Name = "comboBox5";
-            comboBox5.Size = new Size(103, 33);
-            comboBox5.TabIndex = 0;
-            comboBox5.SelectedIndexChanged += comboBox5_SelectedIndexChanged;
+            cbxFieldSearchLop.FormattingEnabled = true;
+            cbxFieldSearchLop.Items.AddRange(new object[] { "Mã lớp", "Tên Lớp", "Ngành" });
+            cbxFieldSearchLop.Location = new Point(3, 33);
+            cbxFieldSearchLop.Name = "cbxFieldSearchLop";
+            cbxFieldSearchLop.Size = new Size(103, 33);
+            cbxFieldSearchLop.TabIndex = 0;
+            cbxFieldSearchLop.SelectedIndexChanged += comboBox5_SelectedIndexChanged;
             // 
             // guna2CustomGradientPanel8
             // 
@@ -2698,7 +2704,7 @@
         private FontAwesome.Sharp.IconButton btnThemSinhVien;
         private FontAwesome.Sharp.IconButton btnLuuFile;
         private FontAwesome.Sharp.IconButton btnSuaSinhVien;
-        private FontAwesome.Sharp.IconButton btnXoa;
+        private FontAwesome.Sharp.IconButton btnXoaSinhVien;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox1;
         private Guna.UI2.WinForms.Guna2DataGridView dgvSinhVien;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel4;
@@ -2752,21 +2758,6 @@
         private Label label19;
         private Guna.UI2.WinForms.Guna2DataGridView dgvLop;
         private Label label20;
-        private DataGridViewTextBoxColumn Column5;
-        private DataGridViewTextBoxColumn Column6;
-        private DataGridViewTextBoxColumn Column7;
-        private DataGridViewTextBoxColumn Column8;
-        private DataGridViewTextBoxColumn Column9;
-        private DataGridViewTextBoxColumn Column10;
-        private DataGridViewTextBoxColumn Column11;
-        private DataGridViewTextBoxColumn Column12;
-        private DataGridViewTextBoxColumn Column13;
-        private DataGridViewTextBoxColumn Column14;
-        private DataGridViewTextBoxColumn Column15;
-        private DataGridViewTextBoxColumn Column16;
-        private DataGridViewTextBoxColumn Column17;
-        private DataGridViewTextBoxColumn Column18;
-        private DataGridViewTextBoxColumn Column19;
         private Guna.UI2.WinForms.Guna2DataGridView dgvHoSoSv;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel11;
         private Guna.UI2.WinForms.Guna2Button btnChiTietHS;
@@ -2805,20 +2796,20 @@
         private Guna.UI2.WinForms.Guna2Button btnLamMoiNganh;
         private Guna.UI2.WinForms.Guna2Button btnTimKiemNganh;
         private ComboBox cbxTimKiemForNganh;
-        private ComboBox comboBox1;
+        private ComboBox cbxFieldSearchNganh;
         private Label label2;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2Button btnLamMoiKhoa;
         private Guna.UI2.WinForms.Guna2Button btnTimKiemKhoa;
         private ComboBox cbxTimKiemForKhoa;
-        private ComboBox comboBox3;
+        private ComboBox cbxFieldSearchKhoa;
         private Label label6;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel9;
         private Label label4;
         private Guna.UI2.WinForms.Guna2Button btnLamMoiLop;
         private Guna.UI2.WinForms.Guna2Button btnTimKiemLop;
         private ComboBox cbxTimKiemForLop;
-        private ComboBox comboBox5;
+        private ComboBox cbxFieldSearchLop;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel10;
         private Guna.UI2.WinForms.Guna2ShadowPanel guna2ShadowPanel8;
         private Label label24;
@@ -2848,5 +2839,20 @@
         private DataGridViewTextBoxColumn diaChiCol;
         private DataGridViewTextBoxColumn sdtCol;
         private DataGridViewTextBoxColumn lopCol;
+        private DataGridViewTextBoxColumn msvColInDgvSV;
+        private DataGridViewTextBoxColumn tenSVColInDgvSV;
+        private DataGridViewTextBoxColumn ngaySinhColInDgvSv;
+        private DataGridViewTextBoxColumn gtColInDgvSV;
+        private DataGridViewTextBoxColumn dcColInDgvSV;
+        private DataGridViewTextBoxColumn sdtColInDgvSV;
+        private DataGridViewTextBoxColumn danTocInDgvSV;
+        private DataGridViewTextBoxColumn tonGiaoInDgvSV;
+        private DataGridViewTextBoxColumn emailInDgvSV;
+        private DataGridViewTextBoxColumn cccdColInDgvSV;
+        private DataGridViewTextBoxColumn noiSinhColInDgvSV;
+        private DataGridViewTextBoxColumn trangThaiColInDgvSV;
+        private DataGridViewTextBoxColumn lopColInDgvSV;
+        private DataGridViewTextBoxColumn nganhInDgvSV;
+        private DataGridViewTextBoxColumn khoaInDgvSV;
     }
 }

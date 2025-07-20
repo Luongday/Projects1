@@ -41,6 +41,9 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
         public IGetLopForNganhController getLopForNganh { get; }
         public IGetAllStudentDangHocController getAllStudentDangHocController { get; }
         public IGetSinhVienTamVangController getAllSinhVienTamVangComtroller { get; }
+        public IAddStudentController addStudentController { get; }
+        public IDeleteStudentController deleteStudentController { get; }
+        public IGetNganhForIdController getNganhForIdController { get; }
         public ManagerServicesFacade(IStudentController studentController, INganhControllers nganhControllers, 
                                      ILopController lopController,IKhoaController khoaController,
                                      IAddKhoaController addKhoaController, IProfileController hoSoController,
@@ -53,7 +56,9 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
                                       IGetKhoaForNameController getKhoaForNameController, IGetNganhForNameController getNganhForNameController,
                                       IGetNganhForKhoaController getNganhForKhoaController, IGetLopWithMaController getLopWithMa,
                                       IGetLopWithNameController getLopWithName, IGetLopForNganhController getLopForNganh,
-                                      IGetAllStudentDangHocController getAllStudentDangHocController, IGetSinhVienTamVangController getAllSinhVienTamVangComtroller)
+                                      IGetAllStudentDangHocController getAllStudentDangHocController, IGetSinhVienTamVangController getAllSinhVienTamVangComtroller,
+                                      IAddStudentController addStudentController, IDeleteStudentController deleteStudentController,
+                                      IGetNganhForIdController getNganhForIdController)
                                      
         {
             this.studentController = studentController;
@@ -82,6 +87,9 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
             this.getLopForNganh = getLopForNganh;
             this.getAllStudentDangHocController = getAllStudentDangHocController;
             this.getAllSinhVienTamVangComtroller = getAllSinhVienTamVangComtroller;
+            this.addStudentController = addStudentController;
+            this.deleteStudentController = deleteStudentController;
+            this.getNganhForIdController = getNganhForIdController;
         }
     }
 }

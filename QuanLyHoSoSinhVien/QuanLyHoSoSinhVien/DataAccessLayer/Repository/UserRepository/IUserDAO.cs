@@ -12,5 +12,6 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.UserRepository
         public List<Entity.User> getAllUser();
         public Entity.User getById(string userName, string passWord);
         public List<SinhVien> get10();
+        public void addRegister(User user);
     }
 }

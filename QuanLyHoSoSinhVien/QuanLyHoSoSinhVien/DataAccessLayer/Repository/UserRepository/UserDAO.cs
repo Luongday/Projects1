@@ -10,7 +10,13 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.UserRepository
 {
     public class UserDAO : IUserDAO
     {
-        DataContext _context = new DataContext();
+        DataContext _context;
+
+        public UserDAO(DataContext context)
+        {
+            _context = context;
+        }
+
         public List<Entity.User> getAllUser() { 
             List<Entity.User> list = new List<Entity.User>();
             list = _context.Users.ToList();
@@ -36,6 +42,20 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.UserRepository
 
             return list;
 
-        } 
+        }
+
+        public void addRegister(Entity.User user)
+        {
+            _context.Add(user);
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it as needed
+                Console.WriteLine($"An error occurred while adding the user: {ex.Message}");
+            }
+        }
     }
 }

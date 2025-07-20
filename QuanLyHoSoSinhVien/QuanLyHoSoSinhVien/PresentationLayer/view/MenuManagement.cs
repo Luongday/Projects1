@@ -13,6 +13,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using Guna.UI2.WinForms;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.Extensions.DependencyInjection;
+using QuanLyHoSoSinhVien.BusinessLayer.Services.KhoaServices;
 using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
 using QuanLyHoSoSinhVien.PresentationLayer;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.DetailsProfileController;
@@ -25,6 +26,7 @@ using QuanLyHoSoSinhVien.PresentationLayer.DTO.HoSoDto;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.KhoaDTO;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.LopDTO;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.NganhDTO;
+using QuanLyHoSoSinhVien.PresentationLayer.DTO.StudentDTO;
 using QuanLyHoSoSinhVien.PresentationLayer.view;
 
 namespace QuanLyHoSoSinhVien.view
@@ -43,13 +45,22 @@ namespace QuanLyHoSoSinhVien.view
         // IEditLopController editLopController;
         IEditLopController editLopController;
         IKhoaController khoaController;
+        IGetKhoaForNameController getKhoaForNameController;
         IProfileController hoSoController;
         private readonly IDetailsProfileController chitietHSController;
         IDeleteKhoaController deleteKhoaController;
         IEditKhoaController editKhoaController;
         IEditProfileController editProfileController;
         IDeleteProfileController deleteProfileController;
+        IGetLopForNganhController getLopForNganhController;
+        IGetLopWithMaController getLopWithMaController;
+        IGetLopWithNameController getLopWithNameController;
+        IGetNganhForKhoaController getNganhForKhoaController;
+        IGetNganhForNameController getNganhForNameController;
+        IGetNganhForIdController getNganhForIdController;
+        IDeleteStudentController deleteStudentController;
         ManagerServicesFacade managerServicesFacade;
+        StudentDto sv;
 
         public MenuManagement(ManagerServicesFacade managerServicesFacade, IServiceProvider serviceProvider)
         {
@@ -72,6 +83,14 @@ namespace QuanLyHoSoSinhVien.view
             this.editLopController = managerServicesFacade.editLopController;
             this.getAllStudentDangHocController = managerServicesFacade.getAllStudentDangHocController;
             this.getAllSinhVienTamVangComtroller = managerServicesFacade.getAllSinhVienTamVangComtroller;
+            this.getKhoaForNameController = managerServicesFacade.getKhoaForNameController;
+            this.getLopForNganhController = managerServicesFacade.getLopForNganh;
+            this.getLopWithMaController = managerServicesFacade.getLopWithMa;
+            this.getLopWithNameController = managerServicesFacade.getLopWithName;
+            this.getNganhForKhoaController = managerServicesFacade.getNganhForKhoaController;
+            this.getNganhForNameController = managerServicesFacade.getNganhForNameController;
+            this.getNganhForIdController = managerServicesFacade.getNganhForIdController;
+            this.deleteStudentController = managerServicesFacade.deleteStudentController;
             TongSoSV.Text = studentController.totalStudent().ToString();
         }
 
@@ -420,7 +439,7 @@ namespace QuanLyHoSoSinhVien.view
             {
                 LoadHoSo();
             }
-            if(tcMenuManager.SelectedTab == tpBaoCaoThongKe)
+            if (tcMenuManager.SelectedTab == tpBaoCaoThongKe)
             {
                 lblToTalSinhVienDangHoc.Text = studentController.totalStudentDangHoc().ToString();
                 lblTotalSinVienTamVang.Text = studentController.totalStudentTamVang().ToString();
@@ -695,15 +714,15 @@ namespace QuanLyHoSoSinhVien.view
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex == 0)
+            if (cbxFieldSearchNganh.SelectedIndex == 0)
             {
                 AddMaNganhToComboBox(cbxTimKiemForNganh);
             }
-            else if (comboBox1.SelectedIndex == 1)
+            else if (cbxFieldSearchNganh.SelectedIndex == 1)
             {
                 AddNganhToComboBox(cbxTimKiemForNganh);
             }
-            else if (comboBox1.SelectedIndex == 2)
+            else if (cbxFieldSearchNganh.SelectedIndex == 2)
             {
                 addKhoaToCombobox(cbxTimKiemForNganh);
             }
@@ -715,11 +734,11 @@ namespace QuanLyHoSoSinhVien.view
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox3.SelectedIndex == 0)
+            if (cbxFieldSearchKhoa.SelectedIndex == 0)
             {
                 addMaKhoaToCombobox(cbxTimKiemForKhoa);
             }
-            else if (comboBox3.SelectedIndex == 1)
+            else if (cbxFieldSearchKhoa.SelectedIndex == 1)
             {
                 addKhoaToCombobox(cbxTimKiemForKhoa);
             }
@@ -731,15 +750,15 @@ namespace QuanLyHoSoSinhVien.view
 
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox5.SelectedIndex == 0)
+            if (cbxFieldSearchLop.SelectedIndex == 0)
             {
                 addMaLopToCombobox(cbxTimKiemForLop);
             }
-            else if (comboBox5.SelectedIndex == 1)
+            else if (cbxFieldSearchLop.SelectedIndex == 1)
             {
                 addLopToCombobox(cbxTimKiemForLop);
             }
-            else if (comboBox5.SelectedIndex == 2)
+            else if (cbxFieldSearchLop.SelectedIndex == 2)
             {
                 AddNganhToComboBox(cbxTimKiemForLop);
             }
@@ -894,6 +913,222 @@ namespace QuanLyHoSoSinhVien.view
 
             dgvDSSVDangHoc.Hide();
             dgvDSSVTamVang.Show();
+        }
+
+        private void btnTimKiemNganh_Click(object sender, EventArgs e)
+        {
+            if (cbxFieldSearchNganh.SelectedIndex == 0)
+            {
+                if (string.IsNullOrEmpty(cbxTimKiemForNganh.Text))
+                {
+                    MessageBox.Show("Vui lòng chọn mã ngành để tìm kiếm");
+                    return;
+                }
+                var dsNganh = getNganhForIdController.getNganhForId(cbxTimKiemForNganh.Text);
+                dgvNganh.Rows.Clear();
+                foreach (var nganh in dsNganh)
+                {
+                    dgvNganh.Rows.Add(
+                        nganh.maNganh,
+                        nganh.tenNganh,
+                        nganh.khoa,
+                        nganh.soLop
+                    );
+                }
+            }
+            else if (cbxFieldSearchNganh.SelectedIndex == 1)
+            {
+                if (string.IsNullOrEmpty(cbxTimKiemForNganh.Text))
+                {
+                    MessageBox.Show("Vui lòng chọn tên ngành để tìm kiếm");
+                    return;
+                }
+                var dsNganh = getNganhForNameController.getNganhForName(cbxTimKiemForNganh.Text);
+                dgvNganh.Rows.Clear();
+                foreach (var nganh in dsNganh)
+                {
+                    dgvNganh.Rows.Add(
+                        nganh.maNganh,
+                        nganh.tenNganh,
+                        nganh.khoa,
+                        nganh.soLop
+                    );
+                }
+            }
+            else if (cbxFieldSearchNganh.SelectedIndex == 2)
+            {
+                if (string.IsNullOrEmpty(cbxTimKiemForNganh.Text))
+                {
+                    MessageBox.Show("Vui lòng chọn khoa để tìm kiếm");
+                    return;
+                }
+                var dsNganh = getNganhForKhoaController.getNganhForKhoa(cbxTimKiemForNganh.Text);
+                dgvNganh.Rows.Clear();
+                foreach (var nganh in dsNganh)
+                {
+                    dgvNganh.Rows.Add(
+                        nganh.maNganh,
+                        nganh.tenNganh,
+                        nganh.khoa,
+                        nganh.soLop
+                    );
+                }
+            }
+        }
+
+        private void btnTimKiemKhoa_Click(object sender, EventArgs e)
+        {
+            if (cbxFieldSearchKhoa.SelectedIndex == 0)
+            {
+                if (string.IsNullOrEmpty(cbxTimKiemForKhoa.Text))
+                {
+                    MessageBox.Show("Vui lòng chọn mã khoa để tìm kiếm");
+                    return;
+                }
+                var khoa = khoaController.getByMa(cbxTimKiemForKhoa.Text);
+                dgvKhoa.Rows.Clear();
+                dgvKhoa.Rows.Add(
+                    khoa.maKhoa,
+                    khoa.tenKhoa,
+                    khoa.soNganh,
+                    khoa.soLop
+                );
+            }
+
+            else if (cbxFieldSearchKhoa.SelectedIndex == 1)
+            {
+                if (string.IsNullOrEmpty(cbxTimKiemForKhoa.Text))
+                {
+                    MessageBox.Show("Vui lòng chọn tên khoa để tìm kiếm");
+                    return;
+                }
+                var dsKhoa = getKhoaForNameController.getKhoaForName(cbxTimKiemForKhoa.Text);
+                dgvKhoa.Rows.Clear();
+                foreach (var khoa in dsKhoa)
+                {
+                    dgvKhoa.Rows.Add(
+                        khoa.maKhoa,
+                        khoa.tenKhoa,
+                        khoa.soNganh,
+                        khoa.soLop
+                    );
+                }
+            }
+        }
+
+        private void btnTimKiemLop_Click(object sender, EventArgs e)
+        {
+            if (cbxFieldSearchLop.SelectedIndex == 0)
+            {
+                if (string.IsNullOrEmpty(cbxTimKiemForLop.Text))
+                {
+                    MessageBox.Show("Vui lòng chọn mã lớp để tìm kiếm");
+                    return;
+                }
+                var lop = getLopWithMaController.getLopWithMa(cbxTimKiemForLop.Text);
+                dgvLop.Rows.Clear();
+                dgvLop.Rows.Add(
+                    lop.maLop,
+                    lop.tenLop,
+                    lop.nganh,
+                    lop.khoa,
+                    lop.siSo
+                );
+            }
+            else if (cbxFieldSearchLop.SelectedIndex == 1)
+            {
+                if (string.IsNullOrEmpty(cbxTimKiemForLop.Text))
+                {
+                    MessageBox.Show("Vui lòng chọn tên lớp để tìm kiếm");
+                    return;
+                }
+                var dsLop = getLopWithNameController.getLopWithName(cbxTimKiemForLop.Text);
+                dgvLop.Rows.Clear();
+                foreach (var lop in dsLop)
+                {
+                    dgvLop.Rows.Add(
+                        lop.maLop,
+                        lop.tenLop,
+                        lop.nganh,
+                        lop.khoa,
+                        lop.siSo
+                    );
+                }
+            }
+            else if (cbxFieldSearchLop.SelectedIndex == 2)
+            {
+                if (string.IsNullOrEmpty(cbxTimKiemForLop.Text))
+                {
+                    MessageBox.Show("Vui lòng chọn ngành để tìm kiếm");
+                    return;
+                }
+                var dsLop = getLopForNganhController.getLopForNganh(cbxTimKiemForLop.Text);
+                dgvLop.Rows.Clear();
+                foreach (var lop in dsLop)
+                {
+                    dgvLop.Rows.Add(
+                        lop.maLop,
+                        lop.tenLop,
+                        lop.nganh,
+                        lop.khoa,
+                        lop.siSo
+                    );
+                }
+            }
+        }
+
+        private void btnXoaSinhVien_Click(object sender, EventArgs e)
+        {
+            string masv = sv.maSV;
+            if (string.IsNullOrEmpty(masv))
+            {
+                MessageBox.Show("Vui lòng chọn sinh viên để xóa.");
+                return;
+            }
+            DialogResult result = MessageBox.Show($"Bạn có chắc muốn xóa sinh viên {masv}?", "Xác nhận xóa", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                bool isDeleted = deleteStudentController.deleteStudent(masv);
+                if (isDeleted)
+                {
+                    MessageBox.Show("Xóa sinh viên thành công.");
+                    Load_SinhVien();
+                }
+                else
+                {
+                    MessageBox.Show("Xóa sinh viên không thành công. Vui lòng kiểm tra lại.");
+                }
+            }
+        }
+
+        private void dgvSinhVien_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow current = dgvSinhVien.CurrentRow;
+            sv = new StudentDto
+            {
+                maSV = current.Cells["msvColInDgvSV"].Value?.ToString() ?? "",
+                tenSv = current.Cells["tenSVColInDgvSV"].Value?.ToString() ?? "",
+                // ngaySinh = DateTime.Parse(current.Cells["ngaySinhColInDgvSv"].Value?.ToString("yyyy/MM/dd") ?? "2000/01/01"),
+                GioiTinh = current.Cells["gtColInDgvSV"].Value?.ToString() ?? "",
+                //  diaChi = current.Cells["diaChiColInDgvSV"].Value?.ToString() ?? "",
+                sdt = current.Cells["sdtColInDgvSV"].Value?.ToString() ?? "",
+                danToc = current.Cells["danTocInDgvSV"].Value?.ToString() ?? "",
+                tonGiao = current.Cells["tonGiaoInDgvSV"].Value?.ToString() ?? "",
+                email = current.Cells["emailInDgvSV"].Value?.ToString() ?? "",
+                cccd = current.Cells["cccdColInDgvSV"].Value?.ToString() ?? "",
+                noiSinh = current.Cells["noiSinhColInDgvSV"].Value?.ToString() ?? "",
+                trangThai = current.Cells["trangThaiColInDgvSV"].Value?.ToString() ?? "",
+                tenLop = current.Cells["lopColInDgvSV"].Value?.ToString() ?? "",
+                tenNganh = current.Cells["nganhInDgvSV"].Value?.ToString() ?? "",
+                tenKhoa = current.Cells["khoaInDgvSV"].Value?.ToString() ?? ""
+            };
+        }
+
+        private void btnThemSinhVien_Click(object sender, EventArgs e)
+        {
+            var themSinhVienFrm = serviceProvider.GetRequiredService<ThemSV>();
+            themSinhVienFrm.Show();
+            this.Hide();
         }
     }
 }

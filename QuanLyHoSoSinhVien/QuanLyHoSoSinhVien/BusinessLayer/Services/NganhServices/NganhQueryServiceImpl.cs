@@ -8,7 +8,7 @@ using QuanLyHoSoSinhVien.DataAccessLayer.Repository.NganhRepository;
 
 namespace QuanLyHoSoSinhVien.BusinessLayer.Services.NganhServices
 {
-    public class NganhQueryServiceImpl : IGetAllNganhService,IGetNganhForNameService,IGetNganhForKhoaService
+    public class NganhQueryServiceImpl : IGetAllNganhService,IGetNganhForNameService,IGetNganhForKhoaService,IGetNganhForIdService
     {
         DataContext _context = new DataContext();
         INganhRepository _nganhRepository;
@@ -22,6 +22,16 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.NganhServices
         {
             var lNganh = _nganhRepository.getAll();
             return lNganh??new List<Nganh>();
+        }
+
+        public List<Nganh> getNganhForId(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return new List<Nganh>();
+            }
+            var lNganh = _nganhRepository.getNganhForID(id).ToList();
+            return lNganh ?? new List<Nganh>();
         }
 
         public List<Nganh> getNganhForKhoa(string tenKhoa)

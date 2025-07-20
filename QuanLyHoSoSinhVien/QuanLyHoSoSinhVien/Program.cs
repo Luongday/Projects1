@@ -56,6 +56,10 @@ namespace QuanLyHoSoSinhVien
             services.AddTransient<IGetAllStudentDangHocController,StudentControllerImpl> ();
             services.AddTransient<IGetAllStudentTamVang,SinhVienQueryImpl>();
             services.AddTransient<IGetSinhVienTamVangController,StudentControllerImpl>();
+            services.AddTransient<IDeleteStudentService,StudentComandServicesImpl>();
+            services.AddTransient<IAddStudentService,StudentComandServicesImpl>();
+            services.AddTransient<IDeleteStudentController,StudentComandControllerImpl>();
+            services.AddTransient<IAddStudentController,StudentComandControllerImpl>();
             //nganh DI
             services.AddTransient<INganhRepository, NganhRepositoryImpl>();
             services.AddTransient<IGetAllNganhService,NganhQueryServiceImpl>();
@@ -70,6 +74,8 @@ namespace QuanLyHoSoSinhVien
             services.AddTransient<IGetNganhForNameController,NganhQueryControllerImpl>();
             services.AddTransient<IGetNganhForKhoaService,NganhQueryServiceImpl>();
             services.AddTransient<IGetNganhForKhoaController,NganhQueryControllerImpl>();
+            services.AddTransient<IGetNganhForIdService,NganhQueryServiceImpl>();
+            services.AddTransient<IGetNganhForIdController,NganhQueryControllerImpl>();
             //lop DI
             services.AddTransient<ILopRepository, LopRepositoryImpl>();
             services.AddTransient<IGetAllLop, LopQueryIServicempl>();
@@ -117,9 +123,8 @@ namespace QuanLyHoSoSinhVien
             services.AddTransient<LoginFrm>();
             services.AddTransient<MenuManagement>();
             services.AddTransient<ThemKhoa>();
-
+            services.AddTransient<ThemSV>();
             services.AddTransient<ChiTietHoSo>();
-
             services.AddTransient<ThemLopFrm>();
             services.AddTransient<MenuStudent>();
 
