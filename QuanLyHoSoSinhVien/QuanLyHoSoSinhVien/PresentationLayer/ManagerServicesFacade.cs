@@ -90,6 +90,7 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
             this.addStudentController = addStudentController;
             this.deleteStudentController = deleteStudentController;
             this.getNganhForIdController = getNganhForIdController;
+            this.editLopController = editLopController;
         }
     }
 }

@@ -64,6 +64,8 @@
             // 
             guna2CustomGradientPanel1.Controls.Add(guna2HtmlLabel1);
             guna2CustomGradientPanel1.CustomizableEdges = customizableEdges1;
+            guna2CustomGradientPanel1.FillColor = Color.SpringGreen;
+            guna2CustomGradientPanel1.FillColor3 = Color.DarkViolet;
             guna2CustomGradientPanel1.Location = new Point(4, 3);
             guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
             guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges2;
@@ -93,6 +95,8 @@
             guna2CustomGradientPanel2.Controls.Add(label2);
             guna2CustomGradientPanel2.Controls.Add(label1);
             guna2CustomGradientPanel2.CustomizableEdges = customizableEdges15;
+            guna2CustomGradientPanel2.FillColor = Color.BurlyWood;
+            guna2CustomGradientPanel2.FillColor4 = Color.DarkOrange;
             guna2CustomGradientPanel2.Location = new Point(4, 177);
             guna2CustomGradientPanel2.Name = "guna2CustomGradientPanel2";
             guna2CustomGradientPanel2.ShadowDecoration.CustomizableEdges = customizableEdges16;
@@ -118,48 +122,68 @@
             // 
             // btnRefesh
             // 
+            btnRefesh.BackColor = Color.Transparent;
+            btnRefesh.BorderRadius = 30;
             btnRefesh.CustomizableEdges = customizableEdges5;
             btnRefesh.DisabledState.BorderColor = Color.DarkGray;
             btnRefesh.DisabledState.CustomBorderColor = Color.DarkGray;
             btnRefesh.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnRefesh.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnRefesh.Font = new Font("Segoe UI", 9F);
+            btnRefesh.FillColor = Color.DarkRed;
+            btnRefesh.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRefesh.ForeColor = Color.White;
             btnRefesh.Location = new Point(427, 229);
             btnRefesh.Name = "btnRefesh";
+            btnRefesh.ShadowDecoration.BorderRadius = 30;
+            btnRefesh.ShadowDecoration.Color = Color.Gray;
             btnRefesh.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnRefesh.ShadowDecoration.Depth = 15;
+            btnRefesh.ShadowDecoration.Enabled = true;
             btnRefesh.Size = new Size(166, 60);
             btnRefesh.TabIndex = 8;
             btnRefesh.Text = "Làm mới";
             // 
             // btnExit
             // 
+            btnExit.BackColor = Color.Transparent;
+            btnExit.BorderRadius = 30;
             btnExit.CustomizableEdges = customizableEdges7;
             btnExit.DisabledState.BorderColor = Color.DarkGray;
             btnExit.DisabledState.CustomBorderColor = Color.DarkGray;
             btnExit.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnExit.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnExit.Font = new Font("Segoe UI", 9F);
+            btnExit.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnExit.ForeColor = Color.White;
             btnExit.Location = new Point(240, 229);
             btnExit.Name = "btnExit";
+            btnExit.ShadowDecoration.BorderRadius = 30;
+            btnExit.ShadowDecoration.Color = Color.Gray;
             btnExit.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            btnExit.ShadowDecoration.Depth = 15;
+            btnExit.ShadowDecoration.Enabled = true;
             btnExit.Size = new Size(166, 60);
             btnExit.TabIndex = 7;
             btnExit.Text = "Hủy";
             // 
             // btnThem
             // 
+            btnThem.BackColor = Color.Transparent;
+            btnThem.BorderRadius = 30;
             btnThem.CustomizableEdges = customizableEdges9;
             btnThem.DisabledState.BorderColor = Color.DarkGray;
             btnThem.DisabledState.CustomBorderColor = Color.DarkGray;
             btnThem.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnThem.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnThem.Font = new Font("Segoe UI", 9F);
+            btnThem.FillColor = Color.Green;
+            btnThem.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnThem.ForeColor = Color.White;
             btnThem.Location = new Point(47, 229);
             btnThem.Name = "btnThem";
+            btnThem.ShadowDecoration.BorderRadius = 30;
+            btnThem.ShadowDecoration.Color = Color.Gray;
             btnThem.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btnThem.ShadowDecoration.Depth = 15;
+            btnThem.ShadowDecoration.Enabled = true;
             btnThem.Size = new Size(166, 60);
             btnThem.TabIndex = 6;
             btnThem.Text = "Thêm ";
@@ -167,6 +191,8 @@
             // 
             // txtTenNganh
             // 
+            txtTenNganh.BackColor = Color.Transparent;
+            txtTenNganh.BorderRadius = 15;
             txtTenNganh.CustomizableEdges = customizableEdges11;
             txtTenNganh.DefaultText = "";
             txtTenNganh.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -187,6 +213,8 @@
             // 
             // txtMaNganh
             // 
+            txtMaNganh.BackColor = Color.Transparent;
+            txtMaNganh.BorderRadius = 15;
             txtMaNganh.CustomizableEdges = customizableEdges13;
             txtMaNganh.DefaultText = "";
             txtMaNganh.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);

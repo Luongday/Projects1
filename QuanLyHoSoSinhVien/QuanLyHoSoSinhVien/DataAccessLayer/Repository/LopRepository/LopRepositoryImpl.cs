@@ -46,12 +46,12 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.LopRepository
         {
             try
             {
-                var existingLop = _dataContext.Lops.Find(lop.manganh);
+                var existingLop = _dataContext.Lops.Find(lop.malop);
                 if (existingLop == null)
                 {
-                    throw new InvalidOperationException($"Khoa with ID {lop.manganh} not found.");
+                    throw new InvalidOperationException($"Lop with ID {lop.malop} not found.");
                 }
-                existingLop.malop = lop.manganh;
+               // existingLop.malop = lop.malop;
                 existingLop.tenlop = lop.tenlop;
                 existingLop.manganh = lop.manganh;
                 int result = _dataContext.SaveChanges();
@@ -63,7 +63,7 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.LopRepository
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("Error updating Khoa.", ex);
+                throw new InvalidOperationException("Error updating Lop.", ex);
             }
         }
     }

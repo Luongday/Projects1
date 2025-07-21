@@ -47,19 +47,20 @@ namespace QuanLyHoSoSinhVien
             services.AddTransient<IUserService,UserServicesImpl>();
             services.AddSingleton<UserDto>();
             //student DI
-            services.AddTransient<IStudentController, StudentControllerImpl>();
+            services.AddTransient<IStudentController, StudentQueryControllerImpl>();
             services.AddTransient<IStudentRepository, StudentRepositoryImpl>();
             services.AddTransient<IGetAllStudent,SinhVienQueryImpl>();
             services.AddTransient<IGetAStudentWithMa, SinhVienQueryImpl>();
-            services.AddTransient<IGetAStudentController, StudentControllerImpl>();
+            services.AddTransient<IGetAStudentController, StudentQueryControllerImpl>();
             services.AddTransient<IGetAllStudentDangHocService,SinhVienQueryImpl>();
-            services.AddTransient<IGetAllStudentDangHocController,StudentControllerImpl> ();
+            services.AddTransient<IGetAllStudentDangHocController,StudentQueryControllerImpl> ();
             services.AddTransient<IGetAllStudentTamVang,SinhVienQueryImpl>();
-            services.AddTransient<IGetSinhVienTamVangController,StudentControllerImpl>();
+            services.AddTransient<IGetSinhVienTamVangController,StudentQueryControllerImpl>();
             services.AddTransient<IDeleteStudentService,StudentComandServicesImpl>();
             services.AddTransient<IAddStudentService,StudentComandServicesImpl>();
             services.AddTransient<IDeleteStudentController,StudentComandControllerImpl>();
             services.AddTransient<IAddStudentController,StudentComandControllerImpl>();
+            services.AddTransient<IGetAllStudentForLopService,SinhVienQueryImpl>();
             //nganh DI
             services.AddTransient<INganhRepository, NganhRepositoryImpl>();
             services.AddTransient<IGetAllNganhService,NganhQueryServiceImpl>();

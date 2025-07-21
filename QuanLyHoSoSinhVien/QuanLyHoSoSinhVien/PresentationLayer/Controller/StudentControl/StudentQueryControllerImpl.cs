@@ -10,18 +10,21 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl
 {
-    public class StudentControllerImpl : IStudentController,IGetAStudentController,IGetAllStudentDangHocController,IGetSinhVienTamVangController
+    public class StudentQueryControllerImpl : IStudentController,IGetAStudentController,IGetAllStudentDangHocController,IGetSinhVienTamVangController,IGetAllStudentForLopController
     {
         IGetAllStudent getAllStudent;
         IGetAStudentWithMa getAStudentWithMa;
         IGetAllStudentDangHocService getAllStudentDangHocService;
         IGetAllStudentTamVang getAllStudentTamVang;
-        public StudentControllerImpl(IGetAllStudent getAllStudent,IGetAStudentWithMa getAStudent, IGetAllStudentDangHocService getAllStudentDangHocService, IGetAllStudentTamVang getAllStudentTamVang)
+        IGetAllStudentForLopService getAllStudentForLopService;
+        public StudentQueryControllerImpl(IGetAllStudent getAllStudent,IGetAStudentWithMa getAStudent, IGetAllStudentDangHocService getAllStudentDangHocService, 
+                                            IGetAllStudentTamVang getAllStudentTamVang, IGetAllStudentForLopService getAllStudentForLopService)
         {
             this.getAllStudent = getAllStudent;
             this.getAStudentWithMa = getAStudent;
             this.getAllStudentDangHocService = getAllStudentDangHocService;
             this.getAllStudentTamVang = getAllStudentTamVang;
+            this.getAllStudentForLopService = getAllStudentForLopService;
         }
 
         public List<StudentDto> getAllSinhVienTamVang()
@@ -49,6 +52,37 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl
         public List<StudentDto> getAllStudentDangHoc()
         {
             return getAllStudentDangHocService.getAllStdentDangHoc().Select(sv => new StudentDto
+            {
+                maSV = sv.masv,
+                tenSv = sv.tensv,
+                ngaySinh = sv.NgaySinh,
+                GioiTinh = sv.gt ? "Nam" : "Nữ",
+                diaChi = sv.dc,
+                danToc = sv.dantoc,
+                tonGiao = sv.tongiao,
+                email = sv.email,
+                sdt = sv.sdt,
+                cccd = sv.cccd,
+                noiSinh = sv.noisinh,
+                trangThai = sv.trangthai,
+                tenLop = sv.Lop?.tenlop ?? "",
+                tenNganh = sv.Lop?.nganh?.tennganh ?? "",
+                tenKhoa = sv.Lop?.nganh?.Khoa?.tenkhoa ?? ""
+            }).ToList();
+        }
+
+        public List<StudentDto> getAllStudentForLop(string tenLop)
+        {
+            if (string.IsNullOrEmpty(tenLop))
+            {
+                return new List<StudentDto>();
+            }
+            List<SinhVien> lSinhVien = getAllStudentForLopService.getSinhVienForLop(tenLop);
+            if (lSinhVien == null || lSinhVien.Count == 0)
+            {
+                return new List<StudentDto>();
+            }
+            return lSinhVien.Select(sv => new StudentDto
             {
                 maSV = sv.masv,
                 tenSv = sv.tensv,

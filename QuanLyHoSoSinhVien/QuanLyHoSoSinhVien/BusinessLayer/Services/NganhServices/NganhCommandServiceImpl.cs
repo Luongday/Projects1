@@ -66,7 +66,7 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.NganhServices
             }
             existingNganh.manganh = nganh.maNganh ?? existingNganh.manganh;
             existingNganh.tennganh = nganh.tenNganh ?? existingNganh.tennganh;
-            existingNganh.makhoa = nganhRepository.getAll().Where(ng => ng.Khoa.tenkhoa==nganh.khoa).FirstOrDefault().Khoa.tenkhoa?? existingNganh.makhoa;
+            existingNganh.makhoa = nganhRepository.getAll().Where(ng => ng.Khoa.tenkhoa==nganh.khoa).FirstOrDefault().Khoa.makhoa?? existingNganh.makhoa;
             nganhRepository.editNganh(existingNganh);
             return true;
         }

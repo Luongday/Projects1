@@ -42,9 +42,10 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices
                 });
                 _userDAO.addRegister(new User
                 {
-                    userId = sv.masv+"register",
+                    userId = sv.masv + "register",
                     userName = "SV" + sv.masv,
                     password = 1111.ToString(), // Default password
+                    isAdmin = false
                 });
                 return true; 
             }

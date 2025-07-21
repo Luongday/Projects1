@@ -96,11 +96,15 @@
             btnRefresh.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnRefresh.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnRefresh.FillColor = Color.Chocolate;
-            btnRefresh.Font = new Font("Segoe UI", 9F);
+            btnRefresh.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRefresh.ForeColor = Color.White;
             btnRefresh.Location = new Point(450, 361);
             btnRefresh.Name = "btnRefresh";
+            btnRefresh.ShadowDecoration.BorderRadius = 25;
+            btnRefresh.ShadowDecoration.Color = Color.DimGray;
             btnRefresh.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnRefresh.ShadowDecoration.Depth = 15;
+            btnRefresh.ShadowDecoration.Enabled = true;
             btnRefresh.Size = new Size(146, 67);
             btnRefresh.TabIndex = 8;
             btnRefresh.Text = "Làm mới";
@@ -109,18 +113,21 @@
             // btnThoat
             // 
             btnThoat.BackColor = Color.Transparent;
-            btnThoat.BorderRadius = 20;
+            btnThoat.BorderRadius = 25;
             btnThoat.CustomizableEdges = customizableEdges3;
             btnThoat.DisabledState.BorderColor = Color.DarkGray;
             btnThoat.DisabledState.CustomBorderColor = Color.DarkGray;
             btnThoat.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnThoat.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnThoat.FillColor = Color.FromArgb(192, 0, 0);
-            btnThoat.Font = new Font("Segoe UI", 9F);
+            btnThoat.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnThoat.ForeColor = Color.White;
-            btnThoat.Location = new Point(261, 361);
+            btnThoat.Location = new Point(254, 361);
             btnThoat.Name = "btnThoat";
+            btnThoat.ShadowDecoration.BorderRadius = 25;
+            btnThoat.ShadowDecoration.Color = Color.Gray;
             btnThoat.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnThoat.ShadowDecoration.Enabled = true;
             btnThoat.Size = new Size(147, 68);
             btnThoat.TabIndex = 7;
             btnThoat.Text = "Thoát";
@@ -129,18 +136,22 @@
             // btnThem
             // 
             btnThem.BackColor = Color.Transparent;
-            btnThem.BorderRadius = 20;
+            btnThem.BorderRadius = 25;
             btnThem.CustomizableEdges = customizableEdges5;
             btnThem.DisabledState.BorderColor = Color.DarkGray;
             btnThem.DisabledState.CustomBorderColor = Color.DarkGray;
             btnThem.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnThem.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnThem.FillColor = Color.FromArgb(0, 192, 0);
-            btnThem.Font = new Font("Segoe UI", 9F);
+            btnThem.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnThem.ForeColor = Color.White;
             btnThem.Location = new Point(49, 361);
             btnThem.Name = "btnThem";
+            btnThem.ShadowDecoration.BorderRadius = 25;
+            btnThem.ShadowDecoration.Color = Color.Gray;
             btnThem.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnThem.ShadowDecoration.Depth = 20;
+            btnThem.ShadowDecoration.Enabled = true;
             btnThem.Size = new Size(146, 67);
             btnThem.TabIndex = 6;
             btnThem.Text = "Thêm";

@@ -10,7 +10,7 @@ using QuanLyHoSoSinhVien.PresentationLayer.DTO.StudentDTO;
 
 namespace QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices
 {
-    public class SinhVienQueryImpl : IGetAllStudent,IGetAStudentWithMa,IGetAllStudentDangHocService,IGetAllStudentTamVang
+    public class SinhVienQueryImpl : IGetAllStudent,IGetAStudentWithMa,IGetAllStudentDangHocService,IGetAllStudentTamVang,IGetAllStudentForLopService
     {
         IStudentRepository studentRepo;
 
@@ -55,6 +55,22 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices
                 new StudentDto { };
             }
             return studentRepo.GetStudentId(maSV);
+        }
+
+        public List<SinhVien> getSinhVienForLop(string tenLop)
+        {
+            if (string.IsNullOrEmpty(tenLop))
+            {
+                return new List<SinhVien>();
+            }
+            var lStudent = studentRepo.GetAllStudents()
+                .Where(sv => sv.Lop.tenlop.Contains(tenLop))
+                .ToList();
+            if (lStudent == null)
+            {
+                return new List<SinhVien>();
+            }
+            return lStudent;
         }
     }
 }

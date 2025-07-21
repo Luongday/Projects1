@@ -59,6 +59,7 @@ namespace QuanLyHoSoSinhVien.view
         IGetNganhForNameController getNganhForNameController;
         IGetNganhForIdController getNganhForIdController;
         IDeleteStudentController deleteStudentController;
+        IEditNganhController editNganhController;
         ManagerServicesFacade managerServicesFacade;
         StudentDto sv;
 
@@ -91,6 +92,7 @@ namespace QuanLyHoSoSinhVien.view
             this.getNganhForNameController = managerServicesFacade.getNganhForNameController;
             this.getNganhForIdController = managerServicesFacade.getNganhForIdController;
             this.deleteStudentController = managerServicesFacade.deleteStudentController;
+            this.editNganhController = managerServicesFacade.editnganhController;
             TongSoSV.Text = studentController.totalStudent().ToString();
         }
 
@@ -394,6 +396,7 @@ namespace QuanLyHoSoSinhVien.view
             if (tcQuanLiNganhKhoaLop.SelectedTab == tpLop)
             {
                 LoadLopDataToGrid();
+                AddNganhToComboBox(cbxNganhAtTPLop);
             }
             if (tcQuanLiNganhKhoaLop.SelectedTab == tpKhoa)
             {
@@ -678,7 +681,7 @@ namespace QuanLyHoSoSinhVien.view
             {
                 if (editLopController.editLop(new LopDto
                 {
-                    maLop = txtMaLop.Text,
+                    maLop = txtMaLop.Text.Trim(),
                     tenLop = txtTenLop.Text,
                     nganh = cbxNganhAtTPLop.SelectedItem.ToString() ?? ""
                 }))
@@ -806,9 +809,9 @@ namespace QuanLyHoSoSinhVien.view
                 panel.Location = new Point(panel.Location.X, panel.Location.Y - 8);
 
                 //Tăng hiệu ứng bóng
-                panel.ShadowDepth = 100;
-                panel.ShadowShift = 15;
-                panel.ShadowColor = Color.Gray;
+                panel.ShadowDepth = 110;
+                // panel.ShadowShift = 15;
+                panel.ShadowColor = Color.Black;
             }
         }
 
@@ -829,9 +832,9 @@ namespace QuanLyHoSoSinhVien.view
 
                 // Giảm hiệu ứng bóng
                 panel.ShadowStyle = Guna.UI2.WinForms.Guna2ShadowPanel.ShadowMode.Dropped;
-                panel.ShadowDepth = 20;
-                panel.ShadowShift = 15;
-                panel.ShadowColor = Color.DarkGray;
+                panel.ShadowDepth = 100;
+                //panel.ShadowShift = 5;
+                panel.ShadowColor = Color.Black;
 
             }
         }
@@ -859,9 +862,9 @@ namespace QuanLyHoSoSinhVien.view
                 panel.Location = new Point(panel.Location.X, panel.Location.Y - 8);
 
                 // Tăng hiệu ứng bóng
-                panel.ShadowDepth = 100;
-                panel.ShadowShift = 15;
-                panel.ShadowColor = Color.Gray;
+                panel.ShadowDepth = 110;
+                //panel.ShadowShift = 5;
+                panel.ShadowColor = Color.Black;
 
             }
         }
@@ -884,9 +887,9 @@ namespace QuanLyHoSoSinhVien.view
 
                 // Giảm hiệu ứng bóng
                 panel.ShadowStyle = Guna.UI2.WinForms.Guna2ShadowPanel.ShadowMode.Dropped;
-                panel.ShadowDepth = 20;
-                panel.ShadowShift = 15;
-                panel.ShadowColor = Color.DarkGray;
+                panel.ShadowDepth = 100;
+                //panel.ShadowShift = 15;
+                panel.ShadowColor = Color.Black;
 
             }
         }
@@ -1129,6 +1132,75 @@ namespace QuanLyHoSoSinhVien.view
             var themSinhVienFrm = serviceProvider.GetRequiredService<ThemSV>();
             themSinhVienFrm.Show();
             this.Hide();
+        }
+
+        private void btnSuaNganh_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtMaNganh.Text) || string.IsNullOrEmpty(txtTenNganh.Text) || string.IsNullOrEmpty(cbxDsKhoa.Text))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
+                return;
+            }
+            DialogResult result = MessageBox.Show("Bạn muốn sửa thông tin ngành này?", "Thông báo", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                if (editNganhController.editNganh(new NganhDto
+                {
+                    maNganh = txtMaNganh.Text,
+                    tenNganh = txtTenNganh.Text,
+                    khoa = cbxDsKhoa.SelectedItem.ToString() ?? ""
+                }))
+                {
+                    MessageBox.Show("Sửa ngành thành công");
+                    LoadNganhDataToGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Sửa ngành thất bại, vui lòng kiểm tra lại thông tin");
+                }
+            }
+        }
+
+        private void cboFieldForSearchSinhVien_TextChanged(object sender, EventArgs e)
+        {
+            if (cboFieldForSearchSinhVien.SelectedIndex == 0)
+            {
+                //AddMaNganhToComboBox(cboTimKiemSinhVien);
+            }
+            else if (cboFieldForSearchSinhVien.SelectedIndex == 1)
+            {
+                addLopToCombobox(cboSearchSinhVien);
+            }
+            else if (cboFieldForSearchSinhVien.SelectedIndex == 2)
+            {
+                AddNganhToComboBox(cboSearchSinhVien);
+            }
+            else if (cboFieldForSearchSinhVien.SelectedIndex == 3)
+            {
+                cboSearchSinhVien.DataSource = new List<string> { "Đang học", "Tạm dừng" };
+
+            }
+        }
+
+        private void cboFieldForSearchSinhVien_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboFieldForSearchSinhVien.SelectedIndex == 0)
+            {
+                //AddMaNganhToComboBox(cboTimKiemSinhVien);
+            }
+            else if (cboFieldForSearchSinhVien.SelectedIndex == 1)
+            {
+                addLopToCombobox(cboSearchSinhVien);
+            }
+            else if (cboFieldForSearchSinhVien.SelectedIndex == 2)
+            {
+                AddNganhToComboBox(cboSearchSinhVien);
+            }
+            else if (cboFieldForSearchSinhVien.SelectedIndex == 3)
+            {
+                cboSearchSinhVien.DataSource = new List<string> { "Đang học", "Tạm dừng" };
+
+            }
         }
     }
 }
