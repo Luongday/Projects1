@@ -116,8 +116,10 @@ namespace QuanLyHoSoSinhVien
             services.AddTransient<IDeleteProfileServices, ProfileComandServicesImpl>();
             //Chi tiet ho so DI
             services.AddTransient<IDetailsProfileRepository, DetailsProfileRepositoryImpl>();
-            services.AddTransient<IDetailsProfileController, DetailsProfileControllerImpl>();
-            services.AddTransient<ITakeADetailsProfileOfTheStudentServices, DetailsProfileQueryImpl>();
+            services.AddTransient<IDetailsProfileController, DetailsProfileQueryControllerImpl>();
+            services.AddTransient<ITakeADetailsProfileOfTheStudentServices, DetailsProfileQueryServicesImpl>();
+            services.AddTransient<IEditDetailsProfileServices, DetailsProfileComandServicesImpl>();
+            services.AddTransient<IEditDetailsProfileController, DetailsProfileComandControllerImpl>();
 
 
             services.AddTransient<ThemNganhFrm>();

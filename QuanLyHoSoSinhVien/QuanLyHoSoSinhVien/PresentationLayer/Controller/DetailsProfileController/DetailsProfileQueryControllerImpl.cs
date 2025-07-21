@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.DetailsProfileController
 {
-    public class DetailsProfileControllerImpl : IDetailsProfileController
+    public class DetailsProfileQueryControllerImpl : IDetailsProfileController
     {
         private readonly ITakeADetailsProfileOfTheStudentServices _getInfoStudent; 
-        public DetailsProfileControllerImpl(ITakeADetailsProfileOfTheStudentServices getInforStudent)
+        public DetailsProfileQueryControllerImpl(ITakeADetailsProfileOfTheStudentServices getInforStudent)
         {
             this._getInfoStudent = getInforStudent;
         }

@@ -60,6 +60,7 @@ namespace QuanLyHoSoSinhVien.view
         IGetNganhForIdController getNganhForIdController;
         IDeleteStudentController deleteStudentController;
         IEditNganhController editNganhController;
+        IEditDetailsProfileController editDetailsProfileController;
         ManagerServicesFacade managerServicesFacade;
         StudentDto sv;
 
@@ -93,7 +94,13 @@ namespace QuanLyHoSoSinhVien.view
             this.getNganhForIdController = managerServicesFacade.getNganhForIdController;
             this.deleteStudentController = managerServicesFacade.deleteStudentController;
             this.editNganhController = managerServicesFacade.editnganhController;
+            this.editDetailsProfileController = managerServicesFacade.editDetailsProfileController;
             TongSoSV.Text = studentController.totalStudent().ToString();
+        }
+
+        public MenuManagement()
+        {
+            InitializeComponent();
         }
 
         private void Load_SinhVien()
@@ -146,6 +153,7 @@ namespace QuanLyHoSoSinhVien.view
                 );
             }
         }
+
         private void LoadSinhVienTamVang()
         {
             dgvDSSVTamVang.Rows.Clear();
@@ -272,6 +280,7 @@ namespace QuanLyHoSoSinhVien.view
             }
 
         }
+
         public void AddMaNganhToComboBox(ComboBox cbx)
         {
             try
@@ -422,8 +431,9 @@ namespace QuanLyHoSoSinhVien.view
                 MessageBox.Show("Vui lòng chọn hồ sơ sinh viên từ danh sách!");
                 return;
             }
-            var chiTietHoSo = new ChiTietHoSo(selectedMaSv, selectedMaHs, chitietHSController);
+            var chiTietHoSo = new ChiTietHoSo(selectedMaSv, selectedMaHs, chitietHSController, lopController, nganhControllers, khoaController, studentController, editDetailsProfileController, serviceProvider);
             chiTietHoSo.ShowDialog();
+            this.Hide();
         }
 
         private void guna2DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

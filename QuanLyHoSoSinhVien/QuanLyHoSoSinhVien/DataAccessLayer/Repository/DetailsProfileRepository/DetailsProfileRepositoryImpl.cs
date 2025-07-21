@@ -18,6 +18,55 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.DetailsProfileRepository
             _context = context;
         }
 
+        public void EditDetailsProfile(DetailsProfileDto sv)
+        {
+            var entity = _context.SinhViens.Include(s => s.Lop).ThenInclude(p => p.nganh).ThenInclude(g => g.Khoa).FirstOrDefault(x => x.masv == sv.maSV);
+            if(entity != null && sv.maSV != null)
+            {
+                entity.tensv = sv.tenSv;
+                entity.NgaySinh = sv.ngaySinh;
+                entity.gt = sv.GioiTinh == "Nam" ? true : false;
+                entity.dc = sv.diaChi;
+                entity.sdt = sv.sdt;
+                entity.dantoc = sv.danToc;
+                entity.tongiao = sv.tonGiao;
+                entity.email = sv.email;
+                entity.cccd = sv.cccd;
+                entity.noisinh = sv.noiSinh;
+                entity.trangthai = sv.trangThai;
+
+                if (entity.malop != null)
+                {
+                    var lop = _context.Lops.FirstOrDefault(x => x.malop == entity.malop);
+                    if (lop != null)
+                    {
+                        lop.tenlop = sv.tenLop;
+                        if (!string.IsNullOrEmpty(lop.manganh))
+                        {
+                            var nganh = _context.Nganhs.FirstOrDefault(x => x.manganh == lop.manganh);
+                            if (nganh != null)
+                            {
+                                nganh.tennganh = sv.tenNganh;
+                                if (!string.IsNullOrEmpty(nganh.makhoa))
+                                {
+                                    var khoa = _context.Khoas.FirstOrDefault(x => x.makhoa == nganh.makhoa);
+                                    if (khoa != null)
+                                    {
+                                        khoa.tenkhoa = sv.tenKhoa;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+         
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
+
         public SinhVien TakeInfoAStudentById(string masv)
         {
             return _context.SinhViens
@@ -27,6 +76,7 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.DetailsProfileRepository
                 .AsNoTracking()
                 .FirstOrDefault(sv => sv.masv == masv);
         }
+
     }
 }
 

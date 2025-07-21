@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace QuanLyHoSoSinhVien.BusinessLayer.Services.DetailsProefileServices
 {
-    public class DetailsProfileQueryImpl : ITakeADetailsProfileOfTheStudentServices
+    public class DetailsProfileQueryServicesImpl : ITakeADetailsProfileOfTheStudentServices
     {
         private readonly IDetailsProfileRepository _detailsProfileRepository;
-        public DetailsProfileQueryImpl(IDetailsProfileRepository detailsProfileRepository)
+        public DetailsProfileQueryServicesImpl(IDetailsProfileRepository detailsProfileRepository)
         {
             this._detailsProfileRepository = detailsProfileRepository;
         }
