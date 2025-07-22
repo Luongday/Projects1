@@ -10,8 +10,10 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.UserRepository
     public interface IUserDAO
     {
         public List<Entity.User> getAllUser();
-        public Entity.User getById(string userName, string passWord);
+        public Entity.User getUserWithUserNamePass(string userName, string passWord);
         public List<SinhVien> get10();
         public void addRegister(User user);
+        public void editRegister(User user);
+        public User getUserForId(string userId);
     }
 }

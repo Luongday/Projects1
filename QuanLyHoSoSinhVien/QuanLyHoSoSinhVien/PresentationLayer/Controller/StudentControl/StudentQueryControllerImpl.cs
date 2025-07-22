@@ -10,21 +10,24 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl
 {
-    public class StudentQueryControllerImpl : IStudentController,IGetAStudentController,IGetAllStudentDangHocController,IGetSinhVienTamVangController,IGetAllStudentForLopController
+    public class StudentQueryControllerImpl : IStudentController,IGetAStudentController,IGetAllStudentDangHocController,IGetSinhVienTamVangController,IGetAllStudentForLopController,IGetAllStudentForNganhController
     {
         IGetAllStudent getAllStudent;
         IGetAStudentWithMa getAStudentWithMa;
         IGetAllStudentDangHocService getAllStudentDangHocService;
         IGetAllStudentTamVang getAllStudentTamVang;
         IGetAllStudentForLopService getAllStudentForLopService;
+        IGetStudentForNganhService getStudentForNganhService;
         public StudentQueryControllerImpl(IGetAllStudent getAllStudent,IGetAStudentWithMa getAStudent, IGetAllStudentDangHocService getAllStudentDangHocService, 
-                                            IGetAllStudentTamVang getAllStudentTamVang, IGetAllStudentForLopService getAllStudentForLopService)
+                                            IGetAllStudentTamVang getAllStudentTamVang, IGetAllStudentForLopService getAllStudentForLopService,
+                                            IGetStudentForNganhService getStudentForNganhService)
         {
             this.getAllStudent = getAllStudent;
             this.getAStudentWithMa = getAStudent;
             this.getAllStudentDangHocService = getAllStudentDangHocService;
             this.getAllStudentTamVang = getAllStudentTamVang;
             this.getAllStudentForLopService = getAllStudentForLopService;
+            this.getStudentForNganhService = getStudentForNganhService;
         }
 
         public List<StudentDto> getAllSinhVienTamVang()
@@ -150,6 +153,37 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl
                 tenKhoa = sv.Lop?.nganh?.Khoa?.tenkhoa ?? ""
             };
             return student;
+        }
+
+        public List<StudentDto> getStudentForNganhController(string maNganh)
+        {
+            if (string.IsNullOrEmpty(maNganh))
+            {
+                return new List<StudentDto>();
+            }
+            List<SinhVien> lSinhVien = getStudentForNganhService.getStudentsByNganh(maNganh);
+            if (lSinhVien == null || lSinhVien.Count == 0)
+            {
+                return new List<StudentDto>();
+            }
+            return lSinhVien.Select(sv => new StudentDto
+            {
+                maSV = sv.masv??"",
+                tenSv = sv.tensv??"",
+                ngaySinh = sv.NgaySinh,
+                GioiTinh = sv.gt ? "Nam" : "Nữ",
+                diaChi = sv.dc,
+                danToc = sv.dantoc,
+                tonGiao = sv.tongiao,
+                email = sv.email,
+                sdt = sv.sdt,
+                cccd = sv.cccd,
+                noiSinh = sv.noisinh,
+                trangThai = sv.trangthai,
+                tenLop = sv.Lop?.tenlop ?? "",
+                tenNganh = sv.Lop?.nganh?.tennganh ?? "",
+                tenKhoa = sv.Lop?.nganh?.Khoa?.tenkhoa ?? ""
+            }).ToList();
         }
 
         public int totalStudent()

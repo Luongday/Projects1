@@ -46,6 +46,9 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
         public IGetNganhForIdController getNganhForIdController { get; }
 
         public IEditDetailsProfileController editDetailsProfileController { get; }
+        public IGetAllStudentForLopController   getAllStudentForLop { get;  }
+        public IGetAllStudentForNganhController getAllStudnetForNganh { get; }
+        public IEditRegisterController editRegisterController { get;  } 
 
         public ManagerServicesFacade(IStudentController studentController, INganhControllers nganhControllers,
                                      ILopController lopController, IKhoaController khoaController,
@@ -61,7 +64,9 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
                                       IGetLopWithNameController getLopWithName, IGetLopForNganhController getLopForNganh,
                                       IGetAllStudentDangHocController getAllStudentDangHocController, IGetSinhVienTamVangController getAllSinhVienTamVangComtroller,
                                       IAddStudentController addStudentController, IDeleteStudentController deleteStudentController,
-                                      IGetNganhForIdController getNganhForIdController, IEditDetailsProfileController editDetailsProfileController)
+                                      IGetNganhForIdController getNganhForIdController, IEditDetailsProfileController editDetailsProfileController,
+                                      IGetAllStudentForLopController getAllStudentForLop, IGetAllStudentForNganhController getAllStudnetForNganh,
+                                      IEditRegisterController editRegisterController)
                                      
         {
             this.studentController = studentController;
@@ -95,6 +100,9 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
             this.getNganhForIdController = getNganhForIdController;
             this.editLopController = editLopController;
             this.editDetailsProfileController = editDetailsProfileController;
+            this.getAllStudentForLop = getAllStudentForLop;
+            this.getAllStudnetForNganh = getAllStudnetForNganh;
+            this.editRegisterController = editRegisterController;
         }
     }
 }

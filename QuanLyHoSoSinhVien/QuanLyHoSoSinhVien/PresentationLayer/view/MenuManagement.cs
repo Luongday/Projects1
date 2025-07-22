@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using ClosedXML.Excel;
 using Guna.UI2.WinForms;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.Extensions.DependencyInjection;
@@ -61,6 +62,9 @@ namespace QuanLyHoSoSinhVien.view
         IDeleteStudentController deleteStudentController;
         IEditNganhController editNganhController;
         IEditDetailsProfileController editDetailsProfileController;
+        IGetAllStudentForNganhController getAllStudnetForNganhController;
+        IGetAllStudentForLopController getAllStudentForLopController;
+        IGetAStudentController getAStudentController;
         ManagerServicesFacade managerServicesFacade;
         StudentDto sv;
 
@@ -95,6 +99,9 @@ namespace QuanLyHoSoSinhVien.view
             this.deleteStudentController = managerServicesFacade.deleteStudentController;
             this.editNganhController = managerServicesFacade.editnganhController;
             this.editDetailsProfileController = managerServicesFacade.editDetailsProfileController;
+            this.getAllStudnetForNganhController = managerServicesFacade.getAllStudnetForNganh;
+            this.getAllStudentForLopController = managerServicesFacade.getAllStudentForLop;
+            this.getAStudentController = managerServicesFacade.getAStudent;
             TongSoSV.Text = studentController.totalStudent().ToString();
         }
 
@@ -369,6 +376,20 @@ namespace QuanLyHoSoSinhVien.view
                 MessageBox.Show("khoaController is null");
             }
 
+        }
+        public void AddMaSVtoCombobox(ComboBox cbx)
+        {
+            try
+            {
+                List<StudentDto> lStudentDto = studentController.getAllStudentWithFullInfor() ?? new List<StudentDto>();
+                cbx.DataSource = null;
+                cbx.Items.Clear();
+                cbx.DataSource = lStudentDto.Select(sv => sv.maSV).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("StudentController is null");
+            }
         }
         public void setPanel()
         {
@@ -1196,7 +1217,7 @@ namespace QuanLyHoSoSinhVien.view
         {
             if (cboFieldForSearchSinhVien.SelectedIndex == 0)
             {
-                //AddMaNganhToComboBox(cboTimKiemSinhVien);
+                AddMaSVtoCombobox(cboSearchSinhVien);
             }
             else if (cboFieldForSearchSinhVien.SelectedIndex == 1)
             {
@@ -1210,6 +1231,195 @@ namespace QuanLyHoSoSinhVien.view
             {
                 cboSearchSinhVien.DataSource = new List<string> { "Đang học", "Tạm dừng" };
 
+            }
+        }
+
+        private void btnTimKiemForStudent_Click(object sender, EventArgs e)
+        {
+            if (cboFieldForSearchSinhVien.SelectedIndex == 0)
+            {
+                var StudentWithId = getAStudentController.getAStudent(cboSearchSinhVien.Text);
+                if (StudentWithId != null)
+                {
+                    dgvSinhVien.Rows.Clear();
+                    dgvSinhVien.Rows.Add(
+                        StudentWithId.maSV,
+                        StudentWithId.tenSv,
+                        StudentWithId.ngaySinh.ToString("yyyy/MM/dd"),
+                        StudentWithId.GioiTinh,
+                        StudentWithId.diaChi,
+                        StudentWithId.sdt,
+                        StudentWithId.danToc,
+                        StudentWithId.tonGiao,
+                        StudentWithId.email,
+                        StudentWithId.cccd,
+                        StudentWithId.noiSinh,
+                        StudentWithId.trangThai,
+                        StudentWithId.tenLop,
+                        StudentWithId.tenNganh,
+                        StudentWithId.tenKhoa
+                    );
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy sinh viên với mã này.");
+                }
+            }
+            else if (cboFieldForSearchSinhVien.SelectedIndex == 1)
+            {
+                var lStudentInLop = getAllStudentForLopController.getAllStudentForLop(cboSearchSinhVien.Text);
+                if (lStudentInLop != null)
+                {
+                    dgvSinhVien.Rows.Clear();
+                    foreach (var student in lStudentInLop)
+                    {
+
+                        dgvSinhVien.Rows.Add(
+                            student.maSV,
+                            student.tenSv,
+                            student.ngaySinh.ToString("yyyy/MM/dd"),
+                            student.GioiTinh,
+                            student.diaChi,
+                            student.sdt,
+                            student.danToc,
+                            student.tonGiao,
+                            student.email,
+                            student.cccd,
+                            student.noiSinh,
+                            student.trangThai,
+                            student.tenLop,
+                            student.tenNganh,
+                            student.tenKhoa
+                        );
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy sinh viên trong lớp này.");
+                }
+            }
+            else if (cboFieldForSearchSinhVien.SelectedIndex == 2)
+            {
+                var lStudentInNganh = getAllStudnetForNganhController.getStudentForNganhController(cboSearchSinhVien.Text);
+                if (lStudentInNganh != null)
+                {
+                    dgvSinhVien.Rows.Clear();
+                    foreach (var student in lStudentInNganh)
+                    {
+
+                        dgvSinhVien.Rows.Add(
+                            student.maSV,
+                            student.tenSv,
+                            student.ngaySinh.ToString("yyyy/MM/dd"),
+                            student.GioiTinh,
+                            student.diaChi,
+                            student.sdt,
+                            student.danToc,
+                            student.tonGiao,
+                            student.email,
+                            student.cccd,
+                            student.noiSinh,
+                            student.trangThai,
+                            student.tenLop,
+                            student.tenNganh,
+                            student.tenKhoa
+                        );
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy sinh viên trong ngành này.");
+                }
+            }
+            else if (cboFieldForSearchSinhVien.SelectedIndex == 3)
+            {
+                if (cboSearchSinhVien.Text.Contains("Đang học"))
+                {
+                    var lStudentWithStatusDangHoc = getAllStudentDangHocController.getAllStudentDangHoc();
+                    if (lStudentWithStatusDangHoc != null)
+                    {
+                        dgvSinhVien.Rows.Clear();
+                        foreach (var student in lStudentWithStatusDangHoc)
+                        {
+
+                            dgvSinhVien.Rows.Add(
+                                student.maSV,
+                                student.tenSv,
+                                student.ngaySinh.ToString("yyyy/MM/dd"),
+                                student.GioiTinh,
+                                student.diaChi,
+                                student.sdt,
+                                student.danToc,
+                                student.tonGiao,
+                                student.email,
+                                student.cccd,
+                                student.noiSinh,
+                                student.trangThai,
+                                student.tenLop,
+                                student.tenNganh,
+                                student.tenKhoa
+                            );
+                        }
+                    }
+                }
+                if (cboSearchSinhVien.Text.Contains("Tạm vắng"))
+                {
+                    var lStudentTamVang = getAllSinhVienTamVangComtroller.getAllSinhVienTamVang();
+                    if (lStudentTamVang != null)
+                    {
+                        dgvSinhVien.Rows.Clear();
+                        foreach (var student in lStudentTamVang)
+                        {
+
+                            dgvSinhVien.Rows.Add(
+                                student.maSV,
+                                student.tenSv,
+                                student.ngaySinh.ToString("yyyy/MM/dd"),
+                                student.GioiTinh,
+                                student.diaChi,
+                                student.sdt,
+                                student.danToc,
+                                student.tonGiao,
+                                student.email,
+                                student.cccd,
+                                student.noiSinh,
+                                student.trangThai,
+                                student.tenLop,
+                                student.tenNganh,
+                                student.tenKhoa
+                            );
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnLuuFile_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel Files|*.xlsx";
+            saveFileDialog.Title = "Lưu danh sách sinh viên";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                var wb = new XLWorkbook();
+                var ws = wb.Worksheets.Add("DanhSachSinhVien");
+
+                // Giả sử bạn có DataGridView dgvSinhVien
+                for (int i = 0; i < dgvSinhVien.Columns.Count; i++)
+                {
+                    ws.Cell(1, i + 1).Value = dgvSinhVien.Columns[i].HeaderText;
+                }
+
+                for (int i = 0; i < dgvSinhVien.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dgvSinhVien.Columns.Count; j++)
+                    {
+                        ws.Cell(i + 2, j + 1).Value = dgvSinhVien.Rows[i].Cells[j].Value?.ToString() ?? "";
+                    }
+                }
+
+                wb.SaveAs(saveFileDialog.FileName);
+                MessageBox.Show("Lưu file thành công!");
             }
         }
     }

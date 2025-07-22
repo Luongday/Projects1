@@ -45,22 +45,27 @@ namespace QuanLyHoSoSinhVien
             services.AddTransient<IUserController, UserControllerImpl>();
             services.AddTransient<IUserDAO,UserDAO>();
             services.AddTransient<IUserService,UserServicesImpl>();
+            services.AddTransient<IEditRegisterService, UserServicesImpl>();
+            services.AddTransient<IEditRegisterController, UserControllerImpl>();
             services.AddSingleton<UserDto>();
             //student DI
             services.AddTransient<IStudentController, StudentQueryControllerImpl>();
             services.AddTransient<IStudentRepository, StudentRepositoryImpl>();
-            services.AddTransient<IGetAllStudent,SinhVienQueryImpl>();
-            services.AddTransient<IGetAStudentWithMa, SinhVienQueryImpl>();
+            services.AddTransient<IGetAllStudent,SinhVienServicesQueryImpl>();
+            services.AddTransient<IGetAStudentWithMa, SinhVienServicesQueryImpl>();
             services.AddTransient<IGetAStudentController, StudentQueryControllerImpl>();
-            services.AddTransient<IGetAllStudentDangHocService,SinhVienQueryImpl>();
+            services.AddTransient<IGetAllStudentDangHocService,SinhVienServicesQueryImpl>();
             services.AddTransient<IGetAllStudentDangHocController,StudentQueryControllerImpl> ();
-            services.AddTransient<IGetAllStudentTamVang,SinhVienQueryImpl>();
+            services.AddTransient<IGetAllStudentTamVang,SinhVienServicesQueryImpl>();
             services.AddTransient<IGetSinhVienTamVangController,StudentQueryControllerImpl>();
             services.AddTransient<IDeleteStudentService,StudentComandServicesImpl>();
             services.AddTransient<IAddStudentService,StudentComandServicesImpl>();
             services.AddTransient<IDeleteStudentController,StudentComandControllerImpl>();
             services.AddTransient<IAddStudentController,StudentComandControllerImpl>();
-            services.AddTransient<IGetAllStudentForLopService,SinhVienQueryImpl>();
+            services.AddTransient<IGetAllStudentForLopService,SinhVienServicesQueryImpl>();
+            services.AddTransient<IGetAllStudentForLopController, StudentQueryControllerImpl>();
+            services.AddTransient<IGetAllStudentForNganhController, StudentQueryControllerImpl>();
+            services.AddTransient<IGetStudentForNganhService,SinhVienServicesQueryImpl>();
             //nganh DI
             services.AddTransient<INganhRepository, NganhRepositoryImpl>();
             services.AddTransient<IGetAllNganhService,NganhQueryServiceImpl>();
@@ -130,13 +135,14 @@ namespace QuanLyHoSoSinhVien
             services.AddTransient<ChiTietHoSo>();
             services.AddTransient<ThemLopFrm>();
             services.AddTransient<MenuStudent>();
+            services.AddTransient<QuanLiTaiKhoan>();
 
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             var serviceProvider = services.BuildServiceProvider();
 
             // Lấy LoginFrm từ container (có inject UserControllers)
-            var loginForm = serviceProvider.GetRequiredService<MenuManagement>();
+            var loginForm = serviceProvider.GetRequiredService<LoginFrm>();
             Application.Run(loginForm);
         }
     }

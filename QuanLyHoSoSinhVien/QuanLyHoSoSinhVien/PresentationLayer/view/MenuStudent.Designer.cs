@@ -76,6 +76,7 @@
             lblstudentNameAtBanner = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2CustomGradientPanel2 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            comboBox1 = new ComboBox();
             btnLogout = new Guna.UI2.WinForms.Guna2Button();
             lblmsvAtHeader = new Label();
             lblstudentNameAtheader = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -511,6 +512,7 @@
             // 
             // guna2CustomGradientPanel2
             // 
+            guna2CustomGradientPanel2.Controls.Add(comboBox1);
             guna2CustomGradientPanel2.Controls.Add(btnLogout);
             guna2CustomGradientPanel2.Controls.Add(lblmsvAtHeader);
             guna2CustomGradientPanel2.Controls.Add(lblstudentNameAtheader);
@@ -524,6 +526,16 @@
             guna2CustomGradientPanel2.ShadowDecoration.CustomizableEdges = customizableEdges10;
             guna2CustomGradientPanel2.Size = new Size(1228, 126);
             guna2CustomGradientPanel2.TabIndex = 1;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Đổi mật khẩu" });
+            comboBox1.Location = new Point(814, 84);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(23, 33);
+            comboBox1.TabIndex = 6;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // btnLogout
             // 
@@ -574,7 +586,7 @@
             guna2CustomGradientPanel4.CustomizableEdges = customizableEdges7;
             guna2CustomGradientPanel4.FillColor = Color.DimGray;
             guna2CustomGradientPanel4.FillColor4 = Color.DimGray;
-            guna2CustomGradientPanel4.Location = new Point(700, 9);
+            guna2CustomGradientPanel4.Location = new Point(679, 3);
             guna2CustomGradientPanel4.Name = "guna2CustomGradientPanel4";
             guna2CustomGradientPanel4.ShadowDecoration.CustomizableEdges = customizableEdges8;
             guna2CustomGradientPanel4.Size = new Size(128, 114);
@@ -658,5 +670,6 @@
         private Label label14;
         private Label lblTrangThai;
         private Label trangthai;
+        private ComboBox comboBox1;
     }
 }

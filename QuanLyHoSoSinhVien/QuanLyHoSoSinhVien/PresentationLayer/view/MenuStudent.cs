@@ -11,6 +11,7 @@ using Guna.UI2.WinForms;
 using Microsoft.Extensions.DependencyInjection;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.UserDTO;
+using QuanLyHoSoSinhVien.PresentationLayer.view;
 
 namespace QuanLyHoSoSinhVien.view
 {
@@ -205,6 +206,16 @@ namespace QuanLyHoSoSinhVien.view
                 panel.ShadowStyle = Guna.UI2.WinForms.Guna2ShadowPanel.ShadowMode.Dropped;
                 panel.ShadowDepth = 20;
                 panel.ShadowColor = Color.DarkGray;
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(comboBox1.SelectedIndex == 0)
+            {
+                var menuRegister = serviceProvider.GetRequiredService<QuanLiTaiKhoan>();
+                menuRegister.Show();
+                this.Close();
             }
         }
     }

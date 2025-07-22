@@ -46,6 +46,8 @@ namespace QuanLyHoSoSinhVien.view
                 {
                     var userDto = serviceProvider.GetRequiredService<UserDto>();
                     userDto.userId = user.userId; 
+                    userDto.userName = userName;
+                    userDto.passWord = password;
                     userDto.isAdmin = user.isAdmin;
                 }
                 if (user.isAdmin)

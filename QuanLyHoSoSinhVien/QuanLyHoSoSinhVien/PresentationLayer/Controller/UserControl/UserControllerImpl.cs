@@ -10,13 +10,32 @@ using QuanLyHoSoSinhVien.PresentationLayer.DTO.UserDTO;
 
 namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.UserControl
 {
-    public class UserControllerImpl : IUserController
+    public class UserControllerImpl : IUserController,IEditRegisterController
     {
         private readonly IUserService _userService;
+        private readonly IEditRegisterService _editRegisterService;
 
-        public UserControllerImpl(IUserService userService)
+        public UserControllerImpl(IUserService userService, IEditRegisterService editRegisterService)
         {
             _userService = userService;
+            _editRegisterService = editRegisterService;
+        }
+
+        public bool editRegister(UserDto userDto)
+        {
+            if(userDto == null || string.IsNullOrEmpty(userDto.userName) || string.IsNullOrEmpty(userDto.passWord)||
+                string.IsNullOrWhiteSpace(userDto.userName)||string.IsNullOrWhiteSpace(userDto.passWord))
+            {
+                return false;
+            }
+            UserDto user = new UserDto
+            {
+                userId = userDto.userId,
+                userName = userDto.userName,
+                passWord = userDto.passWord,
+                isAdmin = userDto.isAdmin
+            };
+            return _editRegisterService.editRegister(user);
         }
 
         public UserDto UserInfor(string userName, string passWord)
