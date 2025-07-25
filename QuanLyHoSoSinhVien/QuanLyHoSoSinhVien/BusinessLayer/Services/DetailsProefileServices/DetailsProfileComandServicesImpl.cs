@@ -21,7 +21,7 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.DetailsProefileServices
         public bool EditDetailsProfile(DetailsProfileDto detailsProfileDto)
         {
              if (detailsProfileDto == null) return false;
-             if (detailsProfileDto.maSV == null) return false;
+             if (detailsProfileDto.maSV == null || string.IsNullOrEmpty(detailsProfileDto.maSV) || string.IsNullOrWhiteSpace(detailsProfileDto.maSV)) return false;
 
             _detailsProfileRepository.EditDetailsProfile(detailsProfileDto);
             _detailsProfileRepository.Save();

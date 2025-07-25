@@ -27,8 +27,8 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.ProfileServices
 
         public bool DeleteProfile(string mahs)
         {
-            if(string.IsNullOrWhiteSpace(mahs)) return false;
-            var hs = _hoSoRepository.getHoSoById(mahs);
+            if(string.IsNullOrWhiteSpace(mahs) || string.IsNullOrEmpty(mahs)) return false;
+            var hs = _hoSoRepository.getHoSoByMaHS(mahs);
             if (hs == null) return false;
 
             //Soft delete
@@ -39,8 +39,8 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.ProfileServices
 
         public bool EditProfile(HoSoDto hs)
         {
-            if(hs?.mahs == null) return false;
-            var tmp = _hoSoRepository.getHoSoById(hs.mahs);
+            if(hs?.mahs == null || string.IsNullOrEmpty(hs.mahs) || string.IsNullOrWhiteSpace(hs.mahs)) return false;
+            var tmp = _hoSoRepository.getHoSoByMaHS(hs.mahs);
             if (tmp == null) return false;
             
             if(!string.IsNullOrWhiteSpace(hs.masv)) tmp.masv = hs.masv;

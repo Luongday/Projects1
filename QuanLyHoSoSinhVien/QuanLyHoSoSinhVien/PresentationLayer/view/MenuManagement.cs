@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Automation.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using ClosedXML.Excel;
@@ -67,7 +68,7 @@ namespace QuanLyHoSoSinhVien.view
         IGetAStudentController getAStudentController;
         ManagerServicesFacade managerServicesFacade;
         StudentDto sv;
-
+        HoSoDto hoSo;
         public MenuManagement(ManagerServicesFacade managerServicesFacade, IServiceProvider serviceProvider)
         {
             InitializeComponent();
@@ -103,11 +104,6 @@ namespace QuanLyHoSoSinhVien.view
             this.getAllStudentForLopController = managerServicesFacade.getAllStudentForLop;
             this.getAStudentController = managerServicesFacade.getAStudent;
             TongSoSV.Text = studentController.totalStudent().ToString();
-        }
-
-        public MenuManagement()
-        {
-            InitializeComponent();
         }
 
         private void Load_SinhVien()
@@ -230,21 +226,12 @@ namespace QuanLyHoSoSinhVien.view
         private void LoadHoSo()
         {
             lblTotalProfile.Text = hoSoController.TotalProfile().ToString();
-            dgvHoSoSv.Rows.Clear();
-            dgvHoSoSv.Refresh();
+            dgvHoSoSv.DataSource = null;
             var hoso = hoSoController.getAllHoSo();
-            foreach (var ho in hoso)
-            {
-                dgvHoSoSv.Rows.Add(
-                ho.mahs,
-                ho.masv,
-                ho.ngaytao,
-                ho.ngaycapnhat,
-                ho.TrangThaiText
-                );
-            }
-
+            dgvHoSoSv.DataSource = hoso;
+            dgvHoSoSv.Columns["trangthaihoso"].Visible = false;
         }
+
         private void LoadChartThongKe(int dangHoc, int tamVang)
         {
             //chartThongKe.Series.Clear();
@@ -409,6 +396,19 @@ namespace QuanLyHoSoSinhVien.view
         private void MenuManagement_Load(object sender, EventArgs e)
         {
             Load_SinhVien();
+            LoadHoSo();
+            cboOptions.SelectedIndex = 0;
+            cboTrangThai.SelectedIndex = 0;
+            // Ẩn tất cả
+            txtMahs.Visible = false;
+            lblMahs.Visible = false;
+            txtMasv.Visible = false;
+            lblMasv.Visible = false;
+            cboTrangThai.Visible = false;
+            lblmhs.Visible = false;
+            lblmsv.Visible = false;
+            txtmhs.Visible = false;
+            txtmsv.Visible = false;
         }
 
         private void guna2TabControl2_MouseClick(object sender, MouseEventArgs e)
@@ -447,14 +447,14 @@ namespace QuanLyHoSoSinhVien.view
         private string? selectedMaHs = null;
         private void guna2Button1_Click_1(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(selectedMaSv) || string.IsNullOrWhiteSpace(selectedMaHs))
+            if (string.IsNullOrWhiteSpace(selectedMaSv) || string.IsNullOrWhiteSpace(selectedMaHs) || string.IsNullOrEmpty(selectedMaSv) || string.IsNullOrEmpty(selectedMaHs))
             {
                 MessageBox.Show("Vui lòng chọn hồ sơ sinh viên từ danh sách!");
                 return;
             }
-            var chiTietHoSo = new ChiTietHoSo(selectedMaSv, selectedMaHs, chitietHSController, lopController, nganhControllers, khoaController, studentController, editDetailsProfileController, serviceProvider);
-            chiTietHoSo.ShowDialog();
+            var chiTietHoSo = new ChiTietHoSo(selectedMaSv, selectedMaHs, chitietHSController, lopController, nganhControllers, khoaController, studentController, editDetailsProfileController, serviceProvider, this);
             this.Hide();
+            chiTietHoSo.ShowDialog();
         }
 
         private void guna2DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -619,14 +619,14 @@ namespace QuanLyHoSoSinhVien.view
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvHoSoSv.Rows[e.RowIndex];
-                selectedMaHs = row.Cells["mahs"].Value?.ToString();
-                selectedMaSv = row.Cells["masv"].Value?.ToString();
+                selectedMaHs = row.Cells[0].Value?.ToString();
+                selectedMaSv = row.Cells[1].Value?.ToString();
                 hoSoDto = new HoSoDto
                 {
-                    mahs = row.Cells["mahs"].Value?.ToString() ?? "a",
-                    masv = row.Cells["masv"].Value?.ToString() ?? "b",
-                    ngaycapnhat = DateTime.Parse(row.Cells["ngayct"].Value?.ToString() ?? "2000/1/1"),
-                    trangthaihoso = row.Cells["tt"].Value?.ToString() == "Không hoạt động" ? false : true
+                    mahs = row.Cells[0].Value?.ToString() ?? "a",
+                    masv = row.Cells[1].Value?.ToString() ?? "b",
+                    ngaycapnhat = DateTime.Parse(row.Cells[3].Value?.ToString() ?? "2000/1/1"),
+                    trangthaihoso = row.Cells[5].Value?.ToString() == "Không hoạt động" ? false : true
                 };
 
             }
@@ -639,11 +639,9 @@ namespace QuanLyHoSoSinhVien.view
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
-
-
-            if (string.IsNullOrWhiteSpace(selectedMaHs) == null)
+            if (string.IsNullOrWhiteSpace(selectedMaHs) || string.IsNullOrEmpty(selectedMaHs))
             {
-                MessageBox.Show("!");
+                MessageBox.Show("Không tồn tại hồ sơ có!");
                 return;
             }
 
@@ -714,7 +712,7 @@ namespace QuanLyHoSoSinhVien.view
                 {
                     maLop = txtMaLop.Text.Trim(),
                     tenLop = txtTenLop.Text,
-                    nganh = cbxNganhAtTPLop.SelectedItem.ToString() ?? ""
+                    nganh = cbxNganhAtTPLop?.SelectedItem!.ToString() ?? ""
                 }))
                 {
                     MessageBox.Show("Sửa lớp thành công");
@@ -1179,7 +1177,7 @@ namespace QuanLyHoSoSinhVien.view
                 {
                     maNganh = txtMaNganh.Text,
                     tenNganh = txtTenNganh.Text,
-                    khoa = cbxDsKhoa.SelectedItem.ToString() ?? ""
+                    khoa = cbxDsKhoa?.SelectedItem!.ToString() ?? ""
                 }))
                 {
                     MessageBox.Show("Sửa ngành thành công");
@@ -1421,6 +1419,169 @@ namespace QuanLyHoSoSinhVien.view
                 wb.SaveAs(saveFileDialog.FileName);
                 MessageBox.Show("Lưu file thành công!");
             }
+        }
+
+        public void ShowTab(string tabName)
+        {
+            foreach (TabPage tab in tcMenuManager.TabPages)
+            {
+                if (tab.Name == tabName)
+                {
+                    tcMenuManager.SelectedTab = tab;
+                    break;
+                }
+            }
+        }
+
+        private void cboOptions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = cboOptions.SelectedItem?.ToString();
+
+            // 1. Ẩn toàn bộ controls đầu vào
+            txtMahs.Visible = false;
+            lblMahs.Visible = false;
+            txtmhs.Visible = false;
+            lblmhs.Visible = false;
+            txtmsv.Visible = false;
+            txtMasv.Visible = false;
+            lblMasv.Visible = false;
+            lblmsv.Visible = false;
+            cboTrangThai.Visible = false;
+
+            // 2. Hiện đúng control theo lựa chọn
+            switch (selected)
+            {
+                case "Tìm theo mã hs":
+                    txtmhs.Visible = true;
+                    lblmhs.Visible = true;
+                    break;
+
+                case "Tìm theo mã sv":
+                    txtmsv.Visible = true;
+                    lblmsv.Visible = true;
+                    break;
+
+                case "Tìm theo trạng thái":
+                    cboTrangThai.Visible = true;
+                    break;
+
+                case "Tìm theo các tiêu chí":
+                    txtMahs.Visible = true;
+                    lblMahs.Visible = true;
+                    txtMasv.Visible = true;
+                    lblMasv.Visible = true;
+                    cboTrangThai.Visible = true;
+                    break;
+
+                case "-- Lựa chọn --":
+                default:
+                    break;
+            }
+        }
+
+        private void btnSuaHS_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(selectedMaHs) || string.IsNullOrWhiteSpace(selectedMaHs))
+            {
+                MessageBox.Show("Vui lòng chọn hồ sơ từ danh sách");
+                return;
+            }
+
+            var suahs = new SuaHS(selectedMaHs, serviceProvider, editProfileController, hoSoController, this);
+            this.Hide();
+            suahs.ShowDialog();
+        }
+
+        private void cboTrangThai_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblmhs_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string luachon = cboOptions.SelectedItem?.ToString();
+
+            var dto = new HoSoDto();
+            dgvHoSoSv.Rows.Clear();
+            dgvHoSoSv.Refresh();
+            switch (luachon)
+            {
+                case "Tìm theo mã hs":
+                    if (string.IsNullOrEmpty(txtmhs.Text) || string.IsNullOrWhiteSpace(txtmhs.Text)) { MessageBox.Show("Vui lòng nhập mã hồ sơ!"); return; }
+                    var result = hoSoController.getHoSoByMaHS(txtmhs.Text);
+                    if (result == null) { MessageBox.Show("Không tìm thấy hồ sơ có mã là " + txtmhs.Text + " này!"); dgvHoSoSv.DataSource = null; return; }
+                    dgvHoSoSv.DataSource = new List<HoSoDto> { result };
+                    break;
+
+                case "Tìm theo mã sv":
+                    if (string.IsNullOrEmpty(txtmsv.Text) || string.IsNullOrWhiteSpace(txtmsv.Text)) { MessageBox.Show("Vui lòng nhập mã sinh viên!"); return; }
+                    var result2 = hoSoController.getHoSoByMaSV(txtmsv.Text);
+                    if (result2 == null) { MessageBox.Show("Không tìm thấy hồ sơ có mã sinh viên là " + txtmsv.Text + " này!"); dgvHoSoSv.DataSource = null; return; }
+                    dgvHoSoSv.DataSource = new List<HoSoDto> { result2 };
+                    break;
+
+                case "Tìm theo trạng thái":
+                    if (cboTrangThai.SelectedItem?.ToString() == "Hoạt động")
+                        dto.trangthaihoso = true;
+                    else if (cboTrangThai.SelectedItem?.ToString() == "Không hoạt động")
+                        dto.trangthaihoso = false;
+
+                    var result3 = hoSoController.getHoSoByTrangThai(dto.trangthaihoso == true ? "Hoạt động" : "Không hoạt động");
+                    if (result3 == null) { MessageBox.Show("Không tìm thấy hồ sơ có trạng thái này!"); dgvHoSoSv.DataSource = null; return; }
+                    dgvHoSoSv.DataSource = result3;
+                    break;
+
+                case "Tìm theo các tiêu chí":
+                    dto.mahs = txtMahs.Text.Trim();
+                    dto.masv = txtMasv.Text.Trim();
+                    if (cboTrangThai.SelectedItem?.ToString() == "Hoạt động")
+                        dto.trangthaihoso = true;
+                    else if (cboTrangThai.SelectedItem?.ToString() == "Không hoạt động")
+                        dto.trangthaihoso = false;
+                    var result4 = hoSoController.getHoSoTheoNhieuTieuChi(dto);
+                    //if((string.IsNullOrEmpty(dto.mahs) && (string.IsNullOrWhiteSpace(dto.mahs))
+                    //|| ((string.IsNullOrEmpty(dto.masv)) && (string.IsNullOrWhiteSpace(dto.masv)) && ((cboTrangThai.SelectedItem?.ToString() != "Hoạt động") || (cboTrangThai.SelectedItem?.ToString() != "Không hoạt động"))
+                    //))){
+                    //    MessageBox.Show("Không được để trống cả 3!");
+                    //    dgvHoSoSv.DataSource = null;
+                    //    return;
+                    //}
+                    List<string> tieuChi = new List<string>();
+                    tieuChi.Add(txtMahs.Text);
+                    tieuChi.Add(txtMasv.Text);
+                    tieuChi.Add(cboTrangThai.SelectedItem.ToString());
+                    dgvHoSoSv.DataSource = new List<HoSoDto> { result4 };
+                    break;
+
+                case "-- Lựa chọn --":
+                default:
+                    MessageBox.Show("Vui lòng chọn tiêu chí tìm kiếm.");
+                    return;
+            }
+        }
+
+        private void txtmhs_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txtMahs_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvSinhVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvHoSoSv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

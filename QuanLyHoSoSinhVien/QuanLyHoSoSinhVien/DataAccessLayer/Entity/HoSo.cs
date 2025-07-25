@@ -19,7 +19,6 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Entity
         public DateTime? NgayTao { get; set; } = DateTime.Now;
         [DataType(DataType.Date)]
         public DateTime? NgayCapNhat { get; set; }
-        [MaxLength(20)]
         public bool? trangthaihoso { get; set; }
         public SinhVien? SinhVien { get; set; }
     }

@@ -19,6 +19,7 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.DetailsProefileServices
 
         public DetailsProfileDto MapToDto(SinhVien sv)
         {
+            if (sv == null) return new DetailsProfileDto { };
             return new DetailsProfileDto{
                 maSV = sv.masv,
                 tenSv = sv.tensv,
@@ -41,7 +42,11 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.DetailsProefileServices
 
         public SinhVien TakeInfoAStudent(string masv)
         {
-            return _detailsProfileRepository.TakeInfoAStudentById(masv);
+            if(string.IsNullOrEmpty(masv) || string.IsNullOrWhiteSpace(masv)) return new SinhVien { };
+
+            var tmp = _detailsProfileRepository.TakeInfoAStudentById(masv);
+            if(tmp == null) return new SinhVien { };
+            return tmp;
         }
     }
 }

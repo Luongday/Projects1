@@ -28,13 +28,13 @@ using QuanLyHoSoSinhVien.PresentationLayer.DTO.UserDTO;
 
 namespace QuanLyHoSoSinhVien
 {
-    internal static class Program
+    public static class Program
     {
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             ApplicationConfiguration.Initialize();
             var services = new ServiceCollection();
@@ -114,11 +114,13 @@ namespace QuanLyHoSoSinhVien
             //HoSo DI
             services.AddTransient<IHoSoRepository, HoSoRepositoryImpl>();
             services.AddTransient<IGetAllHoSoServices, ProfileQueryServicesImpl>();
-            services.AddTransient<IProfileController, ProfileControllerImpl>();
+            services.AddTransient<IProfileController, ProfileQueryControllerImpl>();
             services.AddTransient<IEditProfileController, ProfileComandControllerImpl>();
             services.AddTransient<IDeleteProfileController, ProfileComandControllerImpl>();
             services.AddTransient<IEditProfileServices, ProfileComandServicesImpl>();
             services.AddTransient<IDeleteProfileServices, ProfileComandServicesImpl>();
+            services.AddTransient<ITakeProfileByIdServices, ProfileQueryServicesImpl>();
+            services.AddTransient<ISearchProfileServices, ProfileQueryServicesImpl>();
             //Chi tiet ho so DI
             services.AddTransient<IDetailsProfileRepository, DetailsProfileRepositoryImpl>();
             services.AddTransient<IDetailsProfileController, DetailsProfileQueryControllerImpl>();
@@ -142,7 +144,7 @@ namespace QuanLyHoSoSinhVien
             var serviceProvider = services.BuildServiceProvider();
 
             // Lấy LoginFrm từ container (có inject UserControllers)
-            var loginForm = serviceProvider.GetRequiredService<LoginFrm>();
+            var loginForm = serviceProvider.GetRequiredService<MenuManagement>();
             Application.Run(loginForm);
         }
     }

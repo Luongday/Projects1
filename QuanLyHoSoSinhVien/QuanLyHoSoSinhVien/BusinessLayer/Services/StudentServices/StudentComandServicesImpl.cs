@@ -69,7 +69,7 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices
                 _studentRepository.deleteSinhVien(student);
                 if (maHs != null)
                 {
-                    _hoSoRepository.DeleteProfile(_hoSoRepository.getHoSoById(maHs));
+                    _hoSoRepository.DeleteProfile(_hoSoRepository.getHoSoByMaHS(maHs));
                     _hoSoRepository.Save(); 
                 }
                 return true;

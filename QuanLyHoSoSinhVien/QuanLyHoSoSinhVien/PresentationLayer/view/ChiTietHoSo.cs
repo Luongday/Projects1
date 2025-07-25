@@ -9,6 +9,7 @@ using QuanLyHoSoSinhVien.PresentationLayer.Controller.LopControl;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.NganhControl;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.DetailsProfileDTO;
+using QuanLyHoSoSinhVien.PresentationLayer.DTO.HoSoDto;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.KhoaDTO;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.LopDTO;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.NganhDTO;
@@ -28,7 +29,7 @@ namespace QuanLyHoSoSinhVien.view
 {
     public partial class ChiTietHoSo : Form
     {
-        private IServiceProvider _serviceProvider;
+        private readonly IServiceProvider _serviceProvider;
         private string _maSv;
         private string _maHs;
         private readonly IDetailsProfileController _controller;
@@ -37,7 +38,8 @@ namespace QuanLyHoSoSinhVien.view
         private readonly ILopController _lopController;
         private readonly IKhoaController _khoaController;
         private readonly IStudentController _studentController;
-        public ChiTietHoSo(string masv, string mahs, IDetailsProfileController controller, ILopController lopController, INganhControllers nganhControllers, IKhoaController khoaController, IStudentController studentController, IEditDetailsProfileController editDetailsProfileController, IServiceProvider serviceProvider)
+        private readonly MenuManagement _menuForm;
+        public ChiTietHoSo(string masv, string mahs, IDetailsProfileController controller, ILopController lopController, INganhControllers nganhControllers, IKhoaController khoaController, IStudentController studentController, IEditDetailsProfileController editDetailsProfileController, IServiceProvider serviceProvider, MenuManagement menuForm)
         {
             InitializeComponent();
             _maHs = mahs;
@@ -49,9 +51,10 @@ namespace QuanLyHoSoSinhVien.view
             _editDetailsProfileController = editDetailsProfileController;
             _serviceProvider = serviceProvider;
             _controller = controller;
+            this._menuForm = menuForm;
         }
 
-
+        DetailsProfileDto _dto;
         private void LoadChiTietHoSo()
         {
             var Dto = _controller.takeAStudentWithFullInfor(_maSv);
@@ -99,6 +102,7 @@ namespace QuanLyHoSoSinhVien.view
             {
                 cboKhoa.SelectedItem = Dto.tenKhoa;
             }
+            _dto = Dto;
         }
 
 
@@ -131,6 +135,7 @@ namespace QuanLyHoSoSinhVien.view
                 MessageBox.Show("NganhController is null");
             }
         }
+
         public void addLopToCombobox()
         {
             try
@@ -146,43 +151,19 @@ namespace QuanLyHoSoSinhVien.view
             }
         }
 
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label18_Click(object sender, EventArgs e)
-        {
-
-        }
+        DetailsProfileDto _detailsProfileDto;
 
         private void ChiTietHoSo_Load(object sender, EventArgs e)
         {
             LoadChiTietHoSo();
-        }
-
-        private void label15_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2HtmlLabel10_Click(object sender, EventArgs e)
-        {
-
+            var tmp = _controller.takeAStudentWithFullInfor(_maSv);
+            if (tmp == null)
+            {
+                MessageBox.Show("Dữ liệu lỗi hoặc không tồn tại!");
+            }
         }
 
         private void guna2CustomGradientPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2PictureBox1_Click(object sender, EventArgs e)
         {
 
         }
@@ -199,7 +180,7 @@ namespace QuanLyHoSoSinhVien.view
                 maSV = txtMSV.Text,
                 tenSv = txtName.Text,
                 ngaySinh = dtpDateTme.Value,
-                GioiTinh = cboSex.SelectedItem.ToString(),
+                GioiTinh = cboSex?.SelectedItem!.ToString(),
                 diaChi = txtAddress.Text,
                 danToc = txtDanToc.Text,
                 tonGiao = txtTonGiao.Text,
@@ -207,10 +188,10 @@ namespace QuanLyHoSoSinhVien.view
                 cccd = txtCCCD.Text,
                 email = txtEmail.Text,
                 sdt = txtSDT.Text,
-                trangThai = cboTT.SelectedItem.ToString(),
-                tenLop = cboLop.SelectedItem.ToString(),
-                tenNganh = cboNganh.SelectedItem.ToString(),
-                tenKhoa = cboKhoa.SelectedItem.ToString(),
+                trangThai = cboTT?.SelectedItem!.ToString(),
+                tenLop = cboLop?.SelectedItem!.ToString(),
+                tenNganh = cboNganh?.SelectedItem!.ToString(),
+                tenKhoa = cboKhoa?.SelectedItem!.ToString(),
             };
             var tmp = _editDetailsProfileController.EditDetailsProfile(_DetailsProfileDto);
             if (tmp != null)
@@ -230,9 +211,29 @@ namespace QuanLyHoSoSinhVien.view
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            var hehe = _serviceProvider.GetRequiredService<MenuManagement>();
-            hehe.Show();
-            return;
+            _menuForm.Show();
+            _menuForm.ShowTab("tpQuanLiHoSo");
+            this.Close();
+        }
+     
+      
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            if (_dto == null) return;
+            txtName.Text = _dto.tenSv;
+            dtpDateTme.Value = _dto.ngaySinh;
+            cboSex.SelectedItem = _dto.GioiTinh;
+            txtAddress.Text = _dto.diaChi;
+            txtDanToc.Text = _dto.danToc;
+            txtTonGiao.Text = _dto.tonGiao;
+            txtEmail.Text = _dto.email;
+            txtSDT.Text = _dto.sdt;
+            txtCCCD.Text = _dto.cccd;
+            txtQueQuan.Text = _dto.noiSinh;
+            cboTT.SelectedItem = _dto.trangThai;
+            cboLop.SelectedItem = _dto.tenLop;
+            cboNganh.SelectedItem = _dto.tenNganh;
+            cboKhoa.SelectedItem = _dto.tenKhoa;
         }
     }
 }

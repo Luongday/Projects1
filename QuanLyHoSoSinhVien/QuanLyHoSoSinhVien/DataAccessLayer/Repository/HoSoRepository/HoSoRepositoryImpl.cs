@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.HoSoRepository
 {
-    internal class HoSoRepositoryImpl : IHoSoRepository
+    public class HoSoRepositoryImpl : IHoSoRepository
     {
         DataContext _context;
 
@@ -21,11 +21,14 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.HoSoRepository
 
         public void AddHoSo(HoSo hs)
         {
+            if (hs == null) return;
             _context.HoSos.Add(hs);
         }
 
         public void DeleteProfile(HoSo hs)
         {
+            if (string.IsNullOrEmpty(hs.mahoso) || string.IsNullOrWhiteSpace(hs.mahoso)) return;
+            if (hs == null) return;
             var entity = _context.HoSos.FirstOrDefault(x => x.mahoso == hs.mahoso);
             if (entity != null)
             {
@@ -37,7 +40,7 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.HoSoRepository
         {
             var entity = _context.HoSos.FirstOrDefault(x => x.mahoso == hs.mahoso);
             if (entity != null)
-            { 
+            {
                 entity.masv = hs.masv;
                 entity.trangthaihoso = hs.trangthaihoso;
                 entity.NgayCapNhat = hs.NgayCapNhat;
@@ -51,19 +54,56 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.HoSoRepository
             return list;
         }
 
-        public HoSo getHoSoById(string mahs)
+        public HoSo getHoSoAll(HoSoDto hsdto)
         {
-            return _context.HoSos.FirstOrDefault(hs => hs.mahoso == mahs);
+            if (hsdto == null) return null;
+            var query = _context.HoSos.AsQueryable();
+
+            if(!string.IsNullOrEmpty(hsdto.mahs) && !string.IsNullOrWhiteSpace(hsdto.mahs))
+            {
+                query = query.Where(hs => hs.mahoso == hsdto.mahs);
+            }
+
+            if(!string.IsNullOrEmpty(hsdto.masv) && !string.IsNullOrWhiteSpace(hsdto.masv))
+            {
+                query = query.Where(hs => hs.masv == hsdto.masv);
+            }
+
+            if(!string.IsNullOrEmpty(hsdto.TrangThaiText) && !string.IsNullOrWhiteSpace(hsdto.TrangThaiText))
+            {
+                query = query.Where(hs => hs.trangthaihoso == hsdto.trangthaihoso);
+            }
+
+            if (query.Count() < 0) return null;
+
+            return query.FirstOrDefault();
         }
 
-        public DetailsProfileDto getHoSoByIdSinhVien(string masv)
+        public HoSo getHoSoByMaHS(string mahs)
         {
-            return null;
+            if (string.IsNullOrEmpty(mahs) || string.IsNullOrWhiteSpace(mahs)) return null;
+            var tmp = _context.HoSos.Where(x => x.mahoso == mahs).FirstOrDefault();
+            return tmp;
+        }
+
+        public HoSo getHoSoByMaSV(string masv)
+        {
+            if(string.IsNullOrEmpty(masv) || string.IsNullOrWhiteSpace(masv)) return null;
+            var tmp = _context.HoSos.Where(hs => hs.masv == masv).FirstOrDefault();
+            return tmp;
+        }
+
+        public List<HoSo> getHoSoByTrangThai(string tt)
+        {
+            if(string.IsNullOrEmpty(tt) || string.IsNullOrWhiteSpace(tt)) return null;
+            var tmp = _context.HoSos.Where(hs => (hs.trangthaihoso == true ? "Hoạt động" : "Không hoạt động") == tt).ToList();
+            return tmp;
         }
 
         public void Save()
         {
             _context.SaveChanges();
         }
+
     }
 }
