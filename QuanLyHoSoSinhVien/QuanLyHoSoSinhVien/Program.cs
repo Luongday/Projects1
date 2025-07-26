@@ -25,6 +25,7 @@ using QuanLyHoSoSinhVien.DataAccessLayer.Repository.DetailsProfileRepository;
 using QuanLyHoSoSinhVien.PresentationLayer.Controller.DetailsProfileController;
 using QuanLyHoSoSinhVien.BusinessLayer.Services.DetailsProefileServices;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.UserDTO;
+using System.Windows.Controls;
 
 namespace QuanLyHoSoSinhVien
 {
@@ -47,6 +48,8 @@ namespace QuanLyHoSoSinhVien
             services.AddTransient<IUserService,UserServicesImpl>();
             services.AddTransient<IEditRegisterService, UserServicesImpl>();
             services.AddTransient<IEditRegisterController, UserControllerImpl>();
+            services.AddTransient<IAddRegisterService, UserServicesImpl>();
+            services.AddTransient<IAddRegisterController, UserControllerImpl>();
             services.AddSingleton<UserDto>();
             //student DI
             services.AddTransient<IStudentController, StudentQueryControllerImpl>();
@@ -144,7 +147,7 @@ namespace QuanLyHoSoSinhVien
             var serviceProvider = services.BuildServiceProvider();
 
             // Lấy LoginFrm từ container (có inject UserControllers)
-            var loginForm = serviceProvider.GetRequiredService<MenuManagement>();
+            var loginForm = serviceProvider.GetRequiredService<LoginFrm>();
             Application.Run(loginForm);
         }
     }

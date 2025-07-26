@@ -21,6 +21,6 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.DTO.HoSoDto
         public DateTime? ngaycapnhat { get; set; } = DateTime.Now;
         public bool? trangthaihoso { get; set; }
         [DisplayName("Trạng thái hồ sơ")]
-        public string TrangThaiText => trangthaihoso == true ? "Hoạt động" : "Không hoạt động";
+        public string TrangThaiText => trangthaihoso == true ? "Lưu trữ" : "Đang học";
     }
 }

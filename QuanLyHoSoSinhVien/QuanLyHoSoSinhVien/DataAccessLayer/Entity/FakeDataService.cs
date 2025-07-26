@@ -95,16 +95,6 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Entity
             ("Kinh tế xây dựng", "XD"), ("Quản lý xây dựng", "XD")
         };
 
-        //public static User[] GenerateUsers(int count = 100)
-        //{
-        //    return Enumerable.Range(1, count).Select(i => new User
-        //    {
-        //        userId = i,
-        //        userName = $"user{i:D3}",
-        //        password = $"pass{i:D3}",
-        //        isAdmin = false
-        //    }).ToArray();
-        //}
         public static User[] GenerateUsers(int count = 100)
         {
             var sinhViens = GenerateSinhViens(count); // Tạo danh sách sinh viên trước
@@ -175,42 +165,28 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Entity
                     noisinh = DanhSachTinh[random.Next(DanhSachTinh.Length)],
                     tongiao = "Không",
                     dantoc = DanhSachDanToc[random.Next(DanhSachDanToc.Length)],
-                    trangthai = i % 20 == 0 ? "Tạm dừng" : i % 30 == 0 ? "Tốt nghiệp" : "Đang học"
+                    trangthai = i % 70 == 0 ? "Tốt nghiệp" : "Đang học"
                 };
             }).ToArray();
         }
 
-
-        //public static HoSo[] GenerateHoSos(int count = 100)
-        //{
-        //    var ngayTao = DateTime.Now.AddDays(-random.Next(30, 300));
-        //    var ngayCapNhat = ngayTao.AddDays(random.Next(0, 60));
-        //    return Enumerable.Range(1, count).Select(i =>
-        //    {
-        //        return new HoSo
-        //        {
-        //            mahoso = $"HS{i:D3}",
-        //            masv = $"SV{i:D3}",
-        //            NgayTao = ngayTao,
-        //            NgayCapNhat = ngayCapNhat,
-        //            trangthaihoso = true 
-        //        };
-        //    }).ToArray();
-        //}
         public static HoSo[] GenerateHoSos(int count = 100)
         {
             var ngayTao = DateTime.Now.AddDays(-random.Next(30, 300));
             var ngayCapNhat = ngayTao.AddDays(random.Next(0, 60));
             var sinhViens = GenerateSinhViens(count);
+
             return Enumerable.Range(0, count).Select(i =>
             {
+                bool hoSoTrangThai = sinhViens[i].trangthai == "Tốt nghiệp";
+
                 return new HoSo
                 {
                     mahoso = $"HS{i + 1:D3}",
                     masv = sinhViens[i].masv,
                     NgayTao = ngayTao,
                     NgayCapNhat = ngayCapNhat,
-                    trangthaihoso = true
+                    trangthaihoso = hoSoTrangThai
                 };
             }).ToArray();
         }

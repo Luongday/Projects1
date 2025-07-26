@@ -57,8 +57,10 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Entity
         [MaxLength(50)]
         public string? trangthai { get; set; }
 
+
         [ForeignKey("Lop")]
         public string? malop { get; set; }
+
 
         public Lop? Lop { get; set; }
 

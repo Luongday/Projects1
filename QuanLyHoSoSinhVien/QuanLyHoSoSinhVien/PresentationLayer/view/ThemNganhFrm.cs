@@ -55,8 +55,9 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.view
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
             }
-            else { 
-                if(addNganhController.addNewNganh(new DTO.NganhDTO.AddNganhDto
+            else
+            {
+                if (addNganhController.addNewNganh(new DTO.NganhDTO.AddNganhDto
                 {
                     maNganh = txtMaNganh.Text,
                     tenNganh = txtTenNganh.Text,
@@ -73,6 +74,14 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.view
                     MessageBox.Show("Thêm ngành thất bại, vui lòng kiểm tra lại thông tin");
                 }
             }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            var menu = serviceProvider.GetRequiredService<MenuManagement>();
+            menu.Show();
+            this.Close();
+
         }
     }
 }

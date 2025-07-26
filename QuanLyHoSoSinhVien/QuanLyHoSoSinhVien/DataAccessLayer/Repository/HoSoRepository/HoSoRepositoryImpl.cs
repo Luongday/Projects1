@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.DetailsProfileDTO;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.HoSoDto;
@@ -25,14 +26,13 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.HoSoRepository
             _context.HoSos.Add(hs);
         }
 
-        public void DeleteProfile(HoSo hs)
+        public void DeleteProfile(string maSV)
         {
-            if (string.IsNullOrEmpty(hs.mahoso) || string.IsNullOrWhiteSpace(hs.mahoso)) return;
-            if (hs == null) return;
-            var entity = _context.HoSos.FirstOrDefault(x => x.mahoso == hs.mahoso);
-            if (entity != null)
+            var hoSo = _context.HoSos.Include(h => h.SinhVien).FirstOrDefault(h => h.masv == maSV);
+            if (hoSo != null && hoSo.SinhVien != null)
             {
-                entity.trangthaihoso = false;
+                _context.SinhViens.Remove(hoSo.SinhVien); // xóa sinh viên → EF sẽ xóa cả HoSo
+                _context.SaveChanges();
             }
         }
 

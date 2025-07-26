@@ -24,7 +24,7 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.KhoaServices
 
         public Khoa GetById(string id)
         {
-            if (id != null)
+            if (!string.IsNullOrEmpty(id)&&!string.IsNullOrWhiteSpace(id))
             {
                 return khoaRepository.GetByMa(id);
             }

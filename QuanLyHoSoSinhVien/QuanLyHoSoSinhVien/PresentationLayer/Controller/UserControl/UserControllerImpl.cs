@@ -10,15 +10,40 @@ using QuanLyHoSoSinhVien.PresentationLayer.DTO.UserDTO;
 
 namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.UserControl
 {
-    public class UserControllerImpl : IUserController,IEditRegisterController
+    public class UserControllerImpl : IUserController,IEditRegisterController,IAddRegisterController
     {
         private readonly IUserService _userService;
         private readonly IEditRegisterService _editRegisterService;
+        private readonly IAddRegisterService _addRegisterService;
 
-        public UserControllerImpl(IUserService userService, IEditRegisterService editRegisterService)
+        public UserControllerImpl(IUserService userService, IEditRegisterService editRegisterService, IAddRegisterService addRegisterService)
         {
             _userService = userService;
             _editRegisterService = editRegisterService;
+            _addRegisterService = addRegisterService;
+        }
+
+        public bool addRegisterController(UserDto newUser)
+        {
+            if (newUser == null) { 
+                return false;
+            }
+            if(string.IsNullOrEmpty(newUser.userName) || string.IsNullOrEmpty(newUser.passWord) || string.IsNullOrWhiteSpace(newUser.userName) || string.IsNullOrWhiteSpace(newUser.passWord))
+            {
+                return false;
+            }
+            User user = new User
+            {
+                userId = newUser.userName+"register",
+                userName = newUser.userName,
+                password = newUser.passWord,
+                isAdmin = newUser.isAdmin
+            };
+            if (_addRegisterService.addNewRegister(user))
+            {
+                return true;
+            }
+            return false;
         }
 
         public bool editRegister(UserDto userDto)

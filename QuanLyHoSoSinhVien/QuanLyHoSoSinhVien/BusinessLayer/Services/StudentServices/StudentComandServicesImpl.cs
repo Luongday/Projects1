@@ -36,7 +36,7 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices
                 {
                     mahoso = "HS"+sv.masv , 
                     masv = sv.masv,
-                    trangthaihoso = true, 
+                    trangthaihoso = sv.trangthai == "Tốt nghiệp", 
                     NgayTao = DateTime.Now,
                     NgayCapNhat = DateTime.Now
                 });
@@ -57,7 +57,7 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices
 
         public bool delete(string ma)
         {
-            if (string.IsNullOrEmpty(ma))
+            if (string.IsNullOrEmpty(ma)||string.IsNullOrWhiteSpace(ma))
             {
                 return false; // Invalid input
             }
@@ -67,11 +67,6 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices
             try
             {
                 _studentRepository.deleteSinhVien(student);
-                if (maHs != null)
-                {
-                    _hoSoRepository.DeleteProfile(_hoSoRepository.getHoSoByMaHS(maHs));
-                    _hoSoRepository.Save(); 
-                }
                 return true;
             }
             catch (Exception ex)

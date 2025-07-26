@@ -20,6 +20,8 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Entity
         [DataType(DataType.Date)]
         public DateTime? NgayCapNhat { get; set; }
         public bool? trangthaihoso { get; set; }
+        [Range(0, 100)]
+       // public int tienDoHocTap { get; set; }
         public SinhVien? SinhVien { get; set; }
     }
 }

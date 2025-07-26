@@ -162,7 +162,7 @@ namespace QuanLyHoSoSinhVien.view
             dgvDSSVTamVang.Rows.Clear();
 
 
-            var danhSach = getAllSinhVienTamVangComtroller.getAllSinhVienTamVang();
+            var danhSach = getAllSinhVienTamVangComtroller.getAllSinhVienTotNghiep();
             //  dgvDSSVDangHoc.DataSource = danhSach;
 
 
@@ -479,6 +479,12 @@ namespace QuanLyHoSoSinhVien.view
                 lblTotalSinVienTamVang.Text = studentController.totalStudentTamVang().ToString();
                 LoadChartThongKe(studentController.totalStudentDangHoc(), studentController.totalStudentTamVang());
             }
+            if (tcMenuManager.SelectedTab == tpQuanLiTaiKhoan)
+            {
+                var qltkFrm = serviceProvider.GetRequiredService<QuanLiTaiKhoan>();
+                qltkFrm.Show();
+                this.Hide();
+            }
         }
 
         private void dgvKhoa_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -662,6 +668,7 @@ namespace QuanLyHoSoSinhVien.view
             {
                 MessageBox.Show(tmp);
                 LoadHoSo();
+                Load_SinhVien();
             }
             else
             {
@@ -1206,7 +1213,7 @@ namespace QuanLyHoSoSinhVien.view
             }
             else if (cboFieldForSearchSinhVien.SelectedIndex == 3)
             {
-                cboSearchSinhVien.DataSource = new List<string> { "Đang học", "Tạm dừng" };
+                cboSearchSinhVien.DataSource = new List<string> { "Đang học", "Tốt nghiệp" };
 
             }
         }
@@ -1227,7 +1234,7 @@ namespace QuanLyHoSoSinhVien.view
             }
             else if (cboFieldForSearchSinhVien.SelectedIndex == 3)
             {
-                cboSearchSinhVien.DataSource = new List<string> { "Đang học", "Tạm dừng" };
+                cboSearchSinhVien.DataSource = new List<string> { "Đang học", "Tốt nghiệp" };
 
             }
         }
@@ -1362,7 +1369,7 @@ namespace QuanLyHoSoSinhVien.view
                 }
                 if (cboSearchSinhVien.Text.Contains("Tạm vắng"))
                 {
-                    var lStudentTamVang = getAllSinhVienTamVangComtroller.getAllSinhVienTamVang();
+                    var lStudentTamVang = getAllSinhVienTamVangComtroller.getAllSinhVienTotNghiep();
                     if (lStudentTamVang != null)
                     {
                         dgvSinhVien.Rows.Clear();
@@ -1507,7 +1514,6 @@ namespace QuanLyHoSoSinhVien.view
             string luachon = cboOptions.SelectedItem?.ToString();
 
             var dto = new HoSoDto();
-            dgvHoSoSv.Rows.Clear();
             dgvHoSoSv.Refresh();
             switch (luachon)
             {
@@ -1582,6 +1588,43 @@ namespace QuanLyHoSoSinhVien.view
         private void dgvHoSoSv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnSuaSinhVien_Click(object sender, EventArgs e)
+        {
+            new ChiTietHoSo(selectedMaSv, selectedMaHs, chitietHSController, lopController, nganhControllers, khoaController, studentController, editDetailsProfileController, serviceProvider, this).ShowDialog();
+            this.Hide();
+
+        }
+
+        private void btnLamMoi_Click(object sender, EventArgs e)
+        {
+            cboFieldForSearchSinhVien.Text = "-- Lựa chọn --";
+            cboSearchSinhVien.Text = "";
+        }
+
+        private void btnLamMoiNganh_Click(object sender, EventArgs e)
+        {
+            cbxTimKiemForNganh.Text = "";
+        }
+
+        private void btnRefreshTxtKhoa_Click(object sender, EventArgs e)
+        {
+            txtMaNganh.Text = "";
+            txtTenNganh.Text = "";
+            cbxDsKhoa.SelectedIndex = -1;
+        }
+
+        private void btnLamMoiKhoa_Click(object sender, EventArgs e)
+        {
+            cbxFieldSearchKhoa.Text = "-- Lựa chọn --";
+            cbxTimKiemForKhoa.Text = "";
+        }
+
+        private void btnLamMoiLop_Click(object sender, EventArgs e)
+        {
+            cbxFieldSearchLop.Text = "-- Lựa chọn --";
+            cbxTimKiemForLop.Text = "";
         }
     }
 }

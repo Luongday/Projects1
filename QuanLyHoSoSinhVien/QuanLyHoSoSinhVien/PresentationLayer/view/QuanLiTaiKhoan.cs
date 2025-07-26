@@ -18,14 +18,17 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.view
     {
         IServiceProvider serviceProvider;
         IEditRegisterController editRegisterController;
+        IAddRegisterController addRegisterController;
+        ManagerServicesFacade managerServicesFacade;
         UserDto userDto;
-        public QuanLiTaiKhoan(IServiceProvider serviceProvider, IEditRegisterController editRegisterController, UserDto user)
+        public QuanLiTaiKhoan(IServiceProvider serviceProvider, ManagerServicesFacade managerServicesFacade, UserDto user)
         {
             this.serviceProvider = serviceProvider;
-            this.editRegisterController = editRegisterController;
+            this.editRegisterController = managerServicesFacade.editRegisterController;
+            this.addRegisterController = managerServicesFacade.addRegisterController;
             this.userDto = user;
             InitializeComponent();
-            
+
         }
 
         private void txtUserName_TextChanged(object sender, EventArgs e)
@@ -66,7 +69,34 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.view
 
         private void btnAddRegister_Click(object sender, EventArgs e)
         {
-
+            if (string.IsNullOrEmpty(txtUserName.Text) || string.IsNullOrEmpty(txtPassWord.Text) || string.IsNullOrWhiteSpace(txtPassWord.Text))
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin");
+                return;
+            }
+            if (txtUserName.Text.Trim().Length > 20 || txtPassWord.Text.Trim().Length > 20)
+            {
+                MessageBox.Show("Tên đăng nhập và mật khẩu không được quá 20 ký tự");
+                return;
+            }
+            if (addRegisterController.addRegisterController(new UserDto
+            {
+                userName = txtUserName.Text.Trim(),
+                passWord = txtPassWord.Text.Trim(),
+                isAdmin = cbxIsAdmin.Checked
+            }))
+            {
+                MessageBox.Show("Thêm tài khoản thành công");
+                txtUserName.Clear();
+                txtPassWord.Clear();
+                var menuManager = serviceProvider.GetRequiredService<MenuManagement>();
+                menuManager.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Thêm tài khoản thất bại");
+            }
         }
 
         private void QuanLiTaiKhoan_Load(object sender, EventArgs e)
@@ -78,7 +108,15 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.view
             else
             {
                 txtUserDoiMk.Text = userDto.userName;
+                tpThemTaiKhoan.Hide();
             }
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            var menuManager = serviceProvider.GetRequiredService<MenuManagement>();
+            menuManager.Show();
+            this.Close();
         }
     }
 }

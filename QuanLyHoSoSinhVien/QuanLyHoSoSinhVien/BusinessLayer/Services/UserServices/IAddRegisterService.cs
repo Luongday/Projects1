@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
 
-namespace QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices
+namespace QuanLyHoSoSinhVien.BusinessLayer.Services.UserServices
 {
-    public interface IGetAllStudentTamVang
+    public interface IAddRegisterService
     {
-        public List<SinhVien> getAllSinhVienTotNghiep();
+        public bool addNewRegister(User newUser); 
     }
 }

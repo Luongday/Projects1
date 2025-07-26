@@ -12,7 +12,7 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.HoSoRepository
     public interface IHoSoRepository
     {
         public List<HoSo> getAllHoSo();
-        public void DeleteProfile(HoSo hs);
+        public void DeleteProfile(string maSV);
         public void EditProfile(HoSo hs);
         public void AddHoSo(HoSo hs);
         public HoSo getHoSoByMaHS(string mahs);

@@ -46,6 +46,10 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.UserRepository
 
         public void addRegister(Entity.User user)
         {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user), "User cannot be null");
+            }
             _context.Add(user);
             try
             {

@@ -106,6 +106,11 @@ namespace QuanLyHoSoSinhVien.view
             }
             try
             {
+                if (dtpNgaySinh.Value > DateTime.Now)
+                {
+                    MessageBox.Show("Ngày sinh không hợp lệ. Vui lòng chọn lại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 var result = _addStudentController.addStudent(new StudentDto
                 {
                     maSV = txtMaSV.Text,

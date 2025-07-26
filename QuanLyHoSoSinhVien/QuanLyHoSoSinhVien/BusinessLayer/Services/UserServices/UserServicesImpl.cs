@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
 using QuanLyHoSoSinhVien.DataAccessLayer.Repository.UserRepository;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.UserDTO;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace QuanLyHoSoSinhVien.BusinessLayer.Services.UserServices
 {
-    public class UserServicesImpl : IUserService,IEditRegisterService
+    public class UserServicesImpl : IUserService,IEditRegisterService,IAddRegisterService
     {
         private readonly IUserDAO userDAO;
-        DataContext _context = new DataContext();
         public UserServicesImpl(IUserDAO userDAO)
         {
             this.userDAO = userDAO;
@@ -67,6 +65,42 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.UserServices
                 Console.WriteLine($"An error occurred while editing the user: {ex.Message}");
                 return false; // Update failed
             }
+        }
+
+        public bool addNewRegister(User newUser)
+        {
+            if(!string.IsNullOrEmpty(newUser.userName))
+            {
+                if (userDAO.getUserWithUserNamePass(newUser.userName,newUser.password) != null)
+                {
+                    return false; // User already exists
+                }
+            }
+            else
+            {
+                return false; // Invalid user name
+            }
+            if (string.IsNullOrEmpty(newUser.password) || string.IsNullOrWhiteSpace(newUser.password))
+            {
+                return false; // Invalid password
+            }
+            if(newUser.isAdmin == null)
+            {
+                return false; // Invalid admin status
+            }
+            if (newUser == null)
+            {
+                return false;
+            }
+            User user = new User
+            {
+                userId = newUser.userId,
+                userName = newUser.userName,
+                password = newUser.password,
+                isAdmin = newUser.isAdmin
+            };
+            userDAO.addRegister(user);
+            return true;
         }
     }
 }

@@ -31,13 +31,13 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.view
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if(txtMaKhoa.Text == "" || txtTenKhoa.Text == "")
+            if (txtMaKhoa.Text == "" || txtTenKhoa.Text == "")
             {
                 MessageBox.Show("Hãy nhập đủ thông tin");
             }
             else
             {
-                if (khoaQuey.getByMa(txtMaKhoa.Text)!=null)
+                if (khoaQuey.getByMa(txtMaKhoa.Text) != null)
                 {
                     MessageBox.Show("Đã tồn tại khoa này");
                 }
@@ -51,9 +51,16 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.view
                         var managerForm = serviceProvider.GetRequiredService<MenuManagement>();
                         managerForm.Show();
                     }
-                    
+
                 }
             }
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            var managerForm = serviceProvider.GetRequiredService<MenuManagement>();
+            managerForm.Show();
+            this.Close();
         }
     }
 }

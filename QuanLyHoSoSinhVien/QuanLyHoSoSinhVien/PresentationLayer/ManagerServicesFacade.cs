@@ -48,7 +48,8 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
         public IEditDetailsProfileController editDetailsProfileController { get; }
         public IGetAllStudentForLopController   getAllStudentForLop { get;  }
         public IGetAllStudentForNganhController getAllStudnetForNganh { get; }
-        public IEditRegisterController editRegisterController { get;  } 
+        public IEditRegisterController editRegisterController { get;  }
+        public IAddRegisterController addRegisterController { get; } 
 
         public ManagerServicesFacade(IStudentController studentController, INganhControllers nganhControllers,
                                      ILopController lopController, IKhoaController khoaController,
@@ -66,7 +67,7 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
                                       IAddStudentController addStudentController, IDeleteStudentController deleteStudentController,
                                       IGetNganhForIdController getNganhForIdController, IEditDetailsProfileController editDetailsProfileController,
                                       IGetAllStudentForLopController getAllStudentForLop, IGetAllStudentForNganhController getAllStudnetForNganh,
-                                      IEditRegisterController editRegisterController)
+                                      IEditRegisterController editRegisterController, IAddRegisterController addRegisterController)
                                      
         {
             this.studentController = studentController;
@@ -103,6 +104,7 @@ namespace QuanLyHoSoSinhVien.PresentationLayer
             this.getAllStudentForLop = getAllStudentForLop;
             this.getAllStudnetForNganh = getAllStudnetForNganh;
             this.editRegisterController = editRegisterController;
+            this.addRegisterController = addRegisterController;
         }
     }
 }

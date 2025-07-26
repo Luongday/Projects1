@@ -169,7 +169,7 @@
             guna2HtmlLabel17.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
             guna2HtmlLabel17.Location = new Point(19, 13);
             guna2HtmlLabel17.Name = "guna2HtmlLabel17";
-            guna2HtmlLabel17.Size = new Size(86, 26);
+            guna2HtmlLabel17.Size = new Size(102, 31);
             guna2HtmlLabel17.TabIndex = 4;
             guna2HtmlLabel17.Text = "Thao tác";
             // 
@@ -353,7 +353,7 @@
             guna2HtmlLabel18.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
             guna2HtmlLabel18.Location = new Point(616, 360);
             guna2HtmlLabel18.Name = "guna2HtmlLabel18";
-            guna2HtmlLabel18.Size = new Size(39, 23);
+            guna2HtmlLabel18.Size = new Size(49, 28);
             guna2HtmlLabel18.TabIndex = 29;
             guna2HtmlLabel18.Text = "SĐT";
             // 
@@ -508,7 +508,7 @@
             guna2HtmlLabel9.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
             guna2HtmlLabel9.Location = new Point(616, 259);
             guna2HtmlLabel9.Name = "guna2HtmlLabel9";
-            guna2HtmlLabel9.Size = new Size(78, 23);
+            guna2HtmlLabel9.Size = new Size(93, 28);
             guna2HtmlLabel9.TabIndex = 21;
             guna2HtmlLabel9.Text = "Tôn giáo";
             // 
@@ -518,7 +518,7 @@
             guna2HtmlLabel10.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
             guna2HtmlLabel10.Location = new Point(68, 360);
             guna2HtmlLabel10.Name = "guna2HtmlLabel10";
-            guna2HtmlLabel10.Size = new Size(86, 23);
+            guna2HtmlLabel10.Size = new Size(102, 28);
             guna2HtmlLabel10.TabIndex = 20;
             guna2HtmlLabel10.Text = "Quê quán";
             // 
@@ -528,7 +528,7 @@
             guna2HtmlLabel11.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
             guna2HtmlLabel11.Location = new Point(616, 70);
             guna2HtmlLabel11.Name = "guna2HtmlLabel11";
-            guna2HtmlLabel11.Size = new Size(69, 23);
+            guna2HtmlLabel11.Size = new Size(82, 28);
             guna2HtmlLabel11.TabIndex = 19;
             guna2HtmlLabel11.Text = "Dân tộc";
             // 
@@ -538,7 +538,7 @@
             guna2HtmlLabel12.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
             guna2HtmlLabel12.Location = new Point(616, 165);
             guna2HtmlLabel12.Name = "guna2HtmlLabel12";
-            guna2HtmlLabel12.Size = new Size(62, 23);
+            guna2HtmlLabel12.Size = new Size(72, 28);
             guna2HtmlLabel12.TabIndex = 18;
             guna2HtmlLabel12.Text = "Địa chỉ";
             // 
@@ -548,7 +548,7 @@
             guna2HtmlLabel13.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
             guna2HtmlLabel13.Location = new Point(68, 259);
             guna2HtmlLabel13.Name = "guna2HtmlLabel13";
-            guna2HtmlLabel13.Size = new Size(90, 23);
+            guna2HtmlLabel13.Size = new Size(104, 28);
             guna2HtmlLabel13.TabIndex = 17;
             guna2HtmlLabel13.Text = "Ngày sinh";
             // 
@@ -558,7 +558,7 @@
             guna2HtmlLabel14.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
             guna2HtmlLabel14.Location = new Point(68, 165);
             guna2HtmlLabel14.Name = "guna2HtmlLabel14";
-            guna2HtmlLabel14.Size = new Size(78, 23);
+            guna2HtmlLabel14.Size = new Size(91, 28);
             guna2HtmlLabel14.TabIndex = 16;
             guna2HtmlLabel14.Text = "Giới tính";
             // 
@@ -568,7 +568,7 @@
             guna2HtmlLabel15.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
             guna2HtmlLabel15.Location = new Point(68, 70);
             guna2HtmlLabel15.Name = "guna2HtmlLabel15";
-            guna2HtmlLabel15.Size = new Size(85, 23);
+            guna2HtmlLabel15.Size = new Size(101, 28);
             guna2HtmlLabel15.TabIndex = 15;
             guna2HtmlLabel15.Text = "Họ và tên";
             // 
@@ -629,7 +629,7 @@
             cboTT.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
             cboTT.ForeColor = Color.FromArgb(68, 88, 112);
             cboTT.ItemHeight = 30;
-            cboTT.Items.AddRange(new object[] { "Đang học", "Tốt nghiệp", "Tạm dừng" });
+            cboTT.Items.AddRange(new object[] { "Đang học", "Tốt nghiệp", "" });
             cboTT.Location = new Point(700, 346);
             cboTT.Name = "cboTT";
             cboTT.ShadowDecoration.CustomizableEdges = customizableEdges30;
@@ -639,9 +639,10 @@
             // guna2HtmlLabel16
             // 
             guna2HtmlLabel16.BackColor = Color.Transparent;
+            guna2HtmlLabel16.Font = new Font("Arial", 11F, FontStyle.Bold, GraphicsUnit.Point, 163);
             guna2HtmlLabel16.Location = new Point(588, 355);
             guna2HtmlLabel16.Name = "guna2HtmlLabel16";
-            guna2HtmlLabel16.Size = new Size(70, 22);
+            guna2HtmlLabel16.Size = new Size(107, 28);
             guna2HtmlLabel16.TabIndex = 16;
             guna2HtmlLabel16.Text = "Trạng thái";
             // 
@@ -776,7 +777,7 @@
             guna2HtmlLabel8.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
             guna2HtmlLabel8.Location = new Point(586, 254);
             guna2HtmlLabel8.Name = "guna2HtmlLabel8";
-            guna2HtmlLabel8.Size = new Size(43, 23);
+            guna2HtmlLabel8.Size = new Size(50, 28);
             guna2HtmlLabel8.TabIndex = 6;
             guna2HtmlLabel8.Text = "MSV";
             // 
@@ -785,7 +786,7 @@
             guna2HtmlLabel7.BackColor = Color.Transparent;
             guna2HtmlLabel7.Location = new Point(40, 350);
             guna2HtmlLabel7.Name = "guna2HtmlLabel7";
-            guna2HtmlLabel7.Size = new Size(28, 22);
+            guna2HtmlLabel7.Size = new Size(33, 27);
             guna2HtmlLabel7.TabIndex = 5;
             guna2HtmlLabel7.Text = "Lớp";
             guna2HtmlLabel7.Click += guna2HtmlLabel7_Click;
@@ -796,7 +797,7 @@
             guna2HtmlLabel6.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
             guna2HtmlLabel6.Location = new Point(588, 56);
             guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            guna2HtmlLabel6.Size = new Size(43, 23);
+            guna2HtmlLabel6.Size = new Size(51, 28);
             guna2HtmlLabel6.TabIndex = 4;
             guna2HtmlLabel6.Text = "MHS";
             // 
@@ -806,7 +807,7 @@
             guna2HtmlLabel5.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
             guna2HtmlLabel5.Location = new Point(588, 151);
             guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            guna2HtmlLabel5.Size = new Size(52, 23);
+            guna2HtmlLabel5.Size = new Size(59, 28);
             guna2HtmlLabel5.TabIndex = 3;
             guna2HtmlLabel5.Text = "Email";
             // 
@@ -816,7 +817,7 @@
             guna2HtmlLabel4.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
             guna2HtmlLabel4.Location = new Point(40, 245);
             guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            guna2HtmlLabel4.Size = new Size(48, 23);
+            guna2HtmlLabel4.Size = new Size(57, 28);
             guna2HtmlLabel4.TabIndex = 2;
             guna2HtmlLabel4.Text = "Khoa";
             // 
@@ -826,7 +827,7 @@
             guna2HtmlLabel3.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
             guna2HtmlLabel3.Location = new Point(40, 151);
             guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            guna2HtmlLabel3.Size = new Size(59, 23);
+            guna2HtmlLabel3.Size = new Size(70, 28);
             guna2HtmlLabel3.TabIndex = 1;
             guna2HtmlLabel3.Text = "Ngành";
             // 
@@ -836,7 +837,7 @@
             guna2HtmlLabel2.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
             guna2HtmlLabel2.Location = new Point(40, 56);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            guna2HtmlLabel2.Size = new Size(55, 23);
+            guna2HtmlLabel2.Size = new Size(67, 28);
             guna2HtmlLabel2.TabIndex = 0;
             guna2HtmlLabel2.Text = "CCCD";
             // 
@@ -846,13 +847,13 @@
             guna2HtmlLabel1.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
             guna2HtmlLabel1.Location = new Point(60, 9);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            guna2HtmlLabel1.Size = new Size(164, 26);
+            guna2HtmlLabel1.Size = new Size(200, 31);
             guna2HtmlLabel1.TabIndex = 0;
             guna2HtmlLabel1.Text = "Thông tin chi tiết";
             // 
             // ChiTietHoSo
             // 
-            AutoScaleDimensions = new SizeF(11F, 23F);
+            AutoScaleDimensions = new SizeF(14F, 27F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Bisque;
             ClientSize = new Size(1496, 584);

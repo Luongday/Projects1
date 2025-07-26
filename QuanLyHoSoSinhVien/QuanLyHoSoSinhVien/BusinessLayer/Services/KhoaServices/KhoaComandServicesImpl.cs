@@ -27,6 +27,11 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.KhoaServices
                     makhoa = khoa.Id,
                     tenkhoa = khoa.tenKhoa
                 };
+                if (string.IsNullOrEmpty(entity.makhoa) || string.IsNullOrEmpty(entity.tenkhoa)||
+                    string.IsNullOrWhiteSpace(entity.makhoa)|| string.IsNullOrWhiteSpace(entity.tenkhoa))
+                {
+                    return false; // Invalid input
+                }
                 khoaRepository.AddNew(entity);
                 return true;
             }

@@ -9,6 +9,6 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl
 {
     public interface IGetSinhVienTamVangController
     {
-        public List<StudentDto> getAllSinhVienTamVang();
+        public List<StudentDto> getAllSinhVienTotNghiep();
     }
 }

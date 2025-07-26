@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyHoSoSinhVien", "QuanLyHoSoSinhVien\QuanLyHoSoSinhVien.csproj", "{34B1B0E1-8E88-4CD4-8BC0-13E267A8253E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLiHoSoSinhVien.test", "QuanLiHoSoSinhVien.test\QuanLiHoSoSinhVien.test.csproj", "{A68C5AE0-BC25-4C87-8F7D-41B0C562317E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{34B1B0E1-8E88-4CD4-8BC0-13E267A8253E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34B1B0E1-8E88-4CD4-8BC0-13E267A8253E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34B1B0E1-8E88-4CD4-8BC0-13E267A8253E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A68C5AE0-BC25-4C87-8F7D-41B0C562317E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A68C5AE0-BC25-4C87-8F7D-41B0C562317E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A68C5AE0-BC25-4C87-8F7D-41B0C562317E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A68C5AE0-BC25-4C87-8F7D-41B0C562317E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

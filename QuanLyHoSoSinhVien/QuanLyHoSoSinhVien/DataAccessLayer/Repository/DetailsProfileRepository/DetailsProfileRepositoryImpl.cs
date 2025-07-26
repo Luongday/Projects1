@@ -20,7 +20,11 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.DetailsProfileRepository
 
         public void EditDetailsProfile(DetailsProfileDto sv)
         {
-            var entity = _context.SinhViens.Include(s => s.Lop).ThenInclude(p => p.nganh).ThenInclude(g => g.Khoa).FirstOrDefault(x => x.masv == sv.maSV);
+            var entity = _context.SinhViens.Include(s => s.Lop)
+                .ThenInclude(p => p.nganh)
+                .ThenInclude(g => g.Khoa)
+                .Include(s => s.HoSo)
+                .FirstOrDefault(x => x.masv == sv.maSV);
             if(entity != null && sv.maSV != null)
             {
                 entity.tensv = sv.tenSv;
@@ -34,7 +38,20 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.DetailsProfileRepository
                 entity.cccd = sv.cccd;
                 entity.noisinh = sv.noiSinh;
                 entity.trangthai = sv.trangThai;
-
+            var hs = _context.HoSos.FirstOrDefault(x => x.mahoso == entity.HoSo.mahoso);
+                if(hs != null)
+                {
+                    hs.masv = sv.maSV;
+                    if (sv.trangThai.Contains("Đang học", StringComparison.OrdinalIgnoreCase))
+                    {
+                        hs.trangthaihoso = false;
+                    }
+                    else if (sv.trangThai.Contains("Tốt nghiệp", StringComparison.OrdinalIgnoreCase))
+                    {
+                        hs.trangthaihoso = true;
+                    }
+                    hs.NgayCapNhat = DateTime.Now;
+                }
                 if (entity.malop != null)
                 {
                     var lop = _context.Lops.FirstOrDefault(x => x.malop == entity.malop);

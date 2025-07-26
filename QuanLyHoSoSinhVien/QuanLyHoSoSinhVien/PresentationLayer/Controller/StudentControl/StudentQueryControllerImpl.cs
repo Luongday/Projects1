@@ -30,9 +30,9 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl
             this.getStudentForNganhService = getStudentForNganhService;
         }
 
-        public List<StudentDto> getAllSinhVienTamVang()
+        public List<StudentDto> getAllSinhVienTotNghiep()
         {
-            return getAllStudentTamVang.getAllSinhVienTamVang().Select(sv=>new StudentDto
+            return getAllStudentTamVang.getAllSinhVienTotNghiep().Select(sv=>new StudentDto
             {
                 maSV = sv.masv,
                 tenSv = sv.tensv,
@@ -200,7 +200,7 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.Controller.StudentControl
 
         public int totalStudentTamVang()
         {
-            return getAllStudentTamVang.getAllSinhVienTamVang().Count();
+            return getAllStudentTamVang.getAllSinhVienTotNghiep().Count();
         }
     }
 }

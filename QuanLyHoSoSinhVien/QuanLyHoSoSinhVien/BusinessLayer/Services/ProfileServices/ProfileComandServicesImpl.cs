@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
 using QuanLyHoSoSinhVien.DataAccessLayer.Repository.HoSoRepository;
+using QuanLyHoSoSinhVien.DataAccessLayer.Repository.StudentRepository;
 using QuanLyHoSoSinhVien.PresentationLayer.DTO.HoSoDto;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.ProfileServices
     {
 
         private readonly IHoSoRepository _hoSoRepository;
+        private readonly IStudentRepository _studentRepository;
 
         public ProfileComandServicesImpl(IHoSoRepository hoSoRepository)
         {
@@ -30,10 +32,10 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.ProfileServices
             if(string.IsNullOrWhiteSpace(mahs) || string.IsNullOrEmpty(mahs)) return false;
             var hs = _hoSoRepository.getHoSoByMaHS(mahs);
             if (hs == null) return false;
-
-            //Soft delete
-            _hoSoRepository.DeleteProfile(hs);
+         
+            _hoSoRepository.DeleteProfile(hs.masv);
             _hoSoRepository.Save();
+            
             return true;
         }
 

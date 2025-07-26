@@ -164,6 +164,7 @@
             btnExit.Size = new Size(166, 60);
             btnExit.TabIndex = 7;
             btnExit.Text = "Hủy";
+            btnExit.Click += btnExit_Click;
             // 
             // btnThem
             // 

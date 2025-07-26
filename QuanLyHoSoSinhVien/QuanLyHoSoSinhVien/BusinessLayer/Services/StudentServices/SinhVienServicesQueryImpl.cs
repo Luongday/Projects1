@@ -24,10 +24,10 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices
             return studentRepo.GetAllStudents();
         }
 
-        public List<SinhVien> getAllSinhVienTamVang()
+        public List<SinhVien> getAllSinhVienTotNghiep()
         {
             var lStudent = studentRepo.GetAllStudents()
-                 .Where(sv => sv.trangthai.Contains("Tạm dừng"))
+                 .Where(sv => sv.trangthai.Contains("Tốt nghiệp"))
                  .ToList();
             if (lStudent == null)
             {
@@ -50,21 +50,22 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices
 
         public SinhVien getAStudentForMa(string maSV)
         {
-            if (string.IsNullOrEmpty(maSV))
+            if (string.IsNullOrEmpty(maSV)||string.IsNullOrWhiteSpace(maSV))
             {
-                new StudentDto { };
+                return new SinhVien { };
             }
-            return studentRepo.GetStudentId(maSV);
+            var student = studentRepo.GetStudentId(maSV);
+            return student;
         }
 
         public List<SinhVien> getSinhVienForLop(string tenLop)
         {
-            if (string.IsNullOrEmpty(tenLop))
+            if (string.IsNullOrEmpty(tenLop) || string.IsNullOrWhiteSpace(tenLop))
             {
                 return new List<SinhVien>();
             }
             var lStudent = studentRepo.GetAllStudents()
-                .Where(sv => sv.Lop.tenlop.Contains(tenLop))
+                .Where(sv => sv.Lop.tenlop.Contains(tenLop,StringComparison.OrdinalIgnoreCase))
                 .ToList();
             if (lStudent == null)
             {
