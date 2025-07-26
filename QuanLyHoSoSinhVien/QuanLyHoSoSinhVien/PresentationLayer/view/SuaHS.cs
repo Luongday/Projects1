@@ -50,7 +50,7 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.view
             txtmasv.Text = tmp?.masv;
             dtpNgayTao.Value = tmp.ngaytao!.Value;
             dtpNgayCapNhat.Value = tmp.ngaycapnhat!.Value;
-            string s = tmp.trangthaihoso == true ? "Hoạt động" : "Không hoạt động";
+            string s = tmp.trangthaihoso == true ? "Lưu trữ" : "Đang học";
             if (cboTrangThai.Items.Contains(s))
             {
                 cboTrangThai.SelectedItem = s;
@@ -58,7 +58,7 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.view
             _hoSoDto = new HoSoDto
             {
                 ngaycapnhat = dtpNgayCapNhat.Value,
-                trangthaihoso = s == "Hoạt động" ? true : false
+                trangthaihoso = s == "Lưu trữ" ? true : false
             };
             btnCancel.Enabled = false; // chưa có thay đổi thì disable
         }
@@ -68,7 +68,7 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.view
             if (_hoSoDto == null || !_hoSoDto.ngaycapnhat.HasValue)
                 return false;
             string trangThaiForm = cboTrangThai.SelectedItem?.ToString() ?? "";
-            string trangThaiDto = _hoSoDto.trangthaihoso == true ? "Hoạt động" : "Không hoạt động";
+            string trangThaiDto = _hoSoDto.trangthaihoso == true ? "Lưu trữ" : "Đang học";
             return dtpNgayCapNhat.Value != _hoSoDto.ngaycapnhat.Value || trangThaiForm != trangThaiDto;
         }
         private bool isLoading = false;
@@ -76,7 +76,7 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.view
         {
             isLoading = true;
             dtpNgayCapNhat.Value = _hoSoDto.ngaycapnhat!.Value;
-            cboTrangThai.SelectedItem = _hoSoDto.trangthaihoso == true ? "Hoạt động" : "Không hoạt động";
+            cboTrangThai.SelectedItem = _hoSoDto.trangthaihoso == true ? "Lưu trữ" : "Đang học";
             isLoading = false;
             btnCancel.Enabled = false; // chưa có thay đổi thì disable
         }
@@ -108,7 +108,7 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.view
                 masv = txtmasv.Text,
                 ngaytao = dtpNgayTao.Value,
                 ngaycapnhat = dtpNgayCapNhat.Value,
-                trangthaihoso = cboTrangThai.SelectedItem.ToString() == "Hoạt động" ? true : false
+                trangthaihoso = cboTrangThai.SelectedItem.ToString() == "Lưu trữ" ? true : false
             };
             var tmp = _editProfileController.EditProfile(hoSoDto);
 

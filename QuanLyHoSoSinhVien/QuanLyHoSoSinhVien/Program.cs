@@ -133,7 +133,7 @@ namespace QuanLyHoSoSinhVien
 
 
             services.AddTransient<ThemNganhFrm>();
-            services.AddTransient<LoginFrm>();
+            services.AddSingleton<LoginFrm>();
             services.AddTransient<MenuManagement>();
             services.AddTransient<ThemKhoa>();
             services.AddTransient<ThemSV>();

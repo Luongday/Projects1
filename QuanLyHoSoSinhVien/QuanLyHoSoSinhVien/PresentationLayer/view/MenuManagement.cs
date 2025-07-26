@@ -1626,5 +1626,12 @@ namespace QuanLyHoSoSinhVien.view
             cbxFieldSearchLop.Text = "-- Lựa chọn --";
             cbxTimKiemForLop.Text = "";
         }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            var loginFrm = serviceProvider.GetRequiredService<LoginFrm>();
+            loginFrm.Show();
+            this.Close();
+        }
     }
 }

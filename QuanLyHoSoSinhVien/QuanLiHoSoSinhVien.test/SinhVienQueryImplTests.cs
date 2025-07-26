@@ -37,7 +37,7 @@ namespace QuanLyHoSoSinhVien.Tests.BusinessLayer.Services.StudentServices
                 new QuanLyHoSoSinhVien.DataAccessLayer.Entity.SinhVien
                 {
                     masv = "SV002",
-                    trangthai = "Tạm dừng",
+                    trangthai = "Tốt nghiệp",
                    // malop = "L002",
                     Lop = new QuanLyHoSoSinhVien.DataAccessLayer.Entity.Lop
                     {
@@ -59,7 +59,7 @@ namespace QuanLyHoSoSinhVien.Tests.BusinessLayer.Services.StudentServices
                 new QuanLyHoSoSinhVien.DataAccessLayer.Entity.SinhVien
                 {
                     masv = "SV004",
-                    trangthai = "Tạm dừng",
+                    trangthai = "Tốt nghiệp",
                    // malop = "L004"
                    Lop = new QuanLyHoSoSinhVien.DataAccessLayer.Entity.Lop
                     {
@@ -103,7 +103,7 @@ namespace QuanLyHoSoSinhVien.Tests.BusinessLayer.Services.StudentServices
 
         #region Tests cho getAllSinhVienTamVang()
         [Fact]
-        public void GetAllSinhVienTamVang_ShouldReturnOnlyTamVangStudents()
+        public void GetAllSinhVienTotNghiep_ShouldReturnOnlyTamVangStudents()
         {
             // Arrange
             _mockStudentRepo.Setup(x => x.GetAllStudents()).Returns(_testData);
@@ -114,14 +114,14 @@ namespace QuanLyHoSoSinhVien.Tests.BusinessLayer.Services.StudentServices
             // Assert
             Assert.NotNull(result);
             Assert.Equal(2, result.Count);
-            Assert.All(result, s => Assert.Contains("Tạm dừng", s.trangthai));
+            Assert.All(result, s => Assert.Contains("Tốt nghiệp", s.trangthai));
         }
 
         [Fact]
-        public void GetAllSinhVienTamVang_ShouldReturnEmptyList_WhenNoTamVangStudents()
+        public void GetAllSinhVienTotNghiep_ShouldReturnEmptyList_WhenNoTamVangStudents()
         {
             // Arrange
-            var dataWithoutTamVang = _testData.Where(s => !s.trangthai.Contains("Tạm dừng")).ToList();
+            var dataWithoutTamVang = _testData.Where(s => !s.trangthai.Contains("Tốt nghiệp")).ToList();
             _mockStudentRepo.Setup(x => x.GetAllStudents()).Returns(dataWithoutTamVang);
 
             // Act

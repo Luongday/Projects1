@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
+﻿
 using QuanLyHoSoSinhVien.DataAccessLayer.Entity;
 using System;
 using System.Collections.Generic;
@@ -93,6 +93,12 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.UserRepository
                 return new Entity.User { };
             }
             return _context.Users.Find(userId);
+        }
+
+        public void deleteUser(Entity.User user)
+        {
+            _context.Users.Remove(user);
+            _context.SaveChanges();
         }
     }
 }

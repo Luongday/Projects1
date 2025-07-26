@@ -66,7 +66,9 @@ namespace QuanLyHoSoSinhVien.BusinessLayer.Services.StudentServices
             string maHs = student?.HoSo.mahoso;
             try
             {
+                User user = _userDAO.getUserForId(ma + "register");
                 _studentRepository.deleteSinhVien(student);
+                _userDAO.deleteUser(user);
                 return true;
             }
             catch (Exception ex)

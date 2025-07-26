@@ -318,6 +318,7 @@
             btnHuyChanged.Size = new Size(158, 61);
             btnHuyChanged.TabIndex = 10;
             btnHuyChanged.Text = "Hủy";
+            btnHuyChanged.Click += btnHuyChanged_Click;
             // 
             // txtNewPassWord
             // 

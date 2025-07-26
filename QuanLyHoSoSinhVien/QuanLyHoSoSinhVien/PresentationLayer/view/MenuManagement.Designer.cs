@@ -115,6 +115,8 @@
             DataGridViewCellStyle dataGridViewCellStyle21 = new DataGridViewCellStyle();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges60 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges61 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges64 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges65 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges62 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges63 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
@@ -285,6 +287,7 @@
             label21 = new Label();
             tpQuanLiTaiKhoan = new TabPage();
             guna2CustomGradientPanel2 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            btnLogout = new Guna.UI2.WinForms.Guna2Button();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -2933,17 +2936,38 @@
             // 
             // guna2CustomGradientPanel2
             // 
+            guna2CustomGradientPanel2.Controls.Add(btnLogout);
             guna2CustomGradientPanel2.Controls.Add(guna2HtmlLabel2);
             guna2CustomGradientPanel2.Controls.Add(guna2HtmlLabel1);
-            guna2CustomGradientPanel2.CustomizableEdges = customizableEdges62;
+            guna2CustomGradientPanel2.CustomizableEdges = customizableEdges64;
             guna2CustomGradientPanel2.FillColor = Color.MediumTurquoise;
             guna2CustomGradientPanel2.FillColor4 = Color.LightGreen;
             guna2CustomGradientPanel2.Location = new Point(2, 2);
             guna2CustomGradientPanel2.Margin = new Padding(2);
             guna2CustomGradientPanel2.Name = "guna2CustomGradientPanel2";
-            guna2CustomGradientPanel2.ShadowDecoration.CustomizableEdges = customizableEdges63;
+            guna2CustomGradientPanel2.ShadowDecoration.CustomizableEdges = customizableEdges65;
             guna2CustomGradientPanel2.Size = new Size(1920, 168);
             guna2CustomGradientPanel2.TabIndex = 0;
+            // 
+            // btnLogout
+            // 
+            btnLogout.BackColor = Color.Transparent;
+            btnLogout.BorderRadius = 30;
+            btnLogout.CustomizableEdges = customizableEdges62;
+            btnLogout.DisabledState.BorderColor = Color.DarkGray;
+            btnLogout.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnLogout.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnLogout.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnLogout.FillColor = Color.Red;
+            btnLogout.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogout.ForeColor = Color.FloralWhite;
+            btnLogout.Location = new Point(20, 88);
+            btnLogout.Name = "btnLogout";
+            btnLogout.ShadowDecoration.CustomizableEdges = customizableEdges63;
+            btnLogout.Size = new Size(161, 68);
+            btnLogout.TabIndex = 2;
+            btnLogout.Text = "Đăng xuất";
+            btnLogout.Click += btnLogout_Click;
             // 
             // guna2HtmlLabel2
             // 
@@ -3222,5 +3246,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lblmhs;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblmsv;
         private Guna.UI2.WinForms.Guna2TextBox txtmsv;
+        private Guna.UI2.WinForms.Guna2Button btnLogout;
     }
 }

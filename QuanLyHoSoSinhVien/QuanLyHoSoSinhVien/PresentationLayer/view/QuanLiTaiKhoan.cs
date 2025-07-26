@@ -103,12 +103,12 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.view
         {
             if (userDto.isAdmin)
             {
-
+                txtUserDoiMk.Text = userDto.userName;
             }
             else
             {
                 txtUserDoiMk.Text = userDto.userName;
-                tpThemTaiKhoan.Hide();
+                tpThemTaiKhoan.Enabled = false;
             }
         }
 
@@ -116,6 +116,13 @@ namespace QuanLyHoSoSinhVien.PresentationLayer.view
         {
             var menuManager = serviceProvider.GetRequiredService<MenuManagement>();
             menuManager.Show();
+            this.Close();
+        }
+
+        private void btnHuyChanged_Click(object sender, EventArgs e)
+        {
+            var loginFrm = serviceProvider.GetRequiredService<LoginFrm>();
+            loginFrm.Show();
             this.Close();
         }
     }

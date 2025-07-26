@@ -71,10 +71,10 @@ namespace QuanLyHoSoSinhVien.Tests
 
             //Assert
             Assert.True(result);
-            _hoSoRepositoryMock.Verify(repo => repo.AddHoSo(It.Is<HoSo>(h=>
+            _hoSoRepositoryMock.Verify(repo => repo.AddHoSo(It.Is<HoSo>(h =>
                 h.mahoso == "HS" + sv.masv &&
                 h.masv == sv.masv &&
-                h.trangthaihoso == true
+                h.trangthaihoso == (sv.trangthai == "Tốt nghiệp")
             )), Times.Once);
             _userDAOMock.Verify(dao => dao.addRegister(It.Is<User>(user =>
                 user.userId == sv.masv + "register" &&

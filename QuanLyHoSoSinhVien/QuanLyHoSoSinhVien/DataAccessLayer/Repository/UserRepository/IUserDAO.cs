@@ -15,5 +15,6 @@ namespace QuanLyHoSoSinhVien.DataAccessLayer.Repository.UserRepository
         public void addRegister(User user);
         public void editRegister(User user);
         public User getUserForId(string userId);
+        public void deleteUser(User user); 
     }
 }

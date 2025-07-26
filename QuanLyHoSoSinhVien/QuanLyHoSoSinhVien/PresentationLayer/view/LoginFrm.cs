@@ -58,7 +58,7 @@ namespace QuanLyHoSoSinhVien.view
                     var managerFrm = serviceProvider.GetRequiredService<MenuManagement>();
                     managerFrm.Show();
                 }
-                else
+                else if (user.isAdmin == false)
                 {
                     // MessageBox.Show("Dang nhap thanh cong voi quyen nguoi dung");
                     // this.Hide();
@@ -67,7 +67,11 @@ namespace QuanLyHoSoSinhVien.view
                     studentFrm.Show();
                     this.Hide();
                 }
-               
+                else
+                {
+                    MessageBox.Show("Dang nhap that bai");
+                }
+
             }
             else
             {
